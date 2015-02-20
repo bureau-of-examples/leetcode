@@ -1,7 +1,8 @@
-package zhy2002.leetcode.solutions.trailingZeroes;
+package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.Utils;
+import zhy2002.leetcode.solutions.trailingzeroes.Solution;
 
 import static org.junit.Assert.*;
 
