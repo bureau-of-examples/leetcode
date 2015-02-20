@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.trailingZeroes;
+package zhy2002.leetcode.solutions.trailingzeroes;
 
 /**
  * https://oj.leetcode.com/problems/factorial-trailing-zeroes/
