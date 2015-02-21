@@ -7,7 +7,7 @@ import zhy2002.leetcode.solutions.trailingzeroes.Solution;
 import static org.junit.Assert.*;
 
 
-public class SolutionTests {
+public class TrailingZerosTests {
 
     @Test
     public void smallNTest(){
