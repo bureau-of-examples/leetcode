@@ -6,6 +6,7 @@ import java.util.Stack;
 
 /**
  * https://oj.leetcode.com/problems/binary-search-tree-iterator/
+ * use a stack to help with in-order traversal.
  */
 public class BSTIterator {
 
