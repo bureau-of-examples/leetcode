@@ -3,11 +3,12 @@ package zhy2002.leetcode.common;
 /**
  * Leetcode data structure.
  */
-public class ListNode {
+public class TreeNode {
     public int val;
-    public ListNode next;
-    public ListNode(int x) {
+    public TreeNode left;
+    public TreeNode right;
+
+    public TreeNode(int x) {
         val = x;
-        next = null;
     }
 }

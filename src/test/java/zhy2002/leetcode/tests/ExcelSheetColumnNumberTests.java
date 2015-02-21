@@ -4,7 +4,7 @@ import org.junit.Test;
 import zhy2002.leetcode.solutions.excelsheetcolumnnumber.Solution;
 import static org.junit.Assert.*;
 
-public class ExcelSheetColumnNumberTest {
+public class ExcelSheetColumnNumberTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void overflowTest(){

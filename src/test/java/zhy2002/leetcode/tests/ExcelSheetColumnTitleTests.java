@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 /**
  * Created by ZHY on 21/02/2015.
  */
-public class ExcelSheetColumnTitleTest {
+public class ExcelSheetColumnTitleTests {
 
 
     @Test
