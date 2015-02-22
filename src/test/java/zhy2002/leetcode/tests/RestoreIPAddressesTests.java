@@ -1,0 +1,47 @@
+package zhy2002.leetcode.tests;
+
+import org.junit.Test;
+import zhy2002.leetcode.common.ListNode;
+import zhy2002.leetcode.solutions.restoreipaddresses.Solution;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+public class RestoreIPAddressesTests {
+
+    @Test
+    public void basicTest(){
+        Solution solution = new Solution();
+        List<String> result = solution.restoreIpAddresses("");
+        assertEquals(0, result.size());
+
+        result = solution.restoreIpAddresses("123");
+        assertEquals(0, result.size());
+
+        result = solution.restoreIpAddresses("1234");
+        assertEquals(1, result.size());
+        assertTrue(result.contains("1.2.3.4"));
+
+        result = solution.restoreIpAddresses("25525511135");
+        assertEquals(2, result.size());
+        assertTrue(result.contains("255.255.11.135"));
+        assertTrue(result.contains("255.255.111.35"));
+    }
+
+    @Test
+    public void overflowTest(){
+        Solution solution = new Solution();
+        List<String> result = solution.restoreIpAddresses("111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    public void leadingZeroTest(){
+        Solution solution = new Solution();
+        List<String> result = solution.restoreIpAddresses("010010");
+        assertEquals(2, result.size());
+        assertTrue(result.contains("0.10.0.10"));
+        assertTrue(result.contains("0.10.0.10"));
+    }
+}
