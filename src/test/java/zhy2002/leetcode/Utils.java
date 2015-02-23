@@ -1,5 +1,7 @@
 package zhy2002.leetcode;
 
+import zhy2002.leetcode.common.ListNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,5 +30,19 @@ public final class Utils {
         }
         return result;
 
+    }
+
+    public static ListNode createLinkedList(int[] items){
+        ListNode head = null;
+        ListNode current = null;
+        for(int i : items){
+            if(head == null){
+                head = current = new ListNode(i);
+            } else {
+                current.next = new ListNode(i);
+                current = current.next;
+            }
+        }
+        return head;
     }
 }
