@@ -45,4 +45,12 @@ public final class Utils {
         }
         return head;
     }
+
+    public static int[] createRange(int start, int end/*exclusive*/){
+        int[] result = new int[end - start];
+        for(int i=start; i<end; i++){
+            result[i-start] = i;
+        }
+        return result;
+    }
 }
