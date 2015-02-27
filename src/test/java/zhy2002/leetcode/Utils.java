@@ -1,5 +1,6 @@
 package zhy2002.leetcode;
 
+import zhy2002.leetcode.common.Interval;
 import zhy2002.leetcode.common.ListNode;
 
 import java.util.ArrayList;
@@ -52,5 +53,29 @@ public final class Utils {
             result[i-start] = i;
         }
         return result;
+    }
+
+    public static String toString(Iterable<Interval> list){
+        StringBuilder stringBuilder = new StringBuilder();
+        if(list != null){
+            stringBuilder.append("[");
+            boolean first = true;
+            for(Interval interval : list){
+                if(first)
+                    first = false;
+                else
+                    stringBuilder.append(",");
+
+                stringBuilder.append("[");
+                if(interval != null){
+                    stringBuilder.append(interval.start);
+                    stringBuilder.append(",");
+                    stringBuilder.append(interval.end);
+                }
+                stringBuilder.append("]");
+            }
+            stringBuilder.append("]");
+        }
+        return stringBuilder.toString();
     }
 }
