@@ -31,27 +31,27 @@ public class InsertIntervalTests {
         intervals.add(new Interval(1,2));
         intervals.add(new Interval(5,6));
         intervals = solution.insert(intervals, new Interval(3, 4));
-        assertEquals("[[1,2],[3,4],[5,6]]", Utils.toString(intervals));
+        assertEquals("[[1,2],[3,4],[5,6]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(2, 3));
-        assertEquals("[[1,4],[5,6]]", Utils.toString(intervals));
+        assertEquals("[[1,4],[5,6]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(3,8));
-        assertEquals("[[1,8]]", Utils.toString(intervals));
+        assertEquals("[[1,8]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(9, 12));
-        assertEquals("[[1,8],[9,12]]", Utils.toString(intervals));
+        assertEquals("[[1,8],[9,12]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(0, 2));
-        assertEquals("[[0,8],[9,12]]", Utils.toString(intervals));
+        assertEquals("[[0,8],[9,12]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(7, 10));
-        assertEquals("[[0,12]]", Utils.toString(intervals));
+        assertEquals("[[0,12]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(24, 26));
-        assertEquals("[[0,12],[24,26]]", Utils.toString(intervals));
+        assertEquals("[[0,12],[24,26]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(-10, -9));
-        assertEquals("[[-10,-9],[0,12],[24,26]]", Utils.toString(intervals));
+        assertEquals("[[-10,-9],[0,12],[24,26]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(-6, -3));
-        assertEquals("[[-10,-9],[-6,-3],[0,12],[24,26]]", Utils.toString(intervals));
+        assertEquals("[[-10,-9],[-6,-3],[0,12],[24,26]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(17, 19));
-        assertEquals("[[-10,-9],[-6,-3],[0,12],[17,19],[24,26]]", Utils.toString(intervals));
+        assertEquals("[[-10,-9],[-6,-3],[0,12],[17,19],[24,26]]", Utils.intervalsToString(intervals));
         intervals = solution.insert(intervals, new Interval(19, 20));
-        assertEquals("[[-10,-9],[-6,-3],[0,12],[17,20],[24,26]]", Utils.toString(intervals));
+        assertEquals("[[-10,-9],[-6,-3],[0,12],[17,20],[24,26]]", Utils.intervalsToString(intervals));
     }
 
 }

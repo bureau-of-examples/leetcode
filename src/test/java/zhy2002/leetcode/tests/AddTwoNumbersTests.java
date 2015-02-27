@@ -4,10 +4,9 @@ import org.junit.Test;
 import zhy2002.leetcode.common.ListNode;
 import zhy2002.leetcode.solutions.addtwonumbers.Solution;
 import static org.junit.Assert.*;
-/**
- * Created by ZHY on 22/02/2015.
- */
-public class AddTwoNumbersTest {
+
+
+public class AddTwoNumbersTests {
 
     @Test
     public void basicTest(){

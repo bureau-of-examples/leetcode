@@ -55,7 +55,7 @@ public final class Utils {
         return result;
     }
 
-    public static String toString(Iterable<Interval> list){
+    public static String intervalsToString(Iterable<Interval> list){
         StringBuilder stringBuilder = new StringBuilder();
         if(list != null){
             stringBuilder.append("[");
@@ -78,4 +78,21 @@ public final class Utils {
         }
         return stringBuilder.toString();
     }
+
+    public static String integersToString(Iterable<Integer> list){
+        StringBuilder stringBuilder = new StringBuilder();
+        if(list != null){
+            boolean first = true;
+            for(Integer i : list){
+                if(first)
+                    first = false;
+                else
+                    stringBuilder.append(",");
+
+                stringBuilder.append(i);
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 }
