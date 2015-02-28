@@ -7,9 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * https://oj.leetcode.com/problems/palindrome-partitioning/
- */
+
 public class PalindromePartitioningTest {
 
     @Test
