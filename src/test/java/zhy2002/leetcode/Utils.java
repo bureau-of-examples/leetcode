@@ -95,4 +95,32 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
+    public static char[][] stringToCharMatrix(String src){
+        if(src == null)
+            return null;
+
+        String[] lines = src.split(" ");
+        char[][] result = new char[lines.length][];
+        for(int i=0; i<lines.length; i++){
+            result[i] = lines[i].toCharArray();
+        }
+        return result;
+    }
+
+    public static String charMatrixToString(char[][] matrix){
+        if(matrix == null)
+            return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+
+        for(char[] row : matrix){
+            if(first)
+                first = false;
+            else
+                stringBuilder.append(" ");
+            stringBuilder.append(row);
+        }
+        return stringBuilder.toString();
+    }
 }
