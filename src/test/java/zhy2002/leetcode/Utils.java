@@ -11,33 +11,34 @@ import java.util.List;
  * Test util class.
  */
 public final class Utils {
-    private Utils(){}
+    private Utils() {
+    }
 
-    public static long factorial(byte n){
+    public static long factorial(byte n) {
         long result = 1;
-        for(long i=2; i<=n; i++){
+        for (long i = 2; i <= n; i++) {
             result *= i; //we dont care about overflow as this is testing code
         }
         return result;
     }
 
-    public static <T>  List<List<T>> arrayOfArrayToListOfList(T[][] array){
-        if(array == null)
+    public static <T> List<List<T>> arrayOfArrayToListOfList(T[][] array) {
+        if (array == null)
             return null;
 
         ArrayList<List<T>> result = new ArrayList<>();
-        for(T[] item : array){
+        for (T[] item : array) {
             result.add(Arrays.asList(item));
         }
         return result;
 
     }
 
-    public static ListNode createLinkedList(int[] items){
+    public static ListNode createLinkedList(int[] items) {
         ListNode head = null;
         ListNode current = null;
-        for(int i : items){
-            if(head == null){
+        for (int i : items) {
+            if (head == null) {
                 head = current = new ListNode(i);
             } else {
                 current.next = new ListNode(i);
@@ -47,27 +48,27 @@ public final class Utils {
         return head;
     }
 
-    public static int[] createRange(int start, int end/*exclusive*/){
+    public static int[] createRange(int start, int end/*exclusive*/) {
         int[] result = new int[end - start];
-        for(int i=start; i<end; i++){
-            result[i-start] = i;
+        for (int i = start; i < end; i++) {
+            result[i - start] = i;
         }
         return result;
     }
 
-    public static String intervalsToString(Iterable<Interval> list){
+    public static String intervalsToString(Iterable<Interval> list) {
         StringBuilder stringBuilder = new StringBuilder();
-        if(list != null){
+        if (list != null) {
             stringBuilder.append("[");
             boolean first = true;
-            for(Interval interval : list){
-                if(first)
+            for (Interval interval : list) {
+                if (first)
                     first = false;
                 else
                     stringBuilder.append(",");
 
                 stringBuilder.append("[");
-                if(interval != null){
+                if (interval != null) {
                     stringBuilder.append(interval.start);
                     stringBuilder.append(",");
                     stringBuilder.append(interval.end);
@@ -79,12 +80,12 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
-    public static String integersToString(Iterable<Integer> list){
+    public static String integersToString(Iterable<Integer> list) {
         StringBuilder stringBuilder = new StringBuilder();
-        if(list != null){
+        if (list != null) {
             boolean first = true;
-            for(Integer i : list){
-                if(first)
+            for (Integer i : list) {
+                if (first)
                     first = false;
                 else
                     stringBuilder.append(",");
@@ -95,32 +96,61 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
-    public static char[][] stringToCharMatrix(String src){
-        if(src == null)
+    public static char[][] stringToCharMatrix(String src) {
+        if (src == null)
             return null;
 
         String[] lines = src.split(" ");
         char[][] result = new char[lines.length][];
-        for(int i=0; i<lines.length; i++){
+        for (int i = 0; i < lines.length; i++) {
             result[i] = lines[i].toCharArray();
         }
         return result;
     }
 
-    public static String charMatrixToString(char[][] matrix){
-        if(matrix == null)
+    public static String charMatrixToString(char[][] matrix) {
+        if (matrix == null)
             return null;
 
         StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
 
-        for(char[] row : matrix){
-            if(first)
+        for (char[] row : matrix) {
+            if (first)
                 first = false;
             else
                 stringBuilder.append(" ");
             stringBuilder.append(row);
         }
+        return stringBuilder.toString();
+    }
+
+    public static String listOfListToString(List<? extends List<? extends Object>> list) {
+        if (list == null)
+            return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        boolean first = true;
+        for (List<?> item : list) {
+            if (first)
+                first = false;
+            else
+                stringBuilder.append(",");
+
+            boolean firstCell = true;
+            stringBuilder.append("[");
+            for (Object cell : item) {
+                if (firstCell)
+                    firstCell = false;
+                else
+                    stringBuilder.append(",");
+
+                stringBuilder.append(cell);
+            }
+            stringBuilder.append("]");
+        }
+        stringBuilder.append("]");
         return stringBuilder.toString();
     }
 }
