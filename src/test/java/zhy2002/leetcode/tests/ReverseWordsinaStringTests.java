@@ -4,9 +4,7 @@ import org.junit.Test;
 import zhy2002.leetcode.solutions.reversewordsinastring.Solution;
 
 import static org.junit.Assert.*;
-/**
- * Created by ZHY on 21/02/2015.
- */
+
 public class ReverseWordsInAStringTests {
 
     @Test
