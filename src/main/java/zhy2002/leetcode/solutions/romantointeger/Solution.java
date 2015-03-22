@@ -13,15 +13,17 @@ public class Solution {
         for(int i=0; i<s.length(); i++){
             char thisChar = s.charAt(i);
             int thisVal = charValue(thisChar);
-            if(i > 0){//add value of previous char
-                if(lastVal > thisVal){
+            if(lastVal > 0){//add value of previous char
+                if(lastVal >= thisVal){
                     sum += lastVal;
+                } else {
+                    sum += thisVal - lastVal;
+                    thisVal = 0;
                 }
             }
-            //lastChar = thisChar;
             lastVal = thisVal;
-
         }
+        sum += lastVal;
         return sum;
     }
 
