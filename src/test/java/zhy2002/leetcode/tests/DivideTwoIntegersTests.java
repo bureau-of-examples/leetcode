@@ -2,9 +2,9 @@ package zhy2002.leetcode.tests;
 
 
 import org.junit.Test;
-import zhy2002.leetcode.solutions.dividetwointegers.BaseSolution;
-import zhy2002.leetcode.solutions.dividetwointegers.NaiveSolution;
 import zhy2002.leetcode.solutions.dividetwointegers.Solution;
+import zhy2002.leetcode.solutions.dividetwointegers.NaiveSolution;
+import zhy2002.leetcode.solutions.dividetwointegers.QuickSolution;
 
 import static org.junit.Assert.*;
 
@@ -17,10 +17,10 @@ public class DivideTwoIntegersTests {
 
     @Test
     public void solutionBasicTest(){
-        basicTest(new Solution());
+        basicTest(new QuickSolution());
     }
 
-    private void basicTest(BaseSolution baseSolution){
+    private void basicTest(Solution baseSolution){
         assertEquals(0, baseSolution.divide(0, 100));
         assertEquals(1, baseSolution.divide(100, 100));
         assertEquals(1, baseSolution.divide(-100, -100));

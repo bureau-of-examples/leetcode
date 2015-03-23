@@ -3,7 +3,7 @@ package zhy2002.leetcode.solutions.dividetwointegers;
 /**
  * Naive solution by subtraction.
  */
-public class NaiveSolution implements BaseSolution {
+public class NaiveSolution implements Solution {
 
     public int divide(int dividend, int divisor) {
         if(divisor == 0)

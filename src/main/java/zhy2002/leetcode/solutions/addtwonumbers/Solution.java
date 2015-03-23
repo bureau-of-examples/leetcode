@@ -2,10 +2,11 @@ package zhy2002.leetcode.solutions.addtwonumbers;
 
 import zhy2002.leetcode.common.ListNode;
 
+/**
+ * https://oj.leetcode.com/problems/add-two-numbers/
+ */
+public class Solution {
 
-public class Solution implements BaseSolution {
-
-    @Override
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
         int carry = 0;
