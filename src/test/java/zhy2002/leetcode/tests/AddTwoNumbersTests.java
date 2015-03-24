@@ -2,6 +2,8 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.common.ListNode;
+import zhy2002.leetcode.solutions.addtwonumbers.NoSentinelSolution;
+import zhy2002.leetcode.solutions.addtwonumbers.ReferenceSolution;
 import zhy2002.leetcode.solutions.addtwonumbers.Solution;
 import static org.junit.Assert.*;
 
@@ -9,8 +11,16 @@ import static org.junit.Assert.*;
 public class AddTwoNumbersTests {
 
     @Test
-    public void basicTest(){
-        Solution solution = new Solution();
+    public void noSentinelBasicTest(){
+        basicTest(new NoSentinelSolution());
+    }
+
+    @Test
+    public void referenceBasicTest(){
+        basicTest(new ReferenceSolution());
+    }
+
+    private void basicTest(Solution solution){
         ListNode result = solution.addTwoNumbers(null, null);
         assertNull(result);
 
