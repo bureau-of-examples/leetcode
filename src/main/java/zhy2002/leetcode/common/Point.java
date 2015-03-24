@@ -1,6 +1,8 @@
 package zhy2002.leetcode.common;
 
-
+/**
+ * Leetcode data structure.
+ */
 public class Point {
     public int x;
     public int y;

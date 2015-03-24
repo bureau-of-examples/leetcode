@@ -12,7 +12,7 @@ public class HashMapSolution implements Solution {
     public int[] twoSum(int[] numbers, int target) {
         HashMap<Integer, Integer> valueToIndex = new HashMap<>();
         for (int i = 0; i < numbers.length; i++) {
-            int otherNumber = target - numbers[i];
+            Integer otherNumber = target - numbers[i];
             if (valueToIndex.containsKey(otherNumber))
                 return new int[]{valueToIndex.get(otherNumber) + 1, i + 1};
             else

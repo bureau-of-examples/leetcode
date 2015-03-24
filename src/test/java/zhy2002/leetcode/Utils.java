@@ -6,12 +6,23 @@ import zhy2002.leetcode.common.ListNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Test util class.
  */
 public final class Utils {
     private Utils() {
+    }
+
+    private static final Random RANDOM = new Random(99);
+
+    static {
+
+    }
+
+    public static Random random() {
+        return RANDOM;
     }
 
     public static long factorial(byte n) {
@@ -129,7 +140,7 @@ public final class Utils {
         if (src == null)
             return null;
 
-        if(src.length() == 0)
+        if (src.length() == 0)
             return new int[0][];
 
         String[] lines = src.split(",");
@@ -137,7 +148,7 @@ public final class Utils {
         for (int i = 0; i < lines.length; i++) {
             String[] items = lines[i].split("\\s+");
             result[i] = new int[items.length];
-            for(int j=0; j<items.length; j++){
+            for (int j = 0; j < items.length; j++) {
                 result[i][j] = Integer.parseInt(items[j]);
             }
         }
