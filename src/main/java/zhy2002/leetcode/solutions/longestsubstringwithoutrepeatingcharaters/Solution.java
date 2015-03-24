@@ -5,6 +5,7 @@ import java.util.HashMap;
 /**
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  * Maintain a maximum window that contains distinct characters.
+ * This works because it is an organised way of checking longest non-repeating substring starting at each index i.
  */
 public class Solution {
 
