@@ -1,5 +1,6 @@
 package zhy2002.leetcode.tests;
 
+import zhy2002.leetcode.solutions.longestpalindromicsubstring.DpSolution;
 import zhy2002.leetcode.solutions.longestpalindromicsubstring.ExpansionSolution;
 import zhy2002.leetcode.solutions.longestpalindromicsubstring.Solution;
 import org.junit.Test;
@@ -11,6 +12,11 @@ public class LongestPalindromicSubstringTests {
     @Test
     public void expansionBasicTest(){
         basicTest(new ExpansionSolution());
+    }
+
+    @Test
+    public void dpBasicTest(){
+        basicTest(new DpSolution());
     }
 
     private void basicTest(Solution solution){
