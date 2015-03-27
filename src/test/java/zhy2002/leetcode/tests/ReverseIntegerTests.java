@@ -1,5 +1,7 @@
 package zhy2002.leetcode.tests;
 
+import zhy2002.leetcode.solutions.reverseinteger.LongSolution;
+import zhy2002.leetcode.solutions.reverseinteger.NoLongSolution;
 import zhy2002.leetcode.solutions.reverseinteger.Solution;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -7,8 +9,16 @@ import static org.junit.Assert.*;
 public class ReverseIntegerTests {
 
     @Test
-    public void basicTest(){
-        Solution solution = new Solution();
+    public void longBasicTest(){
+        basicTest(new LongSolution());
+    }
+
+    @Test
+    public void noLongBasicTest(){
+        basicTest(new NoLongSolution());
+    }
+
+    private void basicTest(Solution solution){
 
         assertEquals(0,solution.reverse(0));
         assertEquals(1,solution.reverse(10));
