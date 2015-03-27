@@ -2,6 +2,8 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.solutions.medianoftwosortedarrays.KthStatisticsSolution;
+import zhy2002.leetcode.solutions.medianoftwosortedarrays.MedianNoTrivialSolution;
+import zhy2002.leetcode.solutions.medianoftwosortedarrays.MedianSolution;
 import zhy2002.leetcode.solutions.medianoftwosortedarrays.Solution;
 
 import static org.junit.Assert.*;
@@ -13,8 +15,23 @@ public class MedianOfTwoSortedArraysTests {
         basicTest(new KthStatisticsSolution());
     }
 
+    @Test
+    public void medianBasicTest(){
+        basicTest(new MedianSolution());
+    }
+
+    @Test
+    public void medianNoTrivialBasicTest(){
+        basicTest(new MedianNoTrivialSolution());
+    }
+
     private void basicTest(Solution solution) {
         double verySmall =  0.0000001;
+        assertEquals(3, solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2,4, 5}), verySmall);
+        assertEquals(2, solution.findMedianSortedArrays(new int[]{1}, new int[]{2,3}), verySmall);
+        assertEquals(3, solution.findMedianSortedArrays(new int[]{}, new int[]{3}), verySmall);
+        assertEquals(2.5, solution.findMedianSortedArrays(new int[]{1,4}, new int[]{2,3}), verySmall);
+        assertEquals(2.5, solution.findMedianSortedArrays(new int[]{2}, new int[]{1,3,4}), verySmall);
         assertEquals(3.0, solution.findMedianSortedArrays(new int[]{1}, new int[]{5}), verySmall);
         assertEquals(2.0, solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{5}), verySmall);
         assertEquals(5.0, solution.findMedianSortedArrays(new int[]{1, 2, 6}, new int[]{5, 9}), verySmall);
