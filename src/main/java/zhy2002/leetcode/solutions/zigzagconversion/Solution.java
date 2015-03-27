@@ -2,7 +2,7 @@ package zhy2002.leetcode.solutions.zigzagconversion;
 
 /**
  * https://leetcode.com/problems/zigzag-conversion/
- * Set up buffer to store the result. Then work out where to get the characters one by one.
+ * Set up buffer to store the result. Then work out where to get the characters from the first to the last.
  * A cycle is:
  * X   Y
  * X  XY  Y
