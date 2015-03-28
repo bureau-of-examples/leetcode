@@ -1,6 +1,8 @@
 package zhy2002.leetcode.tests;
 
 import org.junit.Test;
+import zhy2002.leetcode.solutions.regularexpressionmatching.DpSolution;
+import zhy2002.leetcode.solutions.regularexpressionmatching.RecursiveSolution;
 import zhy2002.leetcode.solutions.regularexpressionmatching.Solution;
 
 import static org.junit.Assert.*;
@@ -8,9 +10,37 @@ import static org.junit.Assert.*;
 public class RegularExpressionMatchingTests {
 
     @Test
-    public void dotTest(){
+    public void dpDotTest(){
+        dotTest(new DpSolution());
+    }
 
-        Solution solution = new Solution();
+    @Test
+    public void dpStarTest(){
+        starTest(new DpSolution());
+    }
+
+    @Test
+    public void dpDotStarTest(){
+        dotStarTest(new DpSolution());
+    }
+
+    @Test
+    public void recursiveDotTest(){
+        dotTest(new RecursiveSolution());
+    }
+
+    @Test
+    public void recursiveStarTest(){
+        starTest(new RecursiveSolution());
+    }
+
+    @Test
+    public void recursiveDotStarTest(){
+        dotStarTest(new RecursiveSolution());
+    }
+
+    private void dotTest(Solution solution){
+
         assertTrue(solution.isMatch("", ""));
         assertTrue(solution.isMatch("b", "."));
         assertTrue(solution.isMatch("ba", ".a"));
@@ -20,9 +50,7 @@ public class RegularExpressionMatchingTests {
         assertTrue(solution.isMatch("abc", "..."));
     }
 
-    @Test
-    public void starTest(){
-        Solution solution = new Solution();
+    private void starTest(Solution solution){
         assertTrue(solution.isMatch("", "a*"));
         assertTrue(solution.isMatch("a", "a*"));
         assertTrue(solution.isMatch("aa", "a*"));
@@ -39,9 +67,8 @@ public class RegularExpressionMatchingTests {
         assertTrue(solution.isMatch("aab", "c*a*b"));
     }
 
-    @Test
-    public void dotStarTest(){
-        Solution solution = new Solution();
+    private void dotStarTest(Solution solution){
+
         assertTrue(solution.isMatch("ab", ".*"));
         assertTrue(solution.isMatch("aasdfasdfasdfasdfas", "aasdf.*asdf.*asdf.*asdf.*s"));
         assertTrue(solution.isMatch("aabbcbcacbacaaccacc", "c*b*b*.*.*.*a*.*"));
