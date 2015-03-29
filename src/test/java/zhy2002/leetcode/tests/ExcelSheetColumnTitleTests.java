@@ -5,9 +5,7 @@ import zhy2002.leetcode.solutions.excelsheetcolumntitle.Solution;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by ZHY on 21/02/2015.
- */
+
 public class ExcelSheetColumnTitleTests {
 
 
