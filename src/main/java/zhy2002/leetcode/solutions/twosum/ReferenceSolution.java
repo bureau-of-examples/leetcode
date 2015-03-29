@@ -9,7 +9,7 @@ public class ReferenceSolution implements Solution {
 
     public int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
-        HashMap<Integer, Integer> table = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> table = new HashMap<>();
 
         for (int i = 0; i < numbers.length; i++) {
             if (table.containsKey(numbers[i])) {//this number is the required number by a previous number

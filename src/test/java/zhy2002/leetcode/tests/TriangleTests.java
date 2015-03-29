@@ -3,8 +3,6 @@ package zhy2002.leetcode.tests;
 import org.junit.Test;
 import zhy2002.leetcode.Utils;
 import zhy2002.leetcode.solutions.triangle.Solution;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
