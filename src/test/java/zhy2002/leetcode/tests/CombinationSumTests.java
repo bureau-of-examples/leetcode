@@ -2,7 +2,7 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.Utils;
-import zhy2002.leetcode.solutions.CombinationSum.Solution;
+import zhy2002.leetcode.solutions.combinationsum.Solution;
 
 import java.util.List;
 

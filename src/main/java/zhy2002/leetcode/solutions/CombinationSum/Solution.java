@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.CombinationSum;
+package zhy2002.leetcode.solutions.combinationsum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
