@@ -183,4 +183,18 @@ public final class Utils {
         stringBuilder.append("]");
         return stringBuilder.toString();
     }
+
+    public static String linkedListToString(ListNode result) {
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        while (result != null){
+            if(first)
+                first = false;
+            else
+                stringBuilder.append(" ");
+            stringBuilder.append(result.val);
+            result = result.next;
+        }
+        return stringBuilder.toString();
+    }
 }
