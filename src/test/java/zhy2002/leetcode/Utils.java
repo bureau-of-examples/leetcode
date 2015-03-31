@@ -45,7 +45,7 @@ public final class Utils {
 
     }
 
-    public static ListNode createLinkedList(int[] items) {
+    public static ListNode createLinkedList(int... items) {
         ListNode head = null;
         ListNode current = null;
         for (int i : items) {
