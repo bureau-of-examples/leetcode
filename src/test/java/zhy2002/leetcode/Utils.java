@@ -59,6 +59,18 @@ public final class Utils {
         return head;
     }
 
+    public static int[] intArrayFromString(String src){
+        if(src.trim().length() == 0)
+            return new int[0];
+
+        String[] integers = src.split("\\s+");
+        int[] result = new int[integers.length];
+        for(int i=0; i<integers.length; i++){
+            result[i] = Integer.parseInt(integers[i]);
+        }
+        return result;
+    }
+
     public static int[] createRange(int start, int end/*exclusive*/) {
         int[] result = new int[end - start];
         for (int i = start; i < end; i++) {
