@@ -15,7 +15,7 @@ public class QuickSolution implements Solution {
         if(dividend == Integer.MIN_VALUE && divisor == -1)
             return Integer.MAX_VALUE;
 
-        //find k so that 2^k * b <= INT_MAX && 2^(K+1) * B > INT_MAX
+        //find k so that 2^k * b <= INT_MAX && 2^(K+1) * b > INT_MAX
         //k = number of 0 bits after sign bit
         int k, b;
         if(divisor > 65535 || divisor < -65535){
