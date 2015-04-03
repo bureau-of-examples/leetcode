@@ -1,8 +1,8 @@
 package zhy2002.leetcode.tests;
 
+import zhy2002.leetcode.solutions.distinctsubsequences.Solution;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import zhy2002.leetcode.solutions.distinctsubsequences.Solution;
 
 public class DistinctSequencesTests {
 
