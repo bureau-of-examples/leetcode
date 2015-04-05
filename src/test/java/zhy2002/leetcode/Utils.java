@@ -131,6 +131,19 @@ public final class Utils {
         return result;
     }
 
+    public static String listToString(List<String> list){
+       StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        for(String str : list){
+            if(first)
+                first = false;
+            else
+                stringBuilder.append(" ");
+            stringBuilder.append(str);
+        }
+        return stringBuilder.toString();
+    }
+
     public static String charMatrixToString(char[][] matrix) {
         if (matrix == null)
             return null;
