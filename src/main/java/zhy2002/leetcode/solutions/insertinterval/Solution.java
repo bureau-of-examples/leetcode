@@ -22,7 +22,7 @@ public class Solution {
         }
         int coverStart = start;
 
-        //bin search last interval that is covered new interval end
+        //bin search last interval that is covered by new interval end
         start = 0; end = intervals.size() - 1;
         while (start <= end){
             int mid = (start + end) >>> 1;
