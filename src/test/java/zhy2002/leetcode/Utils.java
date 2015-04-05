@@ -103,6 +103,20 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
+    public static List<Interval> stringToIntervals(String str){
+
+        List<Interval> result = new ArrayList<>();
+        if(str.length() <= 4)
+            return result;
+        str = str.substring(2, str.length() - 2);
+        String[] intervals = str.split("\\]\\s*,\\s*\\[");
+        for(String pair : intervals){
+            int index = pair.indexOf(',');
+            result.add(new Interval(Integer.parseInt(pair.substring(0, index)), Integer.parseInt(pair.substring(index + 1))));
+        }
+        return result;
+    }
+
     public static String integersToString(Iterable<Integer> list) {
         StringBuilder stringBuilder = new StringBuilder();
         if (list != null) {
