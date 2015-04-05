@@ -148,6 +148,35 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
+    public static String intMatrixToString(int[][] matrix) {
+        if (matrix == null)
+            return null;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+
+        for (int[] row : matrix) {
+            if (first)
+                first = false;
+            else
+                stringBuilder.append(" ");
+
+            intArrayToString(stringBuilder, row);
+        }
+        return stringBuilder.toString();
+    }
+
+    private static void intArrayToString(StringBuilder stringBuilder, int[] row) {
+        boolean first = true;
+        for(int val : row){
+            if(first)
+                first = false;
+            else
+                stringBuilder.append(',');
+            stringBuilder.append(val);
+        }
+    }
+
     public static int[][] stringToIntMatrix(String src) {
         if (src == null)
             return null;
