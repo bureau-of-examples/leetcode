@@ -2,7 +2,7 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.Utils;
-import zhy2002.leetcode.solutions.uniquepathii.Solution;
+import zhy2002.leetcode.solutions.uniquepathsii.Solution;
 import static org.junit.Assert.*;
 
 public class UniquePathsIITests {

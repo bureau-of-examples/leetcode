@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.uniquepathii;
+package zhy2002.leetcode.solutions.uniquepathsii;
 
 /**
  * https://oj.leetcode.com/problems/unique-paths-ii/
