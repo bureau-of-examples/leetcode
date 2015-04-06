@@ -265,4 +265,15 @@ public final class Utils {
         }
         return stringBuilder.toString();
     }
+
+    public static int[][] randIntMatrix(int width, int height){
+        int[][] result = new int[height][width];
+        Random rand = random();
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                result[i][j] = rand.nextInt(32);
+            }
+        }
+        return result;
+    }
 }
