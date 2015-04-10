@@ -11,6 +11,7 @@ public class Solution {
         if(T.length() == 0)
             return "";
 
+        //count characters in T
         HashMap<Character, Integer> tCharCounts = new HashMap<>();
         for(int i=0; i<T.length(); i++){
             Character ch = T.charAt(i);
@@ -34,7 +35,7 @@ public class Solution {
             if(count == 0)
                 enoughCharCount++;
             if(enoughCharCount == tCharCounts.size()){ //[start, end] has got all chars
-                while (true){
+                while (true){//move start to remove excess chars
                     Character startChar = S.charAt(start);
                     Integer startCharCount = tCharCounts.get(startChar);
                     if(startCharCount == null)
