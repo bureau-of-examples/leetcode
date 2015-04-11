@@ -1,7 +1,7 @@
 package zhy2002.leetcode.tests;
 
 import zhy2002.leetcode.common.TreeNode;
-import zhy2002.leetcode.solutions.uniquebinarysearchtreeii.Solution;
+import zhy2002.leetcode.solutions.uniquebinarysearchtreesii.Solution;
 import org.junit.Test;
 
 import java.util.List;
