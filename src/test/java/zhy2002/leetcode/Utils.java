@@ -1,12 +1,11 @@
 package zhy2002.leetcode;
 
+import sun.reflect.generics.tree.Tree;
 import zhy2002.leetcode.common.Interval;
 import zhy2002.leetcode.common.ListNode;
+import zhy2002.leetcode.common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Test util class.
@@ -275,6 +274,34 @@ public final class Utils {
             }
         }
         return result;
+    }
+
+    public static String binaryTreeToString(TreeNode root){
+        if(root == null)
+            return "";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int notNullCount = 1;
+        do{
+            TreeNode node = queue.poll();
+            if(node != null){
+                stringBuilder.append(" ");
+                stringBuilder.append(node.val);
+                notNullCount--;
+                queue.add(node.left);
+                if(node.left != null)
+                    notNullCount++;
+                queue.add(node.right);
+                if(node.right != null)
+                    notNullCount++;
+            } else {
+                stringBuilder.append(" #");
+            }
+        }while (notNullCount != 0);
+
+        return stringBuilder.substring(1);
     }
 
 }
