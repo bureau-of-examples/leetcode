@@ -6,9 +6,6 @@ import zhy2002.leetcode.solutions.binarysearchtreeiterator.BSTIterator;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by ZHY on 21/02/2015.
- */
 public class BinarySearchTreeIteratorTests {
 
     @Test
