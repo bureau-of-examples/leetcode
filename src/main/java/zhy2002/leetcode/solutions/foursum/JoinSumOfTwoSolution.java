@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * https://leetcode.com/discuss/20231/my-accepted-java-solution-by-making-use-of-twosum
- * Solution from the inter web people by joining two sum of twos.
+ * TopDownSolution from the inter web people by joining two sum of twos.
  * This is slower than my solution in the OJ.
  */
 public class JoinSumOfTwoSolution implements Solution {
