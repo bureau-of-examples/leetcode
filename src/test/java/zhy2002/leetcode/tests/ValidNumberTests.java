@@ -2,7 +2,6 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.solutions.validnumber.ReferenceSolution;
-import zhy2002.leetcode.solutions.validnumber.Solution;
 import zhy2002.leetcode.solutions.validnumber.StateSolution;
 
 import static org.junit.Assert.*;
