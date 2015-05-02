@@ -5,6 +5,8 @@ import java.util.Stack;
 /**
  * https://oj.leetcode.com/problems/surrounded-regions/
  * Flood fill non-surrounded to T.
+ * Update O to X.
+ * Update T to O.
  */
 public class Solution {
 
