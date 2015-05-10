@@ -6,3 +6,7 @@ If you are using IntelliJ you still need to configure your email in the git loca
 <pre>
 git config --global user.email "your_email@example.com"
 </pre>
+
+Todo:
+ - Check test line coverage
+ - Add checkstyle check.

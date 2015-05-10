@@ -1,7 +1,7 @@
 package zhy2002.leetcode.tests;
 
 import org.junit.Test;
-import zhy2002.leetcode.solutions.workbreakii.Solution;
+import zhy2002.leetcode.solutions.wordbreakii.Solution;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class WorkBreakIITests {
+public class WordBreakIITests {
 
     @Test
     public void basicTest(){

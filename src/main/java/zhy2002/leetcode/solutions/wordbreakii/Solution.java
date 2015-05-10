@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.workbreakii;
+package zhy2002.leetcode.solutions.wordbreakii;
 
 import java.util.*;
 
