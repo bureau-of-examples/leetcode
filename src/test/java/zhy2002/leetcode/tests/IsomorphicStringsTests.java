@@ -4,7 +4,7 @@ import org.junit.Test;
 import zhy2002.leetcode.solutions.isomorphicstrings.Solution;
 import static org.junit.Assert.*;
 
-public class IsomorphicStringsTest {
+public class IsomorphicStringsTests {
 
     @Test
     public void basicTest(){

@@ -5,7 +5,7 @@ import zhy2002.leetcode.Utils;
 import zhy2002.leetcode.solutions.nextpermutation.Solution;
 import static org.junit.Assert.*;
 
-public class NextPermutationTest {
+public class NextPermutationTests {
 
     @Test
     public void basicTest(){

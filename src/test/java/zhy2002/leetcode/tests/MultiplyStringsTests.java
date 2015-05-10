@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class MultiplyStringsTest {
+public class MultiplyStringsTests {
 
     @Test
     public void basicTest() {

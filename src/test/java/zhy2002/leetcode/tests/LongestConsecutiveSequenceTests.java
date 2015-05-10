@@ -4,7 +4,7 @@ import org.junit.Test;
 import zhy2002.leetcode.solutions.longestconsecutivesequence.Solution;
 import static org.junit.Assert.*;
 
-public class LongestConsecutiveSequenceTest {
+public class LongestConsecutiveSequenceTests {
 
     @Test
     public void basicTest(){

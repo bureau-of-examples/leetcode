@@ -5,7 +5,7 @@ import zhy2002.leetcode.solutions.containerwithmostwater.ClosingInSolution;
 import zhy2002.leetcode.solutions.containerwithmostwater.Solution;
 import static org.junit.Assert.*;
 
-public class ContainerWithMostWaterTest {
+public class ContainerWithMostWaterTests {
 
     @Test
     public void closingInBasicTest(){

@@ -1,6 +1,5 @@
 package zhy2002.leetcode;
 
-import sun.reflect.generics.tree.Tree;
 import zhy2002.leetcode.common.Interval;
 import zhy2002.leetcode.common.ListNode;
 import zhy2002.leetcode.common.TreeNode;

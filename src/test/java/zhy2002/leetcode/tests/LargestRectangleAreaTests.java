@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LargestRectangleAreaTest {
+public class LargestRectangleAreaTests {
 
     @Test
     public void basicTest(){
