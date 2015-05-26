@@ -20,6 +20,7 @@ public class Trie {
     }
 
     private TrieNode root;
+    private boolean isEmpty = true;
 
     public Trie() {
         root = new TrieNode('^');//start
@@ -36,9 +37,8 @@ public class Trie {
             node = node.nodes[index];
         }
         node.isEnd = true;
+        isEmpty = false;
     }
-
-
 
     // Returns if the word is in the trie.
     public boolean search(String word) {
@@ -61,7 +61,7 @@ public class Trie {
             if (node == null)
                 return false;
         }
-        return true;
+        return !isEmpty;
     }
 
 
