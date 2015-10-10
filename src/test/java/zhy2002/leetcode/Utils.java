@@ -7,7 +7,7 @@ import zhy2002.leetcode.common.TreeNode;
 import java.util.*;
 
 /**
- * Test util class.
+ * Tests util class.
  */
 public final class Utils {
     private Utils() {
