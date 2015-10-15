@@ -3,7 +3,7 @@ package zhy2002.leetcode.solutions.countcompletetreenodes;
 import zhy2002.leetcode.common.TreeNode;
 
 /**
- * Solution come from:
+ * DpSolution come from:
  * https://leetcode.com/discuss/38930/concise-java-solutions-o-log-n-2
  */
 public class DnCSolution implements Solution {
