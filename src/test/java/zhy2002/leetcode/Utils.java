@@ -221,6 +221,31 @@ public final class Utils {
         return result;
     }
 
+    public static String listOfIntArrayToString(List<int[]> list){
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean first = true;
+        for(int[] item : list){
+            if(first)
+                first = false;
+            else
+                stringBuilder.append(" ");
+
+            stringBuilder.append("[");
+
+            for(int i=0; i<item.length; i++){
+                if(i > 0){
+                    stringBuilder.append(" ");
+                }
+                stringBuilder.append(item[i]);
+            }
+
+            stringBuilder.append("]");
+
+        }
+        return stringBuilder.toString();
+    }
+
+
     public static String listOfListToString(List<? extends List<?>> list) {
         if (list == null)
             return null;
