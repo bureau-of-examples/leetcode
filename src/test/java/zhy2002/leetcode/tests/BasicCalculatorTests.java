@@ -45,4 +45,13 @@ public class BasicCalculatorTests {
         assertEquals(3682, solution.calculate("(1*(2+(3*4-5)+6*(-2*(-3+6*17)+5)-71)*3-22)*-1"));
 
     }
+
+    @Test
+    public void spaceTest(){
+        Solution solution = new Solution();
+        assertEquals(7, solution.calculate("3+2*2"));
+        assertEquals(1, solution.calculate("3/2 "));
+        assertEquals(5, solution.calculate(" 3+5 / 2 "));
+        assertEquals(-3, solution.calculate(" -10 / 3 "));
+    }
 }
