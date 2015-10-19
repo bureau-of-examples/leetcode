@@ -7,5 +7,5 @@ import zhy2002.leetcode.common.TreeNode;
  */
 public interface Solution {
 
-    public TreeNode buildTree(int[] inorder, int[] postorder);
+    TreeNode buildTree(int[] inorder, int[] postorder);
 }

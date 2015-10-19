@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.houserobber;
  */
 public interface Solution {
 
-    public int rob(int[] num);
+    int rob(int[] num);
 }

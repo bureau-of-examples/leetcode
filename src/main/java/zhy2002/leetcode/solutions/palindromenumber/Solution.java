@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.palindromenumber;
  */
 public interface Solution {
 
-    public boolean isPalindrome(int x);
+    boolean isPalindrome(int x);
 }

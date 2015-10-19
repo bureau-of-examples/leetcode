@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.dividetwointegers;
  */
 public interface Solution {
 
-    public int divide(int dividend, int divisor);
+    int divide(int dividend, int divisor);
 }

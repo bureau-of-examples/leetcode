@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Solution {
 
-    public static List<String[]> solveNQueens(int n) {
+    public List<String[]> solveNQueens(int n) {
         List<String[]> results = new ArrayList<>();
         int[] board = new int[n * n]; //0 -> empty, 1 -> queen, negative number k: attacked by k queens.
         solveNQueens(results, board, n, 0);

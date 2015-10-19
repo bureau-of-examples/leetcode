@@ -13,7 +13,7 @@ public class Solution {
 
     public int sumNumbers(TreeNode root) {
         ArrayList<Integer> values = new ArrayList<>();
-        sumNumbers(root, new ArrayList<Integer>()/*cache digits from root to this node so far*/, values);//get value at each leaf
+        sumNumbers(root, new ArrayList<>()/*cache digits from root to this node so far*/, values);//get value at each leaf
         int sum = 0;
         for (int i : values) {
             sum += i;

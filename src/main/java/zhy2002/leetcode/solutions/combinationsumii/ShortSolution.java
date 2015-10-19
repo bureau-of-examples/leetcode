@@ -17,7 +17,7 @@ public class ShortSolution implements Solution {
         if (num == null || num.length == 0)
             return res;
         Arrays.sort(num);
-        helper(num, 0, target, new ArrayList<Integer>(), res);
+        helper(num, 0, target, new ArrayList<>(), res);
         return res;
     }
 

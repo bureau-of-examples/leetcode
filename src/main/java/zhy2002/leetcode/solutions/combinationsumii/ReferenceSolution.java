@@ -16,7 +16,7 @@ public class ReferenceSolution implements Solution {
             return new ArrayList<>();
 
         Arrays.sort(candidates);
-        ArrayList<Integer> index = new ArrayList<Integer>();
+        ArrayList<Integer> index = new ArrayList<>();
         index.add(-1);
         List<List<Integer>> ret = new ArrayList<>();
         combinationSum(candidates, target, 0, index, ret);
@@ -44,7 +44,7 @@ public class ReferenceSolution implements Solution {
     }
 
     List<Integer> generateCombination(int[] candidates, List<Integer> index) {
-        ArrayList<Integer> ret = new ArrayList<Integer>();
+        ArrayList<Integer> ret = new ArrayList<>();
         int k = index.size();
         for (int i = 1; i < k; i++) {
             ret.add(candidates[index.get(i)]);

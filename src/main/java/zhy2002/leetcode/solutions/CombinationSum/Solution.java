@@ -44,7 +44,7 @@ public class Solution {
             return false;
 
         if(sum == target){
-            result.add(new ArrayList<Integer>(path));
+            result.add(new ArrayList<>(path));
             return false;
         }
 

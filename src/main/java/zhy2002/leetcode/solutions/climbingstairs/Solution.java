@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.climbingstairs;
  */
 public interface Solution {
 
-    public int climbStairs(int n);
+    int climbStairs(int n);
 }

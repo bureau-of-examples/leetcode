@@ -5,6 +5,6 @@ package zhy2002.leetcode.solutions.sortcolors;
  */
 public interface Solution {
 
-    public void sortColors(int[] A);
+    void sortColors(int[] A);
 
 }

@@ -5,7 +5,7 @@ package zhy2002.leetcode.solutions.medianoftwosortedarrays;
  */
 public interface Solution {
 
-    public double findMedianSortedArrays(int A[], int B[]);
+    double findMedianSortedArrays(int A[], int B[]);
 
 
 

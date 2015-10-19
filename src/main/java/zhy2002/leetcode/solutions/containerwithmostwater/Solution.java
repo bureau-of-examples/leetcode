@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.containerwithmostwater;
  */
 public interface Solution {
 
-    public int maxArea(int[] height);
+    int maxArea(int[] height);
 }

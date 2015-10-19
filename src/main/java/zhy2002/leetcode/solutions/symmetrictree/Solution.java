@@ -17,11 +17,7 @@ public class Solution {
 
     private static boolean isMirror(TreeNode left, TreeNode right) {
         if (left == null) {
-            if (right == null) {
-                return true;
-            } else {
-                return false;
-            }
+            return right == null;
         } else {
             if (right == null) {
                 return false;

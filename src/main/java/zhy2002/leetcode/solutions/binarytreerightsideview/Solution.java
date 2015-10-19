@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface Solution {
 
-    public List<Integer> rightSideView(TreeNode root);
+    List<Integer> rightSideView(TreeNode root);
 }

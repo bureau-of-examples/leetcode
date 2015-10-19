@@ -1,7 +1,6 @@
 package zhy2002.leetcode.solutions.addtwonumbers;
 
 import zhy2002.leetcode.common.ListNode;
-import zhy2002.leetcode.solutions.twosum.*;
 
 /**
  * Calculate result one digit at a time. No sentinel is used.

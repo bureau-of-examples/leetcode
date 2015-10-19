@@ -7,5 +7,5 @@ import zhy2002.leetcode.common.RandomListNode;
  */
 public interface Solution {
 
-    public RandomListNode copyRandomList(RandomListNode head);
+    RandomListNode copyRandomList(RandomListNode head);
 }

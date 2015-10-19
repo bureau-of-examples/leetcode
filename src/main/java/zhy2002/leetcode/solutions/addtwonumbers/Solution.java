@@ -7,5 +7,5 @@ import zhy2002.leetcode.common.ListNode;
  */
 public interface Solution {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2);
+    ListNode addTwoNumbers(ListNode l1, ListNode l2);
 }

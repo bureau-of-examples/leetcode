@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.reverseinteger;
  */
 public interface Solution {
 
-    public int reverse(int x);
+    int reverse(int x);
 }

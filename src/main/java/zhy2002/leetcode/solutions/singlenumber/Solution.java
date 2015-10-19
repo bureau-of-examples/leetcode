@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.singlenumber;
  */
 public interface Solution {
 
-    public int singleNumber(int[] A);
+    int singleNumber(int[] A);
 }

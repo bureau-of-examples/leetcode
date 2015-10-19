@@ -7,8 +7,6 @@ import zhy2002.leetcode.solutions.rotatearray.Solution;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 public class RotateArrayTests {
 
     @Test

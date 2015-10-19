@@ -21,7 +21,7 @@ public class Solution {
             valueIndex.put(S[i], i);
 
         List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<Integer>());//seed
+        result.add(new ArrayList<>());//seed
         int start = 0;
         int end = 0;
         while (true) {

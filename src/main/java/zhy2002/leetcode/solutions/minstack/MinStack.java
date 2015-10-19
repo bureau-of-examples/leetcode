@@ -36,7 +36,7 @@ public class MinStack {
     }
 
     private Node head;//the stack is implemented as a linked list, the stack top element being the first element in the linked list.
-    private ArrayList<Node> minValues = new ArrayList<Node>();//a stack of the minimum elements see so far as the stack grows.
+    private ArrayList<Node> minValues = new ArrayList<>();//a stack of the minimum elements see so far as the stack grows.
 
     public void push(int x) {
         this.head = new Node(x, head);

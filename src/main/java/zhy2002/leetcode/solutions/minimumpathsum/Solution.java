@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.minimumpathsum;
  */
 public interface Solution {
 
-    public int minPathSum(int[][] grid);
+    int minPathSum(int[][] grid);
 }

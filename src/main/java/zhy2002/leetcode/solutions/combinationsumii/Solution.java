@@ -7,6 +7,6 @@ import java.util.List;
  */
 public interface Solution {
 
-    public List<List<Integer>> combinationSum2(int[] num, int target);
+    List<List<Integer>> combinationSum2(int[] num, int target);
 
 }

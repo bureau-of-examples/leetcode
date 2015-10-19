@@ -7,5 +7,5 @@ import zhy2002.leetcode.common.TreeNode;
  */
 public interface Solution {
 
-    public int minDepth(TreeNode root);
+    int minDepth(TreeNode root);
 }

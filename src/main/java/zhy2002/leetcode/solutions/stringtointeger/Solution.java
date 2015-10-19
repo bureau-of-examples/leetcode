@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.stringtointeger;
  */
 public interface Solution {
 
-    public int atoi(String str);
+    int atoi(String str);
 }

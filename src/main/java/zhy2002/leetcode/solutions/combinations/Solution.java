@@ -15,7 +15,7 @@ public class Solution {
             throw new IllegalArgumentException();
 
         List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<Integer>());//seed
+        result.add(new ArrayList<>());//seed
 
         //increase combination size to i
         for(int i=1; i<=k; i++){

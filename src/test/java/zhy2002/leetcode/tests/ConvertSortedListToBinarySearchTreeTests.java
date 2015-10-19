@@ -4,7 +4,6 @@ import org.junit.Test;
 import zhy2002.leetcode.Utils;
 import zhy2002.leetcode.solutions.convertsortedlisttobinarysearchtree.Solution;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class ConvertSortedListToBinarySearchTreeTests {

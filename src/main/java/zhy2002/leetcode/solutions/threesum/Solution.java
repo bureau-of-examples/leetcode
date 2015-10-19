@@ -6,5 +6,5 @@ import java.util.List;
  * https://leetcode.com/problems/3sum/
  */
 public interface Solution {
-    public List<List<Integer>> threeSum(int[] num);
+    List<List<Integer>> threeSum(int[] num);
 }

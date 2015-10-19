@@ -1,7 +1,5 @@
 package zhy2002.leetcode.solutions.romantointeger;
 
-import java.util.HashMap;
-
 /**
  * https://leetcode.com/problems/roman-to-integer/
  */

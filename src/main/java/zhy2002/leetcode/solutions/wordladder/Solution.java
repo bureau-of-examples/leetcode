@@ -1,7 +1,5 @@
 package zhy2002.leetcode.solutions.wordladder;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.HashSet;
 import java.util.Set;
 

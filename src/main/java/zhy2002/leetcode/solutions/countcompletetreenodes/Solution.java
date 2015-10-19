@@ -7,5 +7,5 @@ import zhy2002.leetcode.common.TreeNode;
  */
 public interface Solution {
 
-    public int countNodes(TreeNode root);
+    int countNodes(TreeNode root);
 }

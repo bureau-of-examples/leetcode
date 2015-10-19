@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.longestpalindromicsubstring;
  */
 public interface Solution {
 
-    public String longestPalindrome(String s);
+    String longestPalindrome(String s);
 }

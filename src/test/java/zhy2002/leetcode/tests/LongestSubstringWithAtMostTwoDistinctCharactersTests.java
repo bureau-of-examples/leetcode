@@ -8,9 +8,7 @@ import zhy2002.leetcode.solutions.longestsubstringwithatmosttwodistinctcharacter
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-/**
- * Created by ZHY on 10/11/2015.
- */
+
 public class LongestSubstringWithAtMostTwoDistinctCharactersTests {
 
     @Test

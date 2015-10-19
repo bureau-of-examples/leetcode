@@ -41,7 +41,7 @@ public class Solution {
                                 if (dict.contains(newWord) && !buffers[index].contains(newWord)) {
                                     buffers[backIndex].add(newWord);
                                     if (!comeFrom[trackIndex].containsKey(newWord)) {
-                                        comeFrom[trackIndex].put(newWord, new ArrayList<String>());
+                                        comeFrom[trackIndex].put(newWord, new ArrayList<>());
                                     }
                                     comeFrom[trackIndex].get(newWord).add(word);
                                 }

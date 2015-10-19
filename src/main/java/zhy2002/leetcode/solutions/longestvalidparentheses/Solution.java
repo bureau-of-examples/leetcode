@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.longestvalidparentheses;
  */
 public interface Solution {
 
-    public int longestValidParentheses(String s);
+    int longestValidParentheses(String s);
 }

@@ -12,7 +12,7 @@ public class WordBreakTests {
     public void basicTest() {
 
         Solution solution = new Solution();
-        HashSet<String> words = new HashSet<String>();
+        HashSet<String> words = new HashSet<>();
         words.add("destination");
         words.add("section");
         words.add("second");

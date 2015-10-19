@@ -29,33 +29,33 @@ public class RotateListTests {
         assertEquals(1, result.next.val);
         assertNull(result.next.next);
 
-        node = Utils.createLinkedList(new int[]{1,2});
+        node = Utils.createLinkedList(1,2);
         result = solution.rotateRight(node, 2);
         assertEquals(1, result.val);
         assertEquals(2, result.next.val);
         assertNull(result.next.next);
 
-        node = Utils.createLinkedList(new int[]{1,2});
+        node = Utils.createLinkedList(1,2);
         result = solution.rotateRight(node, 4);
         assertEquals(1, result.val);
         assertEquals(2, result.next.val);
         assertNull(result.next.next);
 
-        node = Utils.createLinkedList(new int[]{1, 2, 3});
+        node = Utils.createLinkedList(1, 2, 3);
         result = solution.rotateRight(node, 7);
         assertEquals(3, result.val);
         assertEquals(1, result.next.val);
         assertEquals(2, result.next.next.val);
         assertNull(result.next.next.next);
 
-        node = Utils.createLinkedList(new int[]{1, 2, 3});
+        node = Utils.createLinkedList(1, 2, 3);
         result = solution.rotateRight(node, 2);
         assertEquals(2, result.val);
         assertEquals(3, result.next.val);
         assertEquals(1, result.next.next.val);
         assertNull(result.next.next.next);
 
-        node = Utils.createLinkedList(new int[]{1, 2, 3});
+        node = Utils.createLinkedList(1, 2, 3);
         result = solution.rotateRight(node, 6);
         assertEquals(1, result.val);
         assertEquals(2, result.next.val);

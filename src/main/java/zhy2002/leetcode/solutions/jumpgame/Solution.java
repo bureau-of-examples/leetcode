@@ -5,5 +5,5 @@ package zhy2002.leetcode.solutions.jumpgame;
  */
 public interface Solution {
 
-    public boolean canJump(int[] A);
+    boolean canJump(int[] A);
 }

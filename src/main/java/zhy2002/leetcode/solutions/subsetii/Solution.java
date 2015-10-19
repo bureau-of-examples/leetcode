@@ -13,7 +13,7 @@ public class Solution {
             return null;
         Arrays.sort(num);
         List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<Integer>()); //empty set
+        result.add(new ArrayList<>()); //empty set
 
         //add element num[i] to each subset
         int previousStart = 0, previousEnd = 0;

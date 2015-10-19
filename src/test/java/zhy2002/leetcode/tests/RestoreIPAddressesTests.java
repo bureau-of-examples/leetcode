@@ -1,7 +1,6 @@
 package zhy2002.leetcode.tests;
 
 import org.junit.Test;
-import zhy2002.leetcode.common.ListNode;
 import zhy2002.leetcode.solutions.restoreipaddresses.Solution;
 
 import java.util.List;

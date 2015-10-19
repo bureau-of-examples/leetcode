@@ -32,7 +32,7 @@ public class JoinSumOfTwoSolution implements Solution {
         for (int i=0; i<num.length-1; i++)
             for (int j=i+1; j<num.length; j++) {
                 int sum = num[i] + num[j];
-                List<Pair> comb = mapping.containsKey(sum) ? mapping.get(sum) : new ArrayList<Pair>();
+                List<Pair> comb = mapping.containsKey(sum) ? mapping.get(sum) : new ArrayList<>();
                 Pair pair = new Pair(i, j, num[i], num[j]);
                 comb.add(pair);
                 if (!mapping.containsKey(sum)) mapping.put(sum, comb);

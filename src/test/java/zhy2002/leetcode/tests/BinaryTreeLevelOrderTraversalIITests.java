@@ -5,8 +5,6 @@ import zhy2002.leetcode.Utils;
 import zhy2002.leetcode.common.TreeNode;
 import zhy2002.leetcode.solutions.binarytreelevelordertraversalii.Solution;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class BinaryTreeLevelOrderTraversalIITests {
