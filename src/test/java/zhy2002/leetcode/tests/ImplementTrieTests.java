@@ -4,7 +4,7 @@ import org.junit.Test;
 import zhy2002.leetcode.solutions.implementtrie.Trie;
 import static org.junit.Assert.*;
 
-public class TrieTests {
+public class ImplementTrieTests {
 
     @Test
     public void emptyTest(){
