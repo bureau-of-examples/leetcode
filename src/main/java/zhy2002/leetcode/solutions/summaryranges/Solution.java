@@ -35,7 +35,7 @@ public class Solution {
     private void addEntry(List<String> result, int start, int end) {
         if (start == end) {
            result.add(String.valueOf(start));
-        } else if(start < end){
+        } else if(start < end){ //need to check this in case start > end
             result.add(String.valueOf(start) + "->" + String.valueOf(end));
         }
     }
