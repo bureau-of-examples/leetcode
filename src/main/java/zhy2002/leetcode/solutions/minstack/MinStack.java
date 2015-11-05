@@ -3,11 +3,13 @@ package zhy2002.leetcode.solutions.minstack;
 import java.util.ArrayList;
 
 /**
- * https://oj.leetcode.com/problems/min-stack/
- * Decide min element when the stack is changed.
+ * https://leetcode.com/problems/min-stack/
+ * Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+ *
  */
 public class MinStack {
 
+    //Decide min element when the stack is changed.
     private static class Node {
 
         public Node(int value, Node next){

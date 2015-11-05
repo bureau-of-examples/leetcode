@@ -4,6 +4,7 @@ import zhy2002.leetcode.solutions.minstack.MinStack;
 import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 public class MinStackTests {
 
@@ -39,5 +40,17 @@ public class MinStackTests {
             assertTrue(ex instanceof  IndexOutOfBoundsException);
         }
 
+    }
+
+    @Test
+    public void duplicateTest(){
+        MinStack stack = new MinStack();
+        stack.push(1);
+        stack.push(1);
+
+        assertThat(stack.getMin(), equalTo(1));
+
+        stack.pop();
+        assertThat(stack.getMin(), equalTo(1));
     }
 }
