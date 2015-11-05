@@ -1,10 +1,16 @@
 package zhy2002.leetcode.solutions.excelsheetcolumntitle;
 
 /**
- * https://oj.leetcode.com/problems/excel-sheet-column-title/
+ * https://leetcode.com/problems/excel-sheet-column-title/
+ * Given a positive integer, return its corresponding column title as appear in an Excel sheet. E.g.
+ * 26 -> Z
+ * 27 -> AA
+ * 28 -> AB
  */
 public class Solution {
 
+    //If title from least significant letter is C1 C2 C3 C4
+    //then the number is d(C1) + 26*d(C2) + 26*26*d(C3) + 26*26*26*d(C4)
     public String convertToTitle(int n) {
         if(n <= 0)
             throw new IllegalArgumentException("n");
