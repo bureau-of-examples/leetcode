@@ -1,7 +1,11 @@
 package zhy2002.leetcode.solutions.excelsheetcolumnnumber;
 
 /**
- * https://oj.leetcode.com/problems/excel-sheet-column-number/
+ * https://leetcode.com/problems/excel-sheet-column-number/
+ * Given a column title as appear in an Excel sheet, return its corresponding column number.
+ * Z -> 26
+ * AA -> 27
+ * AB -> 28
  */
 public class Solution {
 
@@ -12,10 +16,10 @@ public class Solution {
 
         int result = 0;
 
-        int base = 1;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            result += (s.charAt(i) - 64) * base; //A -> 1
-            base *= 26;
+        int pow = 1;
+        for (int i = s.length() - 1; i >= 0; i--) { //from the last letter
+            result += (s.charAt(i) - 64) * pow; //A -> 1
+            pow *= 26;
         }
 
         return result;

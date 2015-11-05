@@ -1,7 +1,7 @@
 package zhy2002.leetcode.solutions.dungeongame;
 
 /**
- * https://oj.leetcode.com/problems/dungeon-game/
+ * https://leetcode.com/problems/dungeon-game/
  */
 public class Solution {
 
