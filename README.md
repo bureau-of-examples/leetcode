@@ -16,6 +16,9 @@ Todo:
 
 ### Binary Search
 
+### Compression/Encoding
+- Represent the data in a different way to improve performance.Either compress or decompression (establish indexing or convert to a structure where fast solution exists).
+
 ### Special
 - Reverse sentence and then reverse each word
 - 
