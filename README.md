@@ -19,6 +19,15 @@ Todo:
 ### Compression/Encoding
 - Represent the data in a different way to improve performance.Either compress or decompression (establish indexing or convert to a structure where fast solution exists).
 
+### DP
+- Overlapping sub-problems: two sub-problems require the same computation
+- Optimal sub-structure: easy to find a solution from solutions to sub-problems
+
+### Relaxation/Generalize
+- Map the problem to a more generic one where a solution to the generic one can be easily mapped back to the solution to the original problem
+- Sometimes a looser definition of the problem is easier to solve because there will be less conceptual/physical conditions
+
+
 ### Special
 - Reverse sentence and then reverse each word
 - 

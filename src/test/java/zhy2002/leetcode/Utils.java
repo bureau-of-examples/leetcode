@@ -69,6 +69,16 @@ public final class Utils {
         return result;
     }
 
+    public static int[] randomIntArray(int size, int min, int maxExclusive){
+        Random random = random();
+        int diff = maxExclusive - min;
+        int[] result = new int[size];
+        for(int i=0; i<result.length; i++){
+            result[i] = min + random.nextInt(diff);
+        }
+        return result;
+    }
+
     public static int[] createRange(int start, int end/*exclusive*/) {
         int[] result = new int[end - start];
         for (int i = start; i < end; i++) {
