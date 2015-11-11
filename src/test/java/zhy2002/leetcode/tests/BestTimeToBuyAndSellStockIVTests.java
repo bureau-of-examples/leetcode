@@ -7,12 +7,6 @@ import zhy2002.leetcode.solutions.besttimetobuyandsellstockiv.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class BestTimeToBuyAndSellStockIVTests {
 
     @Test
