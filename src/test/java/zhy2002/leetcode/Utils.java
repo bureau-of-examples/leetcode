@@ -4,6 +4,8 @@ import zhy2002.leetcode.common.Interval;
 import zhy2002.leetcode.common.ListNode;
 import zhy2002.leetcode.common.TreeNode;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -57,23 +59,23 @@ public final class Utils {
         return head;
     }
 
-    public static int[] intArrayFromString(String src){
-        if(src.trim().length() == 0)
+    public static int[] intArrayFromString(String src) {
+        if (src.trim().length() == 0)
             return new int[0];
 
         String[] integers = src.split("\\s+");
         int[] result = new int[integers.length];
-        for(int i=0; i<integers.length; i++){
+        for (int i = 0; i < integers.length; i++) {
             result[i] = Integer.parseInt(integers[i]);
         }
         return result;
     }
 
-    public static int[] randomIntArray(int size, int min, int maxExclusive){
+    public static int[] randomIntArray(int size, int min, int maxExclusive) {
         Random random = random();
         int diff = maxExclusive - min;
         int[] result = new int[size];
-        for(int i=0; i<result.length; i++){
+        for (int i = 0; i < result.length; i++) {
             result[i] = min + random.nextInt(diff);
         }
         return result;
@@ -111,14 +113,14 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
-    public static List<Interval> stringToIntervals(String str){
+    public static List<Interval> stringToIntervals(String str) {
 
         List<Interval> result = new ArrayList<>();
-        if(str.length() <= 4)
+        if (str.length() <= 4)
             return result;
         str = str.substring(2, str.length() - 2);
         String[] intervals = str.split("\\]\\s*,\\s*\\[");
-        for(String pair : intervals){
+        for (String pair : intervals) {
             int index = pair.indexOf(',');
             result.add(new Interval(Integer.parseInt(pair.substring(0, index)), Integer.parseInt(pair.substring(index + 1))));
         }
@@ -153,11 +155,11 @@ public final class Utils {
         return result;
     }
 
-    public static String listToString(List<String> list){
-       StringBuilder stringBuilder = new StringBuilder();
+    public static String listToString(List<String> list) {
+        StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
-        for(String str : list){
-            if(first)
+        for (String str : list) {
+            if (first)
                 first = false;
             else
                 stringBuilder.append(" ");
@@ -203,8 +205,8 @@ public final class Utils {
 
     private static void intArrayToString(StringBuilder stringBuilder, int[] row) {
         boolean first = true;
-        for(int val : row){
-            if(first)
+        for (int val : row) {
+            if (first)
                 first = false;
             else
                 stringBuilder.append(',');
@@ -231,19 +233,19 @@ public final class Utils {
         return result;
     }
 
-    public static String listOfIntArrayToString(List<int[]> list){
+    public static String listOfIntArrayToString(List<int[]> list) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
-        for(int[] item : list){
-            if(first)
+        for (int[] item : list) {
+            if (first)
                 first = false;
             else
                 stringBuilder.append(" ");
 
             stringBuilder.append("[");
 
-            for(int i=0; i<item.length; i++){
-                if(i > 0){
+            for (int i = 0; i < item.length; i++) {
+                if (i > 0) {
                     stringBuilder.append(" ");
                 }
                 stringBuilder.append(item[i]);
@@ -254,7 +256,6 @@ public final class Utils {
         }
         return stringBuilder.toString();
     }
-
 
     public static String listOfListToString(List<? extends List<?>> list) {
         if (list == null)
@@ -288,8 +289,8 @@ public final class Utils {
     public static String linkedListToString(ListNode result) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean first = true;
-        while (result != null){
-            if(first)
+        while (result != null) {
+            if (first)
                 first = false;
             else
                 stringBuilder.append(" ");
@@ -299,43 +300,62 @@ public final class Utils {
         return stringBuilder.toString();
     }
 
-    public static int[][] randIntMatrix(int width, int height){
+    public static int[][] randIntMatrix(int width, int height) {
         int[][] result = new int[height][width];
         Random rand = random();
-        for(int i=0; i<height; i++){
-            for(int j=0; j<width; j++){
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 result[i][j] = rand.nextInt(32);
             }
         }
         return result;
     }
 
-    public static String binaryTreeToString(TreeNode root){
-        if(root == null)
+    public static String binaryTreeToString(TreeNode root) {
+        if (root == null)
             return "";
 
         StringBuilder stringBuilder = new StringBuilder();
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         int notNullCount = 1;
-        do{
+        do {
             TreeNode node = queue.poll();
-            if(node != null){
+            if (node != null) {
                 stringBuilder.append(" ");
                 stringBuilder.append(node.val);
                 notNullCount--;
                 queue.add(node.left);
-                if(node.left != null)
+                if (node.left != null)
                     notNullCount++;
                 queue.add(node.right);
-                if(node.right != null)
+                if (node.right != null)
                     notNullCount++;
             } else {
                 stringBuilder.append(" #");
             }
-        }while (notNullCount != 0);
+        } while (notNullCount != 0);
 
         return stringBuilder.substring(1);
     }
 
+    public static int[] intArrayFromResource(Class<?> testClazz, String resourceSuffix) {
+
+        try (InputStream stream = testClazz.getResourceAsStream(testClazz.getSimpleName() + resourceSuffix)) {
+            ArrayList<Integer> input = new ArrayList<>();
+            Scanner scanner = new Scanner(stream);
+            scanner.useDelimiter(",");
+            while (scanner.hasNextInt()) {
+                input.add(scanner.nextInt());
+            }
+            int[] array = new int[input.size()];
+            for (int i = 0; i < array.length; i++) {
+                array[i] = input.get(i);
+            }
+            return array;
+        } catch (IOException ex){
+            throw new RuntimeException(ex);
+        }
+
+    }
 }
