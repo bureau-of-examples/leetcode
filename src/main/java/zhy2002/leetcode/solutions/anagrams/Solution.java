@@ -7,10 +7,11 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/anagrams/
- * Calculate anagrams signature and use it to create a hash key.
+ * Given an array of strings, return all groups of strings that are anagrams.
  */
 public class Solution {
 
+    //Calculate anagrams signature and use it to create a hash key.
     public List<String> anagrams(String[] strs) {
 
         int[] letterCounts = new int[26];
