@@ -27,6 +27,9 @@ Todo:
 - Map the problem to a more generic one where a solution to the generic one can be easily mapped back to the solution to the original problem
 - Sometimes a looser definition of the problem is easier to solve because there will be less conceptual/physical conditions
 
+### Recursion
+- Enumerate all combination or permutation.
+
 
 ### Special
 - Reverse sentence and then reverse each word
