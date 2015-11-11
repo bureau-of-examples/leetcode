@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.palindromepartioningii;
+package zhy2002.leetcode.solutions.palindromepartitioningii;
 
 /**
  * https://leetcode.com/problems/palindrome-partitioning-ii/
