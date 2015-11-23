@@ -41,3 +41,8 @@ If you are using IntelliJ you still need to configure your email in the git loca
 <pre>
 git config --global user.email "your_email@example.com"
 </pre>
+
+How to load JaCoCo coverage results created in the Maven build in IntelliJ
+* In the target directory you can find jacoco.exec file, which contains the coverage data 
+* Load this file in IntelliJ with Analyze -&gt; Show Coverage Data... (<kbd>Ctrl + Alt + F6</kbd>)
+* Note: In IntelliJ 14 you can go up to 0.7.4.201502262128 of JaCoCo Maven plugin, 7.5.x data file cannot be correctly loaded
