@@ -4,6 +4,7 @@ import zhy2002.leetcode.common.ListNode;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/
+ * Reverse a singly linked list.
  */
 public class Solution {
 
