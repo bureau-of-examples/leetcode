@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * https://leetcode.com/problems/word-search-ii/
  * <p>
- * Solution:
+ * TreeSetSolution:
  * http://www.programcreek.com/2014/06/leetcode-word-search-ii-java/
  * <p>
  * Do DFS on the board, use a trie to check if the current path can match a word.
