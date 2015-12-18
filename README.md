@@ -31,6 +31,10 @@ Todo:
 - Enumerate all combination or permutation.
 
 
+### Use Data Structure
+- Use trie 
+
+
 ### Special
 - Reverse sentence and then reverse each word
 - 
