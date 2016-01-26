@@ -127,6 +127,15 @@ public final class Utils {
         return result;
     }
 
+    public static Interval[] stringToIntervalArray(String str){
+        List<Interval> list = stringToIntervals(str);
+        Interval[] array = new Interval[list.size()];
+        for (int i=0; i<list.size(); i++){
+            array[i] = list.get(i);
+        }
+        return array;
+    }
+
     public static String integersToString(Iterable<Integer> list) {
         StringBuilder stringBuilder = new StringBuilder();
         if (list != null) {
