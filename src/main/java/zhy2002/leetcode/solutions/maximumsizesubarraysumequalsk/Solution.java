@@ -18,6 +18,9 @@ import java.util.HashMap;
  */
 public class Solution {
 
+    //first for each element calculate sum[i] which is the sum of all elements before it.
+    //then we have sum[j] - sum[i] = the sum of elements in [i, j).
+    //then for each j we want to find the smallest i so as to maximize the size of sub-array.
     public int maxSubArrayLen(int[] nums, int k) {
         int[] sum = new int[nums.length + 1];//sum of [0, i)
         sum[0] = 0;
