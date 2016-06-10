@@ -4,23 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * https://oj.leetcode.com/problems/permutations/
+ * https://leetcode.com/problems/permutations/
+ *
+ * Given a collection of distinct numbers, return all possible permutations.
+ * For example,
+ * [1,2,3] have the following permutations:
+ * [
+ * [1,2,3],
+ * [1,3,2],
+ * [2,1,3],
+ * [2,3,1],
+ * [3,1,2],
+ * [3,2,1]
+ * ]
  */
 public class Solution {
-
 
     public List<List<Integer>> permute(int[] num) {
         List<List<Integer>> results = new ArrayList<>();
         if (num == null)
             return results;
 
-        int[] indices = new int[num.length]; //permute this array
+        //the indices are permuted
+        int[] indices = new int[num.length];
         for (int i = 0; i < indices.length; i++)
             indices[i] = i;
 
         int lastPos = indices.length - 1;
         int pos = lastPos;
-        while (pos >= 0) {
+        while (pos >= 0) {//permutation order is from 01234 -> 43210
             if (pos == lastPos) {
                 results.add(createResult(indices, num)); //dump result from the permutation of indices
                 pos--;

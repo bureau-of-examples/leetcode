@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-public class Solution2 {
+/**
+ * use a linked list to avoid shifting elements in buffer like the {@link LinkedListBufferSolution}.
+ */
+public class LinkedListBufferSolution implements Solution{
     private List<List<Integer>> result;
     private ListNode buffer;
 
+    @Override
     public List<List<Integer>> permuteUnique(int[] num) {
 
         Arrays.sort(num);
