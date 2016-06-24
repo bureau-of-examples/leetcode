@@ -42,6 +42,19 @@ import java.util.TreeMap;
  */
 public class HitCounter {
 
+    interface House{
+        public default String getAddress(){return "101 Main Str";} }
+
+    interface Office {public static String getAddress(){ return "101 Smart Str";} }
+
+    class WFH implements House, Office{
+
+        public void f1() {
+            getAddress();
+        }
+
+    }
+
     private static class CountNode {
         int selfCount; //just this second
         int accumulatedCount; //300 from here.
@@ -79,17 +92,17 @@ public class HitCounter {
 
         Map.Entry<Integer, CountNode> last = index.lastEntry();
         if (last == null) {
-            if(hit)
+            if (hit)
                 index.put(timestamp, new CountNode(1, 1));
         } else {
             if (last.getKey() == timestamp) {
-                if(hit)
+                if (hit)
                     last.getValue().increase();
             } else {
                 int minKey = timestamp - PERIOD + 1; //inclusive
                 if (last.getKey() < minKey) {
                     index.clear();
-                    if(hit)
+                    if (hit)
                         index.put(timestamp, new CountNode(1, 1));
                 } else {
                     int totalSoFar = last.getValue().accumulatedCount;
