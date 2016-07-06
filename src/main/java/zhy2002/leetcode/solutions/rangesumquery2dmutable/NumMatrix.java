@@ -27,7 +27,7 @@ package zhy2002.leetcode.solutions.rangesumquery2dmutable;
  */
 public class NumMatrix {
 
-    private int[][] bitGrid;
+    private int[][] bitGrid; //short for Binary Indexed Tree Grid
     private int[][] matrix;
     private int rowCount;
     private int colCount;
