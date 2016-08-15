@@ -26,8 +26,7 @@ public class ReferenceSolution implements Solution {
             l2 = l2 == null ? l2 : l2.next;
         }
         if (carry) {
-            ListNode tail = new ListNode(1);
-            pre.next = tail;
+            pre.next = new ListNode(1);
         }
         return head.next;
     }

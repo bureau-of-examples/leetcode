@@ -18,9 +18,7 @@ public class Solution {
 
         if(hasPathSum(root.left, childSum))
             return true;
-        if(hasPathSum(root.right, childSum))
-            return true;
+        return hasPathSum(root.right, childSum);
 
-        return false;
     }
 }

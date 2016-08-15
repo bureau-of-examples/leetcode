@@ -21,7 +21,7 @@ public class BinaryTreePreorderTraversalTests {
         Solution solution = new Solution();
 
         List<Integer> result = solution.preorderTraversal(null);
-        assertThat(result, equalTo((List<Integer>) new ArrayList<Integer>()));
+        assertThat(result, equalTo(new ArrayList<Integer>()));
 
         TreeNode root = new TreeNode(0);
         result = solution.preorderTraversal(root);

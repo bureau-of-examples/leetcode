@@ -28,7 +28,7 @@ public class ListBufferSolution implements Solution {
     /**
      * get all unique permutation of sub-list[pos,].
      * Before start the sub-list should be sorted.
-     * @param start of the sub-list.
+     * @param pos of the sub-list.
      */
     private void permuteUnique(int pos) {
 

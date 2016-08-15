@@ -42,12 +42,19 @@ import java.util.TreeMap;
  */
 public class HitCounter {
 
-    interface House{
-        public default String getAddress(){return "101 Main Str";} }
+    interface House {
+        default String getAddress() {
+            return "101 Main Str";
+        }
+    }
 
-    interface Office {public static String getAddress(){ return "101 Smart Str";} }
+    interface Office {
+        static String getAddress() {
+            return "101 Smart Str";
+        }
+    }
 
-    class WFH implements House, Office{
+    class WFH implements House, Office {
 
         public void f1() {
             getAddress();
