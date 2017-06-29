@@ -16,4 +16,5 @@ public class AddBinaryTests {
         assertEquals("10001", solution.addBinary("1100", "101"));
         assertEquals("101101", solution.addBinary("11010", "10011"));
     }
+
 }
