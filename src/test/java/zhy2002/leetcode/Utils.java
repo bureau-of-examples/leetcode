@@ -127,10 +127,10 @@ public final class Utils {
         return result;
     }
 
-    public static Interval[] stringToIntervalArray(String str){
+    public static Interval[] stringToIntervalArray(String str) {
         List<Interval> list = stringToIntervals(str);
         Interval[] array = new Interval[list.size()];
-        for (int i=0; i<list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             array[i] = list.get(i);
         }
         return array;
@@ -348,6 +348,37 @@ public final class Utils {
         return stringBuilder.substring(1);
     }
 
+    public static TreeNode stringToBinaryTree(String s) {
+        String[] values = s.split(",");
+        int index = 0;
+        TreeNode root = buildNode(values, index++);
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            node.left = buildNode(values, index++);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            node.right = buildNode(values, index++);
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return root;
+    }
+
+    private static TreeNode buildNode(String[] values, int index) {
+        if (index >= values.length)
+            return null;
+
+        if ("null".equals(values[index]))
+            return null;
+
+        int val = Integer.parseInt(values[index]);
+        return new TreeNode(val);
+    }
+
     public static int[] intArrayFromResource(Class<?> testClazz, String resourceSuffix) {
 
         try (InputStream stream = testClazz.getResourceAsStream(testClazz.getSimpleName() + resourceSuffix)) {
@@ -362,7 +393,7 @@ public final class Utils {
                 array[i] = input.get(i);
             }
             return array;
-        } catch (IOException ex){
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
 
