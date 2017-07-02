@@ -8,11 +8,6 @@ import zhy2002.leetcode.common.TreeNode;
  */
 public class MergeTwoBinaryTreesTests {
 
-    @Test
-    private void test() {
-
-    }
-
     private static class Solution {
         public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
             if (t1 == null) {

@@ -49,7 +49,7 @@ public class ListBufferSolution implements Solution {
                 permuteUnique(pos + 1);
                 shiftOut(pos, i); //swap back
             }
-        }
+        }//1,2,3
     }
 
     /**
