@@ -15,7 +15,7 @@ public class Solution {
         TreeLinkNode childLevelHead = root.left;
 
         while (childLevelHead != null) {//there is next level
-            while (parentLevelHead != null) {
+            while (true) {
                 parentLevelHead.left.next = parentLevelHead.right;
                 if (parentLevelHead.next == null)
                     break;
