@@ -2,11 +2,11 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.Utils;
-import zhy2002.leetcode.solutions.anagrams.Solution;
+import zhy2002.leetcode.solutions.groupanagrams.Solution;
 
 import static org.junit.Assert.*;
 
-public class AnagramsTests {
+public class GroupAnagramsTests {
 
     @Test
     public void basicTest() {

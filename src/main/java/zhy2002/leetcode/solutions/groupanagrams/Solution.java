@@ -1,4 +1,4 @@
-package zhy2002.leetcode.solutions.anagrams;
+package zhy2002.leetcode.solutions.groupanagrams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * https://leetcode.com/problems/anagrams/
- * Given an array of strings, return all groups of strings that are anagrams.
+ * https://leetcode.com/problems/group-anagrams/#/description
+ * Given an array of strings, return all groups of strings that are groupanagrams.
  */
 public class Solution {
 
-    //Calculate anagrams signature and use it to create a hash key.
+    //Calculate groupanagrams signature and use it to create a hash key.
     public List<String> anagrams(String[] strs) {
 
         int[] letterCounts = new int[26];
