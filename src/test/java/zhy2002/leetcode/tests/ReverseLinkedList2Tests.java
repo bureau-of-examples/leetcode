@@ -14,7 +14,7 @@ public class ReverseLinkedList2Tests {
 
     @Test
     public void test() {
-        RecSolution solution = new RecSolution();
+        Solution3 solution = new Solution3();
         assertThat(
                 Utils.linkedListToString(solution.reverseList(Utils.createLinkedList(2, 3))),
                 equalTo("3 2")
@@ -23,6 +23,20 @@ public class ReverseLinkedList2Tests {
                 Utils.linkedListToString(solution.reverseList(Utils.createLinkedList(1, 2, 3))),
                 equalTo("3 2 1")
         );
+    }
+
+    public class Solution3 {
+        public ListNode reverseList(ListNode head) {
+            ListNode reverseHead = null;
+            ListNode node = head;
+            while(node != null) {
+                ListNode next = node.next;
+                node.next = reverseHead;
+                reverseHead = node;
+                node = next;
+            }
+            return reverseHead;
+        }
     }
 
     public class RecSolution {
