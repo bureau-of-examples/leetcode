@@ -7,6 +7,8 @@ import org.junit.Test;
  */
 public class MyTests {
 
+
+
     @Test
     public void test() {
         int min = Integer.MAX_VALUE;

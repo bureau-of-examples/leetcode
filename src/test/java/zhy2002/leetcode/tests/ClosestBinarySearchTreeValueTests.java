@@ -2,16 +2,31 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.common.TreeNode;
-import zhy2002.leetcode.solutions.closestbinarysearchtreevalue.Solution;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ClosestBinarySearchTreeValueTests {
 
+    public class Solution2 {
+        public int closestValue(TreeNode root, double target) {
+            TreeNode closest = null;
+            TreeNode node = root;
+            while (node != null) {
+                if (closest == null || Math.abs(target - node.val) < Math.abs(target - closest.val)) {
+                    closest = node;
+                    if (closest.val == target)
+                        return closest.val;
+                }
+                node = target < node.val ? node.left : node.right;
+            }
+            return closest.val;
+        }
+    }
+
     @Test
     public void basicTest() {
-        Solution solution = new Solution();
+        Solution2 solution = new Solution2();
         TreeNode root = new TreeNode(100);
 
         int closest = solution.closestValue(root, 100d);
