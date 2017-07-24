@@ -3,7 +3,10 @@ package zhy2002.leetcode.tests;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -12,14 +15,55 @@ import static org.hamcrest.Matchers.equalTo;
 public class MyTests {
 
     @Test
+    public void test6() {
+        System.out.println(solve6(new int[]{1, 5, 11, 5}));
+    }
+
+    private static boolean solve6(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        if (sum % 2 != 0)
+            return false;
+        if (sum == 0)
+            return true;
+        return canSplit(array, sum / 2);
+    }
+
+    private static boolean canSplit(int[] array, int targetSum) {
+        boolean[][] dp = new boolean[targetSum+1][array.length + 1];
+        dp[0][0] = true;
+        for (int j=1; j<=array.length; j++) {
+            int num = array[j-1];
+            for (int i=0; i<=targetSum; i++) {
+                if (dp[i][j-1]) {
+                    dp[i][j] = true;
+                    if (i + num <= targetSum) {
+                        dp[i + num][j] = true;
+                    }
+                }
+            }
+        }
+
+        return dp[targetSum][array.length];
+    }
+
+    @Test
+    public void test5() {
+        String val = "12345";
+        System.out.println(val.substring(5, 5));
+    }
+
+    @Test
     public void test4() {
         solve(8);
     }
 
     private static void solve(int n) {
         List<Integer> allPrimes = getPrimes(n);
-        for (int i=0; i<allPrimes.size(); i++) {
-            for (int j=0; j<allPrimes.size(); j++) {
+        for (int i = 0; i < allPrimes.size(); i++) {
+            for (int j = 0; j < allPrimes.size(); j++) {
                 if (allPrimes.get(i) * allPrimes.get(j) > n)
                     break;
                 System.out.print(allPrimes.get(i));
@@ -39,15 +83,15 @@ public class MyTests {
         boolean[] notPrime = new boolean[n + 1];
         double root = Math.sqrt(n);
         int i;
-        for (i=3; i<=root; i+=2) {
+        for (i = 3; i <= root; i += 2) {
             if (notPrime[i])
                 continue;
             result.add(i);
-            for (int j=i*i; j<=n; j += 2*i) {
+            for (int j = i * i; j <= n; j += 2 * i) {
                 notPrime[j] = true;
             }
         }
-        for (;i<=n; i+=2) {
+        for (; i <= n; i += 2) {
             if (!notPrime[i]) {
                 result.add(i);
             }
@@ -59,7 +103,7 @@ public class MyTests {
     private static long reverse(int n) {
         long result = 0;
         int index = 0;
-        while(n > 0) {
+        while (n > 0) {
             if ((n & 1) == 1) {
                 result |= 1L << (31 - index);
             }
@@ -73,7 +117,7 @@ public class MyTests {
 
     @Test
     public void test3() {
-        rotate(new int[]{1,2,3,4,5}, 2);
+        rotate(new int[]{1, 2, 3, 4, 5}, 2);
         reverse(1);
     }
 
@@ -81,10 +125,10 @@ public class MyTests {
         num %= array.length;
         int groups = gcd(array.length, num);
 
-        for (int i=0; i<groups; i++) {
+        for (int i = 0; i < groups; i++) {
             int first = array[i];
             int to = i;
-            while(true) {
+            while (true) {
                 int from = (to + num) % array.length;
                 if (from == i) {
                     array[to] = first;
@@ -108,7 +152,7 @@ public class MyTests {
     }
 
     private static int gcd(int a, int b) {
-        while(b != 0) {
+        while (b != 0) {
             int r = a % b;
             a = b;
             b = r;
