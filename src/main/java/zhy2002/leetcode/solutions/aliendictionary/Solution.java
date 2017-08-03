@@ -35,9 +35,8 @@ public class Solution {
     public String alienOrder(String[] words) {
 
         Node[] nodes = new Node[26];
-        boolean[] isStartChar = new boolean[26];
         int maxWordLength = getMaxWordLength(words);
-        buildDAG(words, maxWordLength, nodes, isStartChar);
+        buildDAG(words, maxWordLength, nodes);
 
         StringBuilder sortedChars = new StringBuilder();
         dfs(sortedChars, nodes);
@@ -45,9 +44,9 @@ public class Solution {
 
     }
 
-    private void dfs(StringBuilder sortedChars, Node[] startNodes) {
+    private void dfs(StringBuilder sortedChars, Node[] nodes) {
         char[] flags = new char[26];
-        for (Node startNode : startNodes) {
+        for (Node startNode : nodes) {
             try {
                 if (startNode != null)
                     dfs(sortedChars, startNode, flags);
@@ -73,11 +72,9 @@ public class Solution {
 
         sortedChars.append(node.value);
         accessFlag[node.value - 'a'] = 'd';
-
     }
 
-    private void buildDAG(String[] words, int maxWordLength, Node[] nodes, boolean[] isStartChar) {
-        Arrays.fill(isStartChar, true);
+    private void buildDAG(String[] words, int maxWordLength, Node[] nodes) {
         for (int index = 0; index < maxWordLength; index++) {
             char previousChar = 0;
             String previousWord = null;
@@ -90,7 +87,6 @@ public class Solution {
                     if (previousChar != 0 && previousChar != currentChar) {
                         if (index == 0 || index < previousWord.length() && previousWord.charAt(index - 1) == word.charAt(index - 1)) {
                             nodes[currentChar - 'a'].predecessors.add(nodes[previousChar - 'a']);
-                            isStartChar[previousChar - 'a'] = false;
                         }
 
                     }
