@@ -2,10 +2,7 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -13,6 +10,33 @@ import static org.hamcrest.Matchers.equalTo;
 
 
 public class MyTests {
+
+    @Test
+    public void testSolve() {
+        System.out.println(solve(new int[] {}));
+    }
+
+    private static String solve(int[] array) {
+        Set<Integer> nums = new HashSet<>();
+        for (int num : array) {
+            if (nums.contains(num)) {
+                nums.remove(num);
+            } else {
+                nums.add(num);
+            }
+        }
+        int[] result = new int[3];
+        int index = 0;
+        for (int num : nums) {
+            result[index++] = num;
+        }
+
+        if (result[0] <= result[1])
+            return result[0] + " " + result[1];
+        else
+            return result[1] + " " + result[0];
+    }
+
 
     @Test
     public void test6() {
