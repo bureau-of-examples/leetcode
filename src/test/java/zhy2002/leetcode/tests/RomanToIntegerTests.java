@@ -2,13 +2,48 @@ package zhy2002.leetcode.tests;
 
 import org.junit.Test;
 import zhy2002.leetcode.solutions.romantointeger.Solution;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class RomanToIntegerTests {
 
+    private class Solution2 {
+        private Map<Character, Integer> values = new HashMap<>();
+
+        Solution2() {
+            values.put('I', 1);
+            values.put('V', 5);
+            values.put('X', 10);
+            values.put('L', 50);
+            values.put('C', 100);
+            values.put('D', 500);
+            values.put('M', 1000);
+        }
+
+
+        private int romanToInt(String str) {
+            int result = 0;
+            for (int i=0; i<str.length(); i++) {
+                int val = values.get(str.charAt(i));
+                result += val;
+                if (i > 0) {
+                    int prevVal = values.get(str.charAt(i - 1));
+                    if (prevVal < val) {
+                        result -= prevVal * 2;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+
     @Test
     public void basicTest(){
-        Solution solution = new Solution();
+        Solution2 solution = new Solution2();
         assertEquals(1, solution.romanToInt("I"));
         assertEquals(2, solution.romanToInt("II"));
         assertEquals(3, solution.romanToInt("III"));

@@ -15,7 +15,7 @@ public class FindMedianFromDataStreamTests {
 
     @Test
     public void test() {
-        MedianFinder solution = new MedianFinder();
+        MedianFinder2 solution = new MedianFinder2();
         solution.addNum(100);
         assertThat(solution.findMedian(), equalTo(100d));
         solution.addNum(120);
@@ -24,6 +24,39 @@ public class FindMedianFromDataStreamTests {
         assertThat(solution.findMedian(), equalTo(100d));
         solution.addNum(140);
         assertThat(solution.findMedian(), equalTo(110d));
+    }
+
+    private class MedianFinder2 {
+        private PriorityQueue<Integer> left = new PriorityQueue<>((x, y) -> y - x);
+        private PriorityQueue<Integer> right = new PriorityQueue<>();
+
+        public void addNum(int num) {
+            left.add(num);
+            if (right.isEmpty()) {
+                if (left.size() > 1) {
+                    right.add(left.poll());
+                }
+                return;
+            }
+            if (left.peek() > right.peek()) {
+                int l = left.poll();
+                int r = right.poll();
+                left.add(r);
+                right.add(l);
+            }
+            if (left.size() > right.size() + 1) {
+                right.add(left.poll());
+            }
+        }
+
+        public double findMedian() {
+            if (right.size() != left.size()) {
+                return left.peek();
+            }
+
+            return ((double) left.peek() + right.peek()) / 2;
+        }
+
     }
 
     public class MedianFinder {
