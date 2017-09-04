@@ -48,7 +48,7 @@ public class AlienDictionaryTests {
     @Test
     public void solution2Test() {
         Solution2 solution2 = new Solution2();
-        assertThat(solution2.alienOrder(new String[] {"wrt","wrf","er","ett","rftt"}), equalTo("wertf"));
+        assertThat(solution2.alienOrder(new String[] {"wrt","wrf","er","ett","rftt"}), equalTo("wretf"));
     }
 
     class Solution2 {
