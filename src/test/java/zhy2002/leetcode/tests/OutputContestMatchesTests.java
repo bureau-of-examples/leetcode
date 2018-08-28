@@ -1,9 +1,11 @@
 package zhy2002.leetcode.tests;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import zhy2002.leetcode.solutions.outputcontestmatches.LinearSolution;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -15,7 +17,11 @@ public class OutputContestMatchesTests {
 
     @Test
     public void test() {
-        assertThat(true, equalTo(true));
+        LinearSolution solution = new LinearSolution();
+
+        assertThat(solution.findContestMatch(2), equalTo("(1,2)"));
+        assertThat(solution.findContestMatch(4), equalTo("((1,4),(2,3))"));
+        assertThat(solution.findContestMatch(8), equalTo("(((1,8),(4,5)),((2,7),(3,6)))"));
     }
 
     public class Solution {
