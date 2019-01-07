@@ -2,6 +2,7 @@ package zhy2002;
 
 import org.junit.Test;
 
+
 public class SegmentTreeTests {
 
     @Test
@@ -9,8 +10,6 @@ public class SegmentTreeTests {
         SegmentTree tree = new SegmentTree(new int[] {1,2,3,4,5,6});
         System.out.println(tree.sumRange(0, 5));
     }
-
-
 
     private static class SegmentTree {
         int[] tree;
