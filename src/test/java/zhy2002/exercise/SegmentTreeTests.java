@@ -1,4 +1,4 @@
-package zhy2002;
+package zhy2002.exercise;
 
 import org.junit.Test;
 

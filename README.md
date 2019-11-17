@@ -1,20 +1,84 @@
 # leetcode
 Java solutions to Leetcode problems with comments and basic test cases for each problem.. 
 
-
-
 Todo:
  - Check test line coverage
  - Add checkstyle check.
 
 
-## Techniques:
+## Techniques
 
-### Sorting
-- The solution is a particular order of items, define the order relationship and sort
-- Sort to establish an index which improves time complexity
+### Hashing
 
-### Binary Search
+### Maths
+- GCD
+- long division
+- Handle integer overflow
+  - Use long
+  - Find max value x such that Op(x) <= INT_MAX and Op(x + 1) overflows
+
+### Bit Hack
+
+### Special Data Structure
+- Trie
+- Segment Tree
+- Binary Indexed Tree
+- Union Find
+- TreeSet/TreeMap
+
+### Linked list
+- Dummy head node
+- Fast/slow pointers
+
+
+### Array/List
+- Soring
+  - Quick sort
+  - Merge sort
+- Binary search
+- Two pointers
+  - end of checked/next to check
+  - start/end meet in the middle
+  
+  
+### String
+- KMP*
+- BMH
+- Rabin Karp
+- String parsing
+
+### Tree
+- Traversal
+  - Inorder
+    - Recursion
+    - Stack
+    - Morris
+  - PostOrder
+    - Recursion
+    - Stack
+    - Morris
+  - PreOrder
+    - Recursion
+    - Stack
+    - Morris
+
+### Greedy
+
+### Dynamic Programming
+
+### Recursion
+
+
+### Symmetric
+
+### Divide and Conquer
+
+Left to right then right to left scan
+
+Stack
+
+Counting
+
 
 ### Compression/Encoding
 - Represent the data in a different way to improve performance.Either compress or decompression (establish indexing or convert to a structure where fast solution exists).
@@ -34,11 +98,12 @@ Todo:
 ### Use Data Structure
 - Use trie 
 
-
 ### Special
 - Reverse sentence and then reverse each word
 - 
 
+
+        
 
 
 If you are using IntelliJ you still need to configure your email in the git local copy:
