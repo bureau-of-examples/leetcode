@@ -18,12 +18,12 @@ public class RedundantConnectionIITests {
         private int[] parent;
         private int[] rank;
 
-        UnionFind(int n) {
-            parent = new int[n];
-            for (int i=0; i<n;i++) {
+        UnionFind(int size) {
+            parent = new int[size];
+            for (int i=0; i<size;i++) {
                 parent[i] = i;
             }
-            rank = new int[n];
+            rank = new int[size];
         }
 
         public boolean union(int i, int j) {
@@ -34,11 +34,11 @@ public class RedundantConnectionIITests {
             }
 
             if (rank[pi] > rank[pj]) {
-                parent[j] = i;
+                parent[pj] = pi;
             } else if (rank[pi] < rank[pj]) {
-                parent[i] = j;
+                parent[pi] = pj;
             } else {
-                parent[j] = i;
+                parent[pj] = pi;
                 rank[i]++;
             }
             return true;
