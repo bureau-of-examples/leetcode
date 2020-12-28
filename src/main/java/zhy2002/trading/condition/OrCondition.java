@@ -6,7 +6,7 @@ public class OrCondition implements TradeCondition {
 
     private final TradeCondition[] conditions;
 
-    public OrCondition(TradeCondition[] conditions) {
+    public OrCondition(TradeCondition... conditions) {
         this.conditions = conditions;
     }
 

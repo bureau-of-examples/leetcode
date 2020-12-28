@@ -1,6 +1,7 @@
 package zhy2002.trading;
 
 import zhy2002.trading.csv.CsvDataLoader;
+import zhy2002.trading.indicator.ATR;
 import zhy2002.trading.indicator.SMA;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class Chart {
     private static final CsvDataLoader CSV_DATA_LOADER = new CsvDataLoader();
 
     private final Map<Integer, SMA> smaMap = new HashMap<>();
+    private final Map<Integer, ATR> atrMap = new HashMap<>();
 
     private final String symbol;
     private final List<Candle> candles;
@@ -37,6 +39,14 @@ public class Chart {
 
     public SMA getSMA(int smaPeriods) {
         return smaMap.computeIfAbsent(smaPeriods, (p) -> new SMA(this, p));
+    }
+
+    public ATR getATR(int atrPeriods) {
+        return atrMap.computeIfAbsent(atrPeriods, (p) -> new ATR(this, p));
+    }
+
+    public ATR getATR() {
+        return getATR(14);
     }
 
     public int findDateIndex(String startDate) {

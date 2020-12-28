@@ -52,8 +52,48 @@ public class Trader {
         return fund + (currentTrade == null ? 0 : currentTrade.getBuyPrice() * currentTrade.getVolume());
     }
 
+    public List<Trade> getPastTrades() {
+        return pastTrades;
+    }
+
     @Override
     public String toString() {
-        return String.format("Symbol: %s, Trade: %d, Fund: %.2f", chart.getSymbol(), pastTrades.size(), lastFund());
+        return String.format("Symbol: %s, Buy Strategy: %s, Sell Strategy: %s, Trade: %d, Fund: %.2f, Betting Average: %.2f, Win Loss Ratio: %.2f",
+                chart.getSymbol(), buyStrategy, sellStrategy, pastTrades.size(), lastFund(), getBettingAverage(), getWinLossRatio());
     }
+
+    private double getBettingAverage() {
+        double winCount = 0;
+        for (var t : pastTrades) {
+            if (t.getBuyPrice() < t.getSellPrice()) {
+                winCount++;
+            }
+        }
+        return winCount / pastTrades.size();
+    }
+
+    private double getWinLossRatio() {
+        double winPercent = 0;
+        int winCount = 0;
+        double lossPercent = 0;
+        int lossCount = 0;
+        for (var t : pastTrades) {
+            var p = (t.getSellPrice() - t.getBuyPrice()) / t.getBuyPrice();
+            if (p > 0) {
+                winPercent += p;
+                winCount++;
+            } else {
+                lossPercent += -p;
+                lossCount++;
+            }
+        }
+        if (winCount > 0) {
+            winPercent /= winCount;
+        }
+        if (lossCount > 0) {
+            lossPercent /= lossCount;
+        }
+        return winPercent / lossPercent;
+    }
+
 }

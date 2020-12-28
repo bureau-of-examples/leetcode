@@ -27,4 +27,9 @@ public class Strategy {
     public double decidePrice(Chart chart, int index) {
         return priceDecider.decide(chart, index);
     }
+
+    @Override
+    public String toString() {
+        return tradeCondition.toString();
+    }
 }

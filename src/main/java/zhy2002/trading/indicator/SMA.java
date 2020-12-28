@@ -41,8 +41,4 @@ public class SMA extends Indicator {
         return result[i - (periods - 1)];
     }
 
-    public int getPeriods() {
-        return periods;
-    }
-
 }
