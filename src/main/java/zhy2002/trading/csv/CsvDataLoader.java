@@ -31,9 +31,6 @@ public class CsvDataLoader {
                 double low = Double.parseDouble(record.get("Low"));
                 double close = Double.parseDouble(record.get("Close"));
                 double volume = Double.parseDouble(record.get("Volume"));
-                if (volume == 0) {
-                    continue; // skip the first entry
-                }
                 result.add(new Candle(date, open, high, low, close, volume));
             }
         } catch (IOException ex) {
