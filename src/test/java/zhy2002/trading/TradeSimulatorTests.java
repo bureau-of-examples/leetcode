@@ -8,6 +8,11 @@ public class TradeSimulatorTests {
     private final TradeSimulator tradeSimulator = new TradeSimulator();
 
     @Test
+    public void simulateBHP() {
+        tradeSimulator.simulateBHP();
+    }
+
+    @Test
     public void simulate1Test() {
         tradeSimulator.simulate1();
     }

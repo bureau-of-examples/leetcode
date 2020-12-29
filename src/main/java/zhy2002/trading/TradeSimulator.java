@@ -1,8 +1,12 @@
 package zhy2002.trading;
 
+import zhy2002.trading.strategy.BuyBelowRSI;
 import zhy2002.trading.strategy.BuyBelowSMAWithMovement;
+import zhy2002.trading.strategy.BuyBelowSMAWithTrend;
 import zhy2002.trading.strategy.BuyBollingerBand;
+import zhy2002.trading.strategy.SellAboveRSI;
 import zhy2002.trading.strategy.SellAboveSMAWithMovement;
+import zhy2002.trading.strategy.SellAboveSMAWithTrend;
 import zhy2002.trading.strategy.SellBollingerBand;
 import zhy2002.trading.strategy.StrategyPair;
 
@@ -19,12 +23,22 @@ public class TradeSimulator {
     private static final String START_DATE = "2016-01-01";
 
 
+    public void simulateBHP() {
+        var symbols = List.of("BHP.AX");
+        var strategies = List.of(
+                new StrategyPair(new BuyBelowSMAWithTrend(100), new SellAboveSMAWithTrend(100))
+                //new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100))
+        );
+        var result = simulateTrades(symbols, strategies);
+        printResult(symbols, result);
+    }
+
     public void simulate1() {
         var symbols = List.of("BHP.AX", "CBA.AX", "CSL.AX");
         var strategies = List.of(
-                new StrategyPair(new BuyBollingerBand(), new SellBollingerBand()),
-                new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100))
-
+                new StrategyPair(new BuyBelowRSI(), new SellAboveRSI())
+                //new StrategyPair(new BuyBollingerBand(), new SellBollingerBand()),
+                //new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100))
                 //new StrategyPair(new BuyBelowSMAWithEngulfing(100), new SellAboveSMAWithEngulfing(100))
         );
         var result = simulateTrades(symbols, strategies);
@@ -61,7 +75,8 @@ public class TradeSimulator {
     private void printResult(List<String> symbols, Map<String, List<Trader>> result) {
         for (var symbol : symbols) {
             for (var trader : result.get(symbol)) {
-                System.out.println(trader);
+                System.out.println(String.format("Symbol: %s, Buy Strategy: %s, Sell Strategy: %s, %s",
+                        symbol, trader.getBuyStrategy(symbol), trader.getSellStrategy(symbol), trader));
                 for (var trade : trader.getPastTrades()) {
                     System.out.println("===>" + trade);
                 }

@@ -2,6 +2,7 @@ package zhy2002.trading.indicator;
 
 import zhy2002.trading.Chart;
 
+//https://www.investopedia.com/terms/b/bollingerbands.asp
 public class BollingerBand extends Indicator {
 
     private static final int M = 2;

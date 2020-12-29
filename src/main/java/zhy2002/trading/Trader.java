@@ -1,5 +1,6 @@
 package zhy2002.trading;
 
+import zhy2002.trading.strategy.Strategy;
 import zhy2002.trading.strategy.StrategyPair;
 
 import java.util.ArrayList;
@@ -108,4 +109,21 @@ public class Trader {
         return winPercent / lossPercent;
     }
 
+    public Strategy getBuyStrategy(String symbol) {
+        for (var entry : strategyPairMap.entrySet()) {
+            if (entry.getKey().getSymbol().equals(symbol)) {
+                return entry.getValue().getBuyStrategy();
+            }
+        }
+        return null;
+    }
+
+    public Strategy getSellStrategy(String symbol) {
+        for (var entry : strategyPairMap.entrySet()) {
+            if (entry.getKey().getSymbol().equals(symbol)) {
+                return entry.getValue().getSellStrategy();
+            }
+        }
+        return null;
+    }
 }
