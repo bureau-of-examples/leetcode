@@ -2,6 +2,7 @@ package zhy2002.trading;
 
 import zhy2002.trading.csv.CsvDataLoader;
 import zhy2002.trading.indicator.ATR;
+import zhy2002.trading.indicator.BollingerBand;
 import zhy2002.trading.indicator.SMA;
 
 import java.util.HashMap;
@@ -15,6 +16,8 @@ public class Chart {
 
     private final Map<Integer, SMA> smaMap = new HashMap<>();
     private final Map<Integer, ATR> atrMap = new HashMap<>();
+    private final Map<Integer, BollingerBand> bandMap = new HashMap<>();
+
 
     private final String symbol;
     private final List<Candle> candles;
@@ -47,6 +50,10 @@ public class Chart {
 
     public ATR getATR() {
         return getATR(14);
+    }
+
+    public BollingerBand getBollingerBand() {
+        return bandMap.computeIfAbsent(20, p -> new BollingerBand(this, p));
     }
 
     public int findDateIndex(String startDate) {

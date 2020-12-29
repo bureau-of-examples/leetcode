@@ -1,6 +1,8 @@
 package zhy2002.trading.strategy;
 
 import zhy2002.trading.Chart;
+import zhy2002.trading.Trade;
+import zhy2002.trading.Trader;
 import zhy2002.trading.condition.TradeCondition;
 import zhy2002.trading.pricing.ClosePrice;
 import zhy2002.trading.pricing.PriceDecider;
@@ -20,8 +22,8 @@ public class Strategy {
         this.priceDecider = priceDecider;
     }
 
-    public boolean shouldTakeAction(Chart chart, int index) {
-        return tradeCondition.isMet(chart, index);
+    public boolean shouldTakeAction(Trader trader, int index) {
+        return tradeCondition.isMet(trader, index);
     }
 
     public double decidePrice(Chart chart, int index) {

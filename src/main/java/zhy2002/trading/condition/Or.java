@@ -1,19 +1,19 @@
 package zhy2002.trading.condition;
 
-import zhy2002.trading.Chart;
+import zhy2002.trading.Trader;
 
-public class OrCondition implements TradeCondition {
+public class Or implements TradeCondition {
 
     private final TradeCondition[] conditions;
 
-    public OrCondition(TradeCondition... conditions) {
+    public Or(TradeCondition... conditions) {
         this.conditions = conditions;
     }
 
     @Override
-    public boolean isMet(Chart chart, int index) {
+    public boolean isMet(Trader trader, int index) {
         for (var c : conditions) {
-            if (c.isMet(chart, index)) {
+            if (c.isMet(trader, index)) {
                 return true;
             }
         }

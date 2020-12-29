@@ -28,8 +28,9 @@ public class Trade {
 
     @Override
     public String toString() {
-        return String.format("Bought on %s and Sold on %s",
+        return String.format("Bought on %s and Sold on %s with profit %.2f",
                 chart.getCandle(buyDayIndex).date,
-                chart.getCandle(sellDayIndex).date);
+                chart.getCandle(sellDayIndex).date,
+                (sellPrice - buyPrice) / buyPrice);
     }
 }

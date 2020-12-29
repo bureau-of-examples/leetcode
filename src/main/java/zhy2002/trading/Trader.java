@@ -29,14 +29,14 @@ public class Trader {
 
         for (int index = startDayIndex; index < chart.getPeriods(); index++) {
             if (currentTrade == null) { // check for buy
-                if (buyStrategy.shouldTakeAction(chart, index)) {
+                if (buyStrategy.shouldTakeAction(this, index)) {
                     double price = buyStrategy.decidePrice(chart, index);
                     int share = (int) (fund / price);
                     fund -= share * price;
                     currentTrade = new Trade(chart, index, price, share);
                 }
             } else { // check for sell
-                if (sellStrategy.shouldTakeAction(chart, index)) {
+                if (sellStrategy.shouldTakeAction(this, index)) {
                     double price = sellStrategy.decidePrice(chart, index);
                     fund += price * currentTrade.getVolume();
                     currentTrade.complete(index, price);
@@ -54,6 +54,14 @@ public class Trader {
 
     public List<Trade> getPastTrades() {
         return pastTrades;
+    }
+
+    public Trade getCurrentTrade() {
+        return currentTrade;
+    }
+
+    public Chart getChart() {
+        return chart;
     }
 
     @Override

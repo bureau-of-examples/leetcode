@@ -1,9 +1,7 @@
 package zhy2002.trading;
 
-import zhy2002.trading.strategy.BuyBelowSMAWithEngulfing;
-import zhy2002.trading.strategy.BuyBelowSMAWithMovement;
-import zhy2002.trading.strategy.SellAboveSMAWithEngulfing;
-import zhy2002.trading.strategy.SellAboveSMAWithMovement;
+import zhy2002.trading.strategy.BuyBollingerBand;
+import zhy2002.trading.strategy.SellBollingerBand;
 import zhy2002.trading.strategy.StrategyPair;
 
 import java.util.ArrayList;
@@ -21,8 +19,9 @@ public class TradeSimulator {
     public void simulate1() {
         var symbols = List.of("BHP.AX", "CBA.AX", "CSL.AX");
         var strategies = List.of(
-                new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)),
-                new StrategyPair(new BuyBelowSMAWithMovement(150), new SellAboveSMAWithMovement(150))
+                new StrategyPair(new BuyBollingerBand(), new SellBollingerBand())
+                //new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)),
+                //new StrategyPair(new BuyBelowSMAWithMovement(150), new SellAboveSMAWithMovement(150))
                 //new StrategyPair(new BuyBelowSMAWithEngulfing(100), new SellAboveSMAWithEngulfing(100))
         );
         var result = simulateTrades(symbols, strategies);

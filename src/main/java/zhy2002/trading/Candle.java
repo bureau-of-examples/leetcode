@@ -13,4 +13,9 @@ public class Candle {
     double low;
     double close;
     double volume;
+
+    // typical price
+    public double getTp() {
+        return (getHigh() + getLow() + getClose()) / 3.0;
+    }
 }
