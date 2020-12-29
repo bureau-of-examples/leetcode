@@ -14,6 +14,6 @@ public class BollingerBandTrend implements TradeCondition {
     public boolean isMet(Chart chart, int index) {
         var bb = chart.getBollingerBand();
         return comparison.isTrue(bb.get(index - 1), bb.get(index - 6))
-                && comparison.isTrue(bb.get(index - 6), bb.get(index - 14));
+                && comparison.isTrue(bb.get(index - 6), bb.get(index - 10));
     }
 }

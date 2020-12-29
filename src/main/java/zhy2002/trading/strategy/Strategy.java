@@ -1,7 +1,6 @@
 package zhy2002.trading.strategy;
 
 import zhy2002.trading.Chart;
-import zhy2002.trading.Trade;
 import zhy2002.trading.Trader;
 import zhy2002.trading.condition.TradeCondition;
 import zhy2002.trading.pricing.ClosePrice;
@@ -32,6 +31,6 @@ public class Strategy {
 
     @Override
     public String toString() {
-        return tradeCondition.toString();
+        return getClass().getSimpleName();
     }
 }

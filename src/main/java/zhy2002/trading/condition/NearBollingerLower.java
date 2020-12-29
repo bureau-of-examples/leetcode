@@ -9,6 +9,6 @@ public class NearBollingerLower implements TradeCondition {
         var atr = chart.getATR();
         var band = chart.getBollingerBand();
         var candle = chart.getCandle(index);
-        return candle.getClose() < band.getLower(index - 1) + atr.get(index - 1) * 0.5;
+        return candle.getClose() < band.getLower(index - 1) - atr.get(index - 1) * 0.0;
     }
 }
