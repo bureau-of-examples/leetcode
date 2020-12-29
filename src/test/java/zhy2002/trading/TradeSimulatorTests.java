@@ -12,6 +12,11 @@ public class TradeSimulatorTests {
         tradeSimulator.simulate1();
     }
 
+    @Test
+    public void simulateMultiple() {
+        tradeSimulator.simulateMultiple();
+    }
+
 //    @Test
 //    public void testCrossMa() {
 ////        String[] symbols = new String[]{"AGL.AX", "BHP.AX", "CBA.AX", "SCG.AX", "WES.AX", "WOW.AX", "WPL.AX"};

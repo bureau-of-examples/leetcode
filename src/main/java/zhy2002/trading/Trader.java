@@ -1,42 +1,50 @@
 package zhy2002.trading;
 
-import zhy2002.trading.strategy.Strategy;
 import zhy2002.trading.strategy.StrategyPair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class Trader {
 
+    private final Map<Chart, StrategyPair> strategyPairMap;
     private final List<Trade> pastTrades = new ArrayList<>();
-    private final Chart chart;
-    private final Strategy buyStrategy;
-    private final Strategy sellStrategy;
-
     private double fund;
     private Trade currentTrade;
 
     public Trader(Chart chart, StrategyPair strategyPair) {
-        this.chart = chart;
-        this.buyStrategy = strategyPair.getBuyStrategy();
-        this.sellStrategy = strategyPair.getSellStrategy();
+        this(Map.of(chart, strategyPair));
+    }
+
+    public Trader(Map<Chart, StrategyPair> strategyPairMap) {
+        if (strategyPairMap.isEmpty()) {
+            throw new IllegalArgumentException("Not chart for trading");
+        }
+        this.strategyPairMap = strategyPairMap;
     }
 
     public void trade(double startFund, int startDayIndex) {
         fund = startFund;
         currentTrade = null;
 
-        for (int index = startDayIndex; index < chart.getPeriods(); index++) {
+        for (int index = startDayIndex; index < strategyPairMap.keySet().iterator().next().getPeriods(); index++) {
             if (currentTrade == null) { // check for buy
-                if (buyStrategy.shouldTakeAction(this, index)) {
-                    double price = buyStrategy.decidePrice(chart, index);
-                    int share = (int) (fund / price);
-                    fund -= share * price;
-                    currentTrade = new Trade(chart, index, price, share);
+                for (var chart : strategyPairMap.keySet()) {
+                    var buyStrategy = strategyPairMap.get(chart).getBuyStrategy();
+                    if (buyStrategy.shouldTakeAction(this, chart, index)) {
+                        double price = buyStrategy.decidePrice(chart, index);
+                        int share = (int) (fund / price);
+                        fund -= share * price;
+                        currentTrade = new Trade(chart, index, price, share);
+                        break;
+                    }
                 }
             } else { // check for sell
-                if (sellStrategy.shouldTakeAction(this, index)) {
+                var chart = currentTrade.getChart();
+                var sellStrategy = strategyPairMap.get(chart).getSellStrategy();
+                if (sellStrategy.shouldTakeAction(this, chart, index)) {
                     double price = sellStrategy.decidePrice(chart, index);
                     fund += price * currentTrade.getVolume();
                     currentTrade.complete(index, price);
@@ -60,14 +68,10 @@ public class Trader {
         return currentTrade;
     }
 
-    public Chart getChart() {
-        return chart;
-    }
-
     @Override
     public String toString() {
-        return String.format("Symbol: %s, Buy Strategy: %s, Sell Strategy: %s, Trade: %d, Fund: %.2f, Betting Average: %.2f, Win Loss Ratio: %.2f",
-                chart.getSymbol(), buyStrategy, sellStrategy, pastTrades.size(), lastFund(), getBettingAverage(), getWinLossRatio());
+        return String.format("Trade: %d, Fund: %.2f, Betting Average: %.2f, Win Loss Ratio: %.2f",
+                pastTrades.size(), lastFund(), getBettingAverage(), getWinLossRatio());
     }
 
     private double getBettingAverage() {

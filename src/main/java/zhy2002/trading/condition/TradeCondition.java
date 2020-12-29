@@ -4,8 +4,8 @@ import zhy2002.trading.Chart;
 import zhy2002.trading.Trader;
 
 public interface TradeCondition {
-    default boolean isMet(Trader trader, int index) {
-        return isMet(trader.getChart(), index);
+    default boolean isMet(Trader trader, Chart chart, int index) {
+        return isMet(chart, index);
     }
 
     default boolean isMet(Chart chart, int index) {

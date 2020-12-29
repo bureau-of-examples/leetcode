@@ -21,8 +21,8 @@ public class Strategy {
         this.priceDecider = priceDecider;
     }
 
-    public boolean shouldTakeAction(Trader trader, int index) {
-        return tradeCondition.isMet(trader, index);
+    public boolean shouldTakeAction(Trader trader, Chart chart, int index) {
+        return tradeCondition.isMet(trader, chart, index);
     }
 
     public double decidePrice(Chart chart, int index) {

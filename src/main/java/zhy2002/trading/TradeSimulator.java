@@ -8,6 +8,7 @@ import zhy2002.trading.strategy.StrategyPair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,18 @@ public class TradeSimulator {
         );
         var result = simulateTrades(symbols, strategies);
         printResult(symbols, result);
+    }
+
+    public void simulateMultiple() {
+        var map = new LinkedHashMap<Chart, StrategyPair>();
+        map.put(new Chart("BHP.AX"), new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)));
+        map.put(new Chart("CBA.AX"), new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)));
+        map.put(new Chart("CSL.AX"), new StrategyPair(new BuyBollingerBand(), new SellBollingerBand()));
+
+        var trader = new Trader(map);
+        int startDayIndex = new Chart("CBA.AX").findDateIndex(START_DATE);
+        trader.trade(START_FUND, startDayIndex);
+        System.out.println(trader);
     }
 
     private Map<String, List<Trader>> simulateTrades(List<String> symbols, List<StrategyPair> strategyPairs) {
