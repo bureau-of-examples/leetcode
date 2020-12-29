@@ -6,7 +6,6 @@ import zhy2002.trading.strategy.BuyBelowSMAWithTrend;
 import zhy2002.trading.strategy.BuyBollingerBand;
 import zhy2002.trading.strategy.SellAboveRSI;
 import zhy2002.trading.strategy.SellAboveSMAWithMovement;
-import zhy2002.trading.strategy.SellAboveSMAWithTrend;
 import zhy2002.trading.strategy.SellBollingerBand;
 import zhy2002.trading.strategy.StrategyPair;
 
@@ -26,7 +25,8 @@ public class TradeSimulator {
     public void simulateBHP() {
         var symbols = List.of("BHP.AX");
         var strategies = List.of(
-                new StrategyPair(new BuyBelowSMAWithTrend(100), new SellAboveSMAWithTrend(100))
+                new StrategyPair(new BuyBollingerBand(-0.9), new SellBollingerBand(0.2))
+                //new StrategyPair(new BuyBelowSMAWithTrend(100), new SellAboveSMAWithTrend(100))
                 //new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100))
         );
         var result = simulateTrades(symbols, strategies);
@@ -49,7 +49,7 @@ public class TradeSimulator {
         var map = new LinkedHashMap<Chart, StrategyPair>();
         map.put(new Chart("BHP.AX"), new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)));
         map.put(new Chart("CBA.AX"), new StrategyPair(new BuyBelowSMAWithMovement(100), new SellAboveSMAWithMovement(100)));
-        map.put(new Chart("CSL.AX"), new StrategyPair(new BuyBollingerBand(), new SellBollingerBand()));
+        map.put(new Chart("CSL.AX"), new StrategyPair(new BuyBollingerBand(0), new SellBollingerBand(0)));
 
         var trader = new Trader(map);
         int startDayIndex = new Chart("CBA.AX").findDateIndex(START_DATE);

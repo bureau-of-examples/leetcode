@@ -16,9 +16,9 @@ public class ConsecutiveMovement implements TradeCondition {
         if (index < times) {
             throw new IllegalArgumentException("Invalid index " + index);
         }
-        for (int i = 1; i <= times; i++) {
-            Candle current = chart.getCandle(index - i + 1);
-            Candle previous = chart.getCandle(index - i);
+        for (int i = 0; i < times; i++) {
+            Candle current = chart.getCandle(index - i);
+            Candle previous = chart.getCandle(index - i - 1);
             if (!comparison.isTrue(current.getClose(), previous.getClose())) {
                 return false;
             }
