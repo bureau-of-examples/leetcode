@@ -1,24 +1,31 @@
 package zhy2002.trading.condition;
 
+import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
+@AllArgsConstructor
 public class NearBollingerUpper implements TradeCondition {
 
     private final double atrRatio;
+    private final int window;
+
+    public NearBollingerUpper(double atrRatio) {
+        this(atrRatio, 1);
+    }
 
     public NearBollingerUpper() {
         this(0);
-    }
-
-    public NearBollingerUpper(double atrRatio) {
-        this.atrRatio = atrRatio;
     }
 
     @Override
     public boolean isMet(Chart chart, int index) {
         var atr = chart.getATR();
         var band = chart.getBollingerBand();
-        var candle = chart.getCandle(index);
-        return candle.getClose() > band.getUpper(index - 1) + atr.get(index - 1) * atrRatio;
+        for (int i = 0; i < window; i++) {
+            if (chart.getCandle(index - i).getClose() < band.getUpper(index - i) + atr.get(index - i) * atrRatio) {
+                return false;
+            }
+        }
+        return true;
     }
 }

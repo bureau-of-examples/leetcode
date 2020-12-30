@@ -12,7 +12,7 @@ public class BuyBelowSMAWithMovement extends Strategy {
     public BuyBelowSMAWithMovement(int smaPeriods) {
         super(new And(
                 new CompareWithSMA(Comparison.LOWER, smaPeriods),
-                new ConsecutiveMovement(Comparison.HIGHER, 2)
+                new ConsecutiveMovement(Comparison.HIGHER)
         ));
         this.smaPeriods = smaPeriods;
     }

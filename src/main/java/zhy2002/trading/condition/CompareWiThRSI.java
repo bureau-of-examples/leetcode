@@ -9,10 +9,13 @@ public class CompareWiThRSI implements TradeCondition {
     private final Comparison comparison;
     private final double limit;
 
+    public CompareWiThRSI(Comparison comparison) {
+        this(comparison, comparison.defaultRSI());
+    }
 
     @Override
     public boolean isMet(Chart chart, int index) {
         var rsi = chart.getRSI();
-        return comparison.isTrue(rsi.get(index - 1), limit);
+        return comparison.isTrue(rsi.get(index), limit);
     }
 }

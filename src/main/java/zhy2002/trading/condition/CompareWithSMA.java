@@ -6,15 +6,23 @@ import zhy2002.trading.Chart;
 @AllArgsConstructor
 public class CompareWithSMA implements TradeCondition {
 
-    private static final int WINDOW = 1;
     private final Comparison comparison;
     private final int smaPeriods;
+    private final int window;
+
+    public CompareWithSMA(Comparison comparison) {
+        this(comparison, 100);
+    }
+
+    public CompareWithSMA(Comparison comparison, int smaPeriods) {
+        this(comparison, smaPeriods, 1);
+    }
 
     @Override
     public boolean isMet(Chart chart, int index) {
         var sma = chart.getSMA(smaPeriods);
-        for (int i = 0; i < WINDOW; i++) {
-            if (!comparison.isTrue(chart.getCandle(index - i).getClose(), sma.get(index - i - 1))) {
+        for (int i = 0; i < window; i++) {
+            if (!comparison.isTrue(chart.getCandle(index - i).getClose(), sma.get(index - i))) {
                 return false;
             }
         }
