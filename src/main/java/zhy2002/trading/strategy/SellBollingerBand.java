@@ -5,6 +5,7 @@ import zhy2002.trading.condition.BelowBollingerBand;
 import zhy2002.trading.condition.HoldAfterDays;
 import zhy2002.trading.condition.NearBollingerUpper;
 import zhy2002.trading.condition.Or;
+import zhy2002.trading.condition.ShiftLeft;
 import zhy2002.trading.condition.StopLoss;
 
 
@@ -14,7 +15,7 @@ public class SellBollingerBand extends Strategy {
                 new And(
                         new NearBollingerUpper(atrRatio)
                 ),
-                new BelowBollingerBand(3),
+                new ShiftLeft(new BelowBollingerBand(3)),
                 new HoldAfterDays(25),
                 new StopLoss(0.92)
         ));

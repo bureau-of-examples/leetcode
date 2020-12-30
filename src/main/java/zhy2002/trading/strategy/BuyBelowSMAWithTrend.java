@@ -4,7 +4,8 @@ import zhy2002.trading.condition.And;
 import zhy2002.trading.condition.CompareWithSMA;
 import zhy2002.trading.condition.Comparison;
 import zhy2002.trading.condition.NearBollingerLower;
-import zhy2002.trading.condition.SMATrend;
+import zhy2002.trading.condition.RegressionTrend;
+import zhy2002.trading.adaptor.SMAArrayExtractor;
 
 public class BuyBelowSMAWithTrend extends Strategy {
 
@@ -13,7 +14,7 @@ public class BuyBelowSMAWithTrend extends Strategy {
     public BuyBelowSMAWithTrend(int smaPeriods) {
         super(new And(
                 new CompareWithSMA(Comparison.LOWER, smaPeriods),
-                new SMATrend(Comparison.HIGHER, -0.05,50, 9),
+                new RegressionTrend(new SMAArrayExtractor(), Comparison.HIGHER, -0.05),
                 new NearBollingerLower()
         ));
         this.smaPeriods = smaPeriods;

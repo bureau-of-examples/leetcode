@@ -1,10 +1,11 @@
 package zhy2002.trading.strategy;
 
+import zhy2002.trading.adaptor.SMAArrayExtractor;
 import zhy2002.trading.condition.And;
 import zhy2002.trading.condition.CompareWithSMA;
 import zhy2002.trading.condition.Comparison;
 import zhy2002.trading.condition.NearBollingerUpper;
-import zhy2002.trading.condition.SMATrend;
+import zhy2002.trading.condition.RegressionTrend;
 
 public class SellAboveSMAWithTrend extends Strategy {
 
@@ -13,7 +14,7 @@ public class SellAboveSMAWithTrend extends Strategy {
     public SellAboveSMAWithTrend(int smaPeriods) {
         super(new And(
                 new CompareWithSMA(Comparison.HIGHER, smaPeriods),
-                new SMATrend(Comparison.LOWER, 0.05,50, 9),
+                new RegressionTrend(new SMAArrayExtractor(), Comparison.LOWER, 0.05),
                 new NearBollingerUpper()
         ));
         this.smaPeriods = smaPeriods;
