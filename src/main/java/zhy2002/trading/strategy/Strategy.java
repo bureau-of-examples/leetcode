@@ -1,36 +1,34 @@
 package zhy2002.trading.strategy;
 
+import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 import zhy2002.trading.Trader;
 import zhy2002.trading.condition.TradeCondition;
 import zhy2002.trading.pricing.ClosePrice;
 import zhy2002.trading.pricing.PriceDecider;
 
+@AllArgsConstructor
+public final class Strategy {
 
-public class Strategy {
-
+    private final String name;
     private final TradeCondition tradeCondition;
     private final PriceDecider priceDecider;
 
-    public Strategy(TradeCondition tradeCondition) {
-        this(tradeCondition, new ClosePrice());
-    }
-
-    public Strategy(TradeCondition tradeCondition, PriceDecider priceDecider) {
-        this.tradeCondition = tradeCondition;
-        this.priceDecider = priceDecider;
+    public Strategy(String name, TradeCondition tradeCondition) {
+        this(name, tradeCondition, new ClosePrice());
     }
 
     public boolean shouldTakeAction(Trader trader, Chart chart, int index) {
         return tradeCondition.isMet(trader, chart, index);
     }
 
+    // decide the highest buy price or lowest sell price for the day
     public double decidePrice(Chart chart, int index) {
         return priceDecider.decide(chart, index);
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName();
+        return name;
     }
 }

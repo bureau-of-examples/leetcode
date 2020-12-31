@@ -22,6 +22,8 @@ public enum Comparison {
         public double defaultRSI() {
             return 30;
         }
+
+
     };
 
     public abstract boolean isTrue(double val1, double val2);

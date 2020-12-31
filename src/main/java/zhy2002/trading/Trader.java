@@ -2,6 +2,7 @@ package zhy2002.trading;
 
 import zhy2002.trading.strategy.Strategy;
 import zhy2002.trading.strategy.StrategyPair;
+import zhy2002.trading.trading.TradeStatistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,44 +70,15 @@ public class Trader {
         return currentTrade;
     }
 
+    public void setCurrentTrade(Trade currentTrade) {
+        this.currentTrade = currentTrade;
+    }
+
     @Override
     public String toString() {
+        var stat = new TradeStatistics(pastTrades);
         return String.format("Trade: %d, Fund: %.2f, Betting Average: %.2f, Win Loss Ratio: %.2f",
-                pastTrades.size(), lastFund(), getBettingAverage(), getWinLossRatio());
-    }
-
-    private double getBettingAverage() {
-        double winCount = 0;
-        for (var t : pastTrades) {
-            if (t.getBuyPrice() < t.getSellPrice()) {
-                winCount++;
-            }
-        }
-        return winCount / pastTrades.size();
-    }
-
-    private double getWinLossRatio() {
-        double winPercent = 0;
-        int winCount = 0;
-        double lossPercent = 0;
-        int lossCount = 0;
-        for (var t : pastTrades) {
-            var p = (t.getSellPrice() - t.getBuyPrice()) / t.getBuyPrice();
-            if (p > 0) {
-                winPercent += p;
-                winCount++;
-            } else {
-                lossPercent += -p;
-                lossCount++;
-            }
-        }
-        if (winCount > 0) {
-            winPercent /= winCount;
-        }
-        if (lossCount > 0) {
-            lossPercent /= lossCount;
-        }
-        return winPercent / lossPercent;
+                pastTrades.size(), lastFund(), stat.getBettingAverage(), stat.getWinLossRatio());
     }
 
     public Strategy getBuyStrategy(String symbol) {

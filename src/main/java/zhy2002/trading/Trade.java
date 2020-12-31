@@ -34,4 +34,8 @@ public class Trade {
                 (sellPrice - buyPrice) / buyPrice,
                 sellDayIndex - buyDayIndex);
     }
+
+    public boolean isComplete() {
+        return this.sellPrice != -1;
+    }
 }

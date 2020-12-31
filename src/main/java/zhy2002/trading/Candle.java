@@ -18,4 +18,8 @@ public class Candle {
     public double getTp() {
         return (getHigh() + getLow() + getClose()) / 3.0;
     }
+
+    public boolean isPriceInRange(double price) {
+        return price >= getLow() && price <= getHigh();
+    }
 }
