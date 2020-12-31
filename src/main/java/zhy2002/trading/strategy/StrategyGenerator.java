@@ -12,6 +12,7 @@ import zhy2002.trading.condition.NearBollingerUpper;
 import zhy2002.trading.condition.Or;
 import zhy2002.trading.condition.RegressionTrend;
 import zhy2002.trading.condition.StopLoss;
+import zhy2002.trading.condition.TradeCondition;
 
 import java.util.ArrayList;
 import java.util.List;
