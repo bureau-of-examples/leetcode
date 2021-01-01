@@ -39,9 +39,3 @@ public class CsvDataLoader {
         return result;
     }
 }
-/* todo load daily automatically:
-○ → curl "https://query1.finance.yahoo.com/v7/finance/download/BHP.AX?period1=1609200000&period2=1609286400&interval=1d&events=history&includeAdjustedClose=true"
-Date,Open,High,Low,Close,Adj Close,Volume
-2020-12-29,43.110001,43.200001,42.840000,42.919998,42.919998,2767552
-2020-12-30,43.000000,43.130001,42.680000,42.980000,42.980000,1966902
-*/
