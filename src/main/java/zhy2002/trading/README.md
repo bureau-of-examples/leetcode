@@ -7,7 +7,6 @@ code this:
 - 6 ATR is your trailing stop loss
 - You risk 1% on each trade
 
-write a script to download csv data (and then run algo)
 
 
 

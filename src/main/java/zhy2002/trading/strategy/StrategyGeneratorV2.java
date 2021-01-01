@@ -34,4 +34,8 @@ public final class StrategyGeneratorV2 implements Iterable<Strategy> {
             return new Strategy(name + pl.toString(), condition);
         }
     }
+
+    public void reset() {
+        plg.reset();
+    }
 }

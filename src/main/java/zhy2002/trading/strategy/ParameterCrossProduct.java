@@ -38,6 +38,11 @@ public class ParameterCrossProduct extends ParameterSourceIterator {
         return this;
     }
 
+    @Override
+    public void reset() {
+        done = false;
+    }
+
     public ParameterCrossProduct withParameter(String name, Object valueArray) {
         Preconditions.checkArgument(valueArray.getClass().isArray()); //use array to force type declaration
 

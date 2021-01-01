@@ -41,4 +41,6 @@ public abstract class ParameterSourceIterator implements Iterator<ParameterSourc
         }
         return result.toString();
     }
+
+    public abstract void reset();
 }
