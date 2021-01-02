@@ -1,10 +1,15 @@
 package zhy2002.trading;
 
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import org.jetbrains.annotations.NotNull;
 import zhy2002.trading.condition.And;
 import zhy2002.trading.condition.CompareWithSMA;
 import zhy2002.trading.condition.Comparison;
 import zhy2002.trading.condition.ConsecutiveMovement;
+import zhy2002.trading.csv.ResultCsv;
+import zhy2002.trading.csv.ResultCsvRow;
 import zhy2002.trading.strategy.ParameterCrossProduct;
 import zhy2002.trading.strategy.StrategyGeneratorV2;
 import zhy2002.trading.strategy.StrategyPair;
@@ -12,9 +17,6 @@ import zhy2002.trading.strategy.StrategyResult;
 import zhy2002.trading.trading.TradeGenerator;
 import zhy2002.trading.trading.TradeStatistics;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +32,8 @@ import java.util.Map;
 public class BackTester {
 
     private static final String START_DATE = "2007-01-01";
+    private static final int START_YEAR = 2007;
+    private static final int END_YEAR = 2020;
 
     public static void main(String[] args) {
         List<StockGroup> stockGroups = createStockGroups();
@@ -109,23 +113,32 @@ public class BackTester {
     }
 
     private static void saveStrategyResults(Map<String, List<StrategyResult>> tradeResultMap) {
-        try (var fileWriter = new FileWriter("strategy_results.csv"); var printWriter = new PrintWriter(fileWriter)) {
-            printWriter.println("Group, Symbol, Buy Strategy, SellStrategy, Completed Trades, Betting Average, Win Loss Ration, Expected Profit");
-            for (var entry : tradeResultMap.entrySet()) {
-                var groupName = entry.getKey();
-                var strategyResultList = entry.getValue();
-                for (var strategyResult : strategyResultList) {
-                    for (var symbol : strategyResult.getStockGroup().getSymbols()) {
-                        var trades = strategyResult.getTrades(symbol);
-                        var stat = new TradeStatistics(trades);
-                        printWriter.printf("%s,%s,\"%s\",\"%s\",%d,%.2f,%.2f,%.2f%n", groupName, symbol,
-                                strategyResult.getStrategyPair().getBuyStrategy(), strategyResult.getStrategyPair().getSellStrategy(),
-                                stat.getCompletedTrades().size(), stat.getBettingAverage(), stat.getWinLossRatio(), stat.getExpectedProfit());
+        var rows = new ArrayList<ResultCsvRow>();
+        for (var entry : tradeResultMap.entrySet()) {
+            var groupName = entry.getKey();
+            var strategyResultList = entry.getValue();
+            for (var strategyResult : strategyResultList) {
+                for (var symbol : strategyResult.getStockGroup().getSymbols()) {
+                    var trades = strategyResult.getTrades(symbol);
+                    Multimap<String, Trade> yearTrades = partitionByYear(trades);
+                    var row = new ResultCsvRow(groupName, symbol, strategyResult.getStrategyPair());
+                    for (int year = START_YEAR; year <= END_YEAR; year++) {
+                        row.putStats(year, new TradeStatistics(yearTrades.get(String.valueOf(year))));
                     }
+                    rows.add(row);
                 }
             }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
         }
+        var resultCsv = new ResultCsv(START_YEAR, END_YEAR, rows);
+        resultCsv.writeToFile();
+    }
+
+    @NotNull
+    private static Multimap<String, Trade> partitionByYear(List<Trade> trades) {
+        Multimap<String, Trade> yearTrades = ArrayListMultimap.create();
+        for (var t : trades) {
+            yearTrades.put(t.getChart().getCandle(t.getBuyDayIndex()).getDate().substring(0, 4), t);
+        }
+        return yearTrades;
     }
 }

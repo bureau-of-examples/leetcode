@@ -4,24 +4,41 @@ import lombok.Getter;
 import zhy2002.trading.Trade;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 
-@Getter
 public final class TradeStatistics {
 
+    public static final String COMPLETED_TRADES = "Completed Trades";
+    public static final String MEAN_PROFIT = "Mean Profit";
+    public static final String MIN_PROFIT = "Min Profit";
+    public static final String MAX_HOLD_DAYS = "Max Hold Days";
+    public static final String MIN_HOLD_DAYS = "Min Hold Days";
+    public static final String BETTING_AVERAGE = "Betting Average";
+    public static final String WIN_LOSS_RATIO = "Win Loss Ratio";
+    public static final String COMP_PROFIT = "Comp Profit";
+
+    @Getter
     private final Collection<Trade> trades;
+    @Getter
     private final Collection<Trade> completedTrades;
-    private final double bettingAverage;
-    private final double winLossRatio;
-    private final double expectedProfit;
+    private final Map<String, Object> data = new TreeMap<>();
 
     public TradeStatistics(Collection<Trade> trades) {
         this.trades = trades;
         completedTrades = trades.stream().filter(Trade::isComplete).collect(Collectors.toList());
-        bettingAverage = computeBettingAverage(completedTrades);
-        winLossRatio = computeWinLossRatio(completedTrades);
-        expectedProfit = computeExpectedProfit(completedTrades);
+        data.put(COMPLETED_TRADES, completedTrades.size());
+        double expProfit = computeExpectedProfit(completedTrades);
+        data.put(MEAN_PROFIT, expProfit);
+        data.put(MIN_PROFIT, profitStream(completedTrades).min().orElse(Double.NaN));
+        data.put(BETTING_AVERAGE, computeBettingAverage(completedTrades));
+        data.put(WIN_LOSS_RATIO, computeWinLossRatio(completedTrades));
+        data.put(COMP_PROFIT, Math.pow(1 + expProfit, getCompletedTrades().size()));
+        data.put(MAX_HOLD_DAYS, completedTrades.stream().mapToInt(t -> t.getSellDayIndex() - t.getBuyDayIndex()).max().orElse(0));
+        data.put(MIN_HOLD_DAYS, completedTrades.stream().mapToInt(t -> t.getSellDayIndex() - t.getBuyDayIndex()).min().orElse(0));
     }
 
     public static double computeBettingAverage(Collection<Trade> trades) {
@@ -35,6 +52,7 @@ public final class TradeStatistics {
                 winCount++;
             }
             completeCount++;
+
         }
         return winCount / completeCount;
     }
@@ -63,22 +81,42 @@ public final class TradeStatistics {
         if (lossCount > 0) {
             lossPercent /= lossCount;
         }
-        return winPercent / lossPercent;
+        double result = winPercent / lossPercent;
+        return Double.isInfinite(result) ? 99999999 : result;
     }
 
     public static double computeExpectedProfit(Collection<Trade> completedTrades) {
-        return completedTrades.stream().filter(Trade::isComplete)
-                .mapToDouble(t -> (t.getSellPrice() - t.getBuyPrice()) / t.getBuyPrice())
-                .average().orElse(Double.NaN);
+        return profitStream(completedTrades).average().orElse(Double.NaN);
     }
 
-    public double getCompoundProfit() {
-        return Math.pow(1 + getExpectedProfit(), getCompletedTrades().size());
+    private static DoubleStream profitStream(Collection<Trade> completedTrades) {
+        return completedTrades.stream().filter(Trade::isComplete)
+                .mapToDouble(t -> (t.getSellPrice() - t.getBuyPrice()) / t.getBuyPrice());
     }
 
     @Override
     public String toString() {
         return String.format("Trade: %d, Complete Trade; %d, Betting Average: %.2f, Win Loss Ratio: %.2f, Expected Profit: %.2f, Compound Profit: %.2f",
-                getTrades().size(), getCompletedTrades().size(), getBettingAverage(), getWinLossRatio(), getExpectedProfit(), getCompoundProfit());
+                getTrades().size(), getCompletedTrades().size(), getBettingAverage(), getWinLossRatio(), getMeanProfit(), getCompoundProfit());
+    }
+
+    public Object getData(String colName) {
+        return data.get(colName);
+    }
+
+    public double getBettingAverage() {
+        return (double) getData(BETTING_AVERAGE);
+    }
+
+    public double getWinLossRatio() {
+        return (double) getData(WIN_LOSS_RATIO);
+    }
+
+    public double getCompoundProfit() {
+        return (double) getData(COMP_PROFIT);
+    }
+
+    public double getMeanProfit() {
+        return (double) getData(MEAN_PROFIT);
     }
 }
