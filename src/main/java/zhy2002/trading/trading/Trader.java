@@ -1,8 +1,9 @@
-package zhy2002.trading;
+package zhy2002.trading.trading;
 
+import zhy2002.trading.Chart;
+import zhy2002.trading.Trade;
 import zhy2002.trading.strategy.Strategy;
 import zhy2002.trading.strategy.StrategyPair;
-import zhy2002.trading.trading.TradeStatistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
 public class Trader {
 
     private final Map<Chart, StrategyPair> strategyPairMap;
-    private final List<Trade> pastTrades = new ArrayList<>();
+    private final List<Trade> trades = new ArrayList<>();
     private double fund;
     private Trade currentTrade;
 
@@ -40,6 +41,7 @@ public class Trader {
                         int share = (int) (fund / price);
                         fund -= share * price;
                         currentTrade = new Trade(chart, index, price, share);
+                        trades.add(currentTrade);
                         break;
                     }
                 }
@@ -50,7 +52,6 @@ public class Trader {
                     double price = sellStrategy.decidePrice(chart, index);
                     fund += price * currentTrade.getVolume();
                     currentTrade.complete(index, price);
-                    pastTrades.add(currentTrade);
                     currentTrade = null;
                 }
             }
@@ -62,8 +63,12 @@ public class Trader {
         return fund + (currentTrade == null ? 0 : currentTrade.getBuyPrice() * currentTrade.getVolume());
     }
 
-    public List<Trade> getPastTrades() {
-        return pastTrades;
+    public List<Trade> getTrades() {
+        return trades;
+    }
+
+    public List<Trade> getCompletedTrades() {
+        return getCurrentTrade() == null ? trades : trades.subList(0, trades.size() - 1);
     }
 
     public Trade getCurrentTrade() {
@@ -76,9 +81,9 @@ public class Trader {
 
     @Override
     public String toString() {
-        var stat = new TradeStatistics(pastTrades);
+        var stat = new TradeStatistics(trades);
         return String.format("Trade: %d, Fund: %.2f, Betting Average: %.2f, Win Loss Ratio: %.2f",
-                pastTrades.size(), lastFund(), stat.getBettingAverage(), stat.getWinLossRatio());
+                trades.size(), lastFund(), stat.getBettingAverage(), stat.getWinLossRatio());
     }
 
     public Strategy getBuyStrategy(String symbol) {

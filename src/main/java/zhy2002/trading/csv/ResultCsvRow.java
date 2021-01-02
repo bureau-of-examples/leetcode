@@ -16,6 +16,7 @@ public class ResultCsvRow {
     private final String group;
     private final String symbol;
     private final StrategyPair strategyPair;
+    private final double lastFund;
     private final Map<Integer, TradeStatistics> statsByYear = new TreeMap<>();
 
     public Strategy getBuyStrategy() {
@@ -33,4 +34,5 @@ public class ResultCsvRow {
     public Object getData(int year, String colName) {
         return statsByYear.get(year).getData(colName);
     }
+
 }

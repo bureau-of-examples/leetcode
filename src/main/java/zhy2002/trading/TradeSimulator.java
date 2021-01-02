@@ -10,6 +10,7 @@ package zhy2002.trading;
 
 import zhy2002.trading.strategy.StrategyGenerator;
 import zhy2002.trading.strategy.StrategyPair;
+import zhy2002.trading.trading.Trader;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -9,7 +9,6 @@ import java.util.List;
 
 import static zhy2002.trading.trading.TradeStatistics.BETTING_AVERAGE;
 import static zhy2002.trading.trading.TradeStatistics.COMPLETED_TRADES;
-import static zhy2002.trading.trading.TradeStatistics.COMP_PROFIT;
 import static zhy2002.trading.trading.TradeStatistics.MAX_HOLD_DAYS;
 import static zhy2002.trading.trading.TradeStatistics.MEAN_PROFIT;
 import static zhy2002.trading.trading.TradeStatistics.MIN_HOLD_DAYS;
@@ -30,7 +29,7 @@ public class ResultCsv {
     public void writeToFile() {
         try (var fileWriter = new FileWriter("strategy_results.csv"); var printWriter = new PrintWriter(fileWriter)) {
             // write header row
-            printWriter.print("Group,Symbol,Buy Strategy,SellStrategy");
+            printWriter.print("Group,Symbol,Buy Strategy,SellStrategy,Last Fund");
             for (var colName : STAT_HEADERS) {
                 for (int year = startYear; year <= endYear; year++) {
                     printWriter.printf(", %d %s", year, colName);
@@ -38,17 +37,28 @@ public class ResultCsv {
             }
             printWriter.println();
 
+            // write data rows
             for (var row : resultCsvRows) {
-                printWriter.printf("%s,%s,\"%s\",\"%s\"", row.getGroup(), row.getSymbol(), row.getBuyStrategy(), row.getSellStrategy());
+                printWriter.printf("%s,%s,\"%s\",\"%s\",%.4f",
+                        row.getGroup(), row.getSymbol(), row.getBuyStrategy(), row.getSellStrategy(), row.getLastFund());
                 for (var colName : STAT_HEADERS) {
                     for (int year = startYear; year <= endYear; year++) {
-                        printWriter.printf("," + row.getData(year, colName));
+                        var obj = row.getData(year, colName);
+                        appendToRow(printWriter, obj);
                     }
                 }
                 printWriter.println();
             }
         } catch (IOException ex) {
             throw new RuntimeException(ex);
+        }
+    }
+
+    private void appendToRow(PrintWriter printWriter, Object obj) {
+        if (obj instanceof Double) {
+            printWriter.printf(",%.4f", obj);
+        } else {
+            printWriter.printf(",%s", obj);
         }
     }
 }

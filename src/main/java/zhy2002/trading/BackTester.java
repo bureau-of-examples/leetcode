@@ -14,8 +14,8 @@ import zhy2002.trading.strategy.ParameterCrossProduct;
 import zhy2002.trading.strategy.StrategyGeneratorV2;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
-import zhy2002.trading.trading.TradeGenerator;
 import zhy2002.trading.trading.TradeStatistics;
+import zhy2002.trading.trading.Trader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,14 +24,17 @@ import java.util.Map;
 
 
 /**
- * Avoid over fitting:
- * 1. consistent performance through time (selection)
- * 2. consistent performance on similar stocks (selection)
- * 3. similar performance for similar parameter range (verification)
+ * Tests all given strategies and save results to a csv file for screening.
+ * Once a strategy is selected, we need to further test it (including parameters) to avoid over fitting (todo):
+ * 1. consistent performance in most years
+ * 2. performance is irrelevant to start date
+ * 3. consistent performance for similar stocks
+ * 4. similar performance for similar parameter range
  */
 public class BackTester {
 
     private static final String START_DATE = "2007-01-01";
+    private static final double START_FUND = 10_000;
     private static final int START_YEAR = 2007;
     private static final int END_YEAR = 2020;
 
@@ -40,8 +43,6 @@ public class BackTester {
         var strategyPairs = createStrategyPairs();
         var tradeResultMap = backTest(stockGroups, strategyPairs);
         saveStrategyResults(tradeResultMap);
-
-        // todo evaluate parameter stability for selected strategy
     }
 
     private static void addStrategyPairs(ArrayList<StrategyPair> result, StrategyGeneratorV2 buys, StrategyGeneratorV2 sells) {
@@ -94,7 +95,6 @@ public class BackTester {
     private static Map<String, List<StrategyResult>> backTest(
             List<StockGroup> stockGroups, List<StrategyPair> strategyPairs) {
         Map<String, List<StrategyResult>> result = new HashMap<>();
-        var tradeGenerator = new TradeGenerator();
         var chartMap = new HashMap<String, Chart>();
         for (var group : stockGroups) {
             var groupName = group.getName();
@@ -103,8 +103,10 @@ public class BackTester {
                 var spResult = new StrategyResult(group, pair);
                 for (var s : group.getSymbols()) {
                     var chart = chartMap.computeIfAbsent(s, Chart::new);
-                    var trades = tradeGenerator.generate(chart, pair, START_DATE);
-                    spResult.putTrades(s, trades);
+                    Trader trader = new Trader(chart, pair);
+                    int startIndex = chart.findDateIndex(START_DATE);
+                    trader.trade(START_FUND, startIndex);
+                    spResult.putTrader(s, trader);
                 }
                 result.get(groupName).add(spResult);
             }
@@ -119,9 +121,9 @@ public class BackTester {
             var strategyResultList = entry.getValue();
             for (var strategyResult : strategyResultList) {
                 for (var symbol : strategyResult.getStockGroup().getSymbols()) {
-                    var trades = strategyResult.getTrades(symbol);
-                    Multimap<String, Trade> yearTrades = partitionByYear(trades);
-                    var row = new ResultCsvRow(groupName, symbol, strategyResult.getStrategyPair());
+                    var trader = strategyResult.getTrader(symbol);
+                    Multimap<String, Trade> yearTrades = partitionByYear(trader.getTrades());
+                    var row = new ResultCsvRow(groupName, symbol, strategyResult.getStrategyPair(), trader.lastFund());
                     for (int year = START_YEAR; year <= END_YEAR; year++) {
                         row.putStats(year, new TradeStatistics(yearTrades.get(String.valueOf(year))));
                     }

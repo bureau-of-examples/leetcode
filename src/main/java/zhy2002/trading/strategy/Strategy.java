@@ -2,7 +2,7 @@ package zhy2002.trading.strategy;
 
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
-import zhy2002.trading.Trader;
+import zhy2002.trading.trading.Trader;
 import zhy2002.trading.condition.TradeCondition;
 import zhy2002.trading.pricing.ClosePrice;
 import zhy2002.trading.pricing.PriceDecider;

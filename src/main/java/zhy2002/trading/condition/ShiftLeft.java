@@ -2,7 +2,7 @@ package zhy2002.trading.condition;
 
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
-import zhy2002.trading.Trader;
+import zhy2002.trading.trading.Trader;
 
 /**
  * Shift the inner condition to the left for N days.

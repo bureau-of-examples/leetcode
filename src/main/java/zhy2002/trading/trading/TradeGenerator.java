@@ -3,12 +3,14 @@ package zhy2002.trading.trading;
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 import zhy2002.trading.Trade;
-import zhy2002.trading.Trader;
 import zhy2002.trading.strategy.StrategyPair;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Find all buy opportunities and the corresponding sell opportunities.
+ */
 @AllArgsConstructor
 public class TradeGenerator {
 
