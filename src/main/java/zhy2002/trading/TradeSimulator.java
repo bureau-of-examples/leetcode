@@ -8,7 +8,6 @@ package zhy2002.trading;
 //import zhy2002.trading.strategy.SellAboveSMAWithMovement;
 //import zhy2002.trading.strategy.SellBollingerBand;
 
-import zhy2002.trading.strategy.StrategyGenerator;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.trading.Trader;
 
@@ -22,23 +21,6 @@ public class TradeSimulator {
     private static final double START_FUND = 10_000;
     //csv data start date: 2015 May 01
     private static final String START_DATE = "2016-01-01";
-
-
-    public void simulateBHP() {
-        var symbols = List.of("BHP.AX");
-        var generator = new StrategyGenerator();
-        var buyStrategies = generator.buyBollingerBand(new double[]{-1, -0.9, -0.8, -0.6}, new int[]{-10, -8, -6});
-        var sellStrategies = generator.sellBollingerBand(new double[]{0.1, 0.2, 0.3,0.4}, new int[]{2, 3, 4});
-
-        var strategies = new ArrayList<StrategyPair>();
-        for (var b : buyStrategies) {
-            for (var s : sellStrategies) {
-                strategies.add(new StrategyPair(b, s));
-            }
-        }
-        var result = simulateTrades(symbols, strategies);
-        printResult(symbols, result);
-    }
 
     public void simulate1() {
 //        var symbols = List.of("BHP.AX", "CBA.AX", "CSL.AX");

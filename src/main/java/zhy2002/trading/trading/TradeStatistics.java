@@ -82,7 +82,10 @@ public final class TradeStatistics {
             lossPercent /= lossCount;
         }
         double result = winPercent / lossPercent;
-        return Double.isInfinite(result) ? 99999999 : result;
+//        if (Double.isInfinite(result)) {
+//            System.out.print("what");
+//        }
+        return result;
     }
 
     public static double computeExpectedProfit(Collection<Trade> completedTrades) {

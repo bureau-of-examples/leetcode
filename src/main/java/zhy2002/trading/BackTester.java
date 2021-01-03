@@ -4,16 +4,12 @@ package zhy2002.trading;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import org.jetbrains.annotations.NotNull;
-import zhy2002.trading.condition.And;
-import zhy2002.trading.condition.CompareWithSMA;
-import zhy2002.trading.condition.Comparison;
-import zhy2002.trading.condition.ConsecutiveMovement;
 import zhy2002.trading.csv.ResultCsv;
 import zhy2002.trading.csv.ResultCsvRow;
-import zhy2002.trading.strategy.ParameterCrossProduct;
-import zhy2002.trading.strategy.StrategyGeneratorV2;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
+import zhy2002.trading.test.BackTestSetup;
+import zhy2002.trading.test.RandomSetup;
 import zhy2002.trading.trading.TradeStatistics;
 import zhy2002.trading.trading.Trader;
 
@@ -39,53 +35,22 @@ public class BackTester {
     private static final int END_YEAR = 2020;
 
     public static void main(String[] args) {
-        List<StockGroup> stockGroups = createStockGroups();
-        var strategyPairs = createStrategyPairs();
-        var tradeResultMap = backTest(stockGroups, strategyPairs);
-        saveStrategyResults(tradeResultMap);
+        //var setup = new SMAWithMovementSetup();
+        //var setup = new BollingerBandSetup();
+        var setup = new RandomSetup();
+        var tester = new BackTester();
+        tester.backTest(setup, START_DATE);
     }
 
-    private static void addStrategyPairs(ArrayList<StrategyPair> result, StrategyGeneratorV2 buys, StrategyGeneratorV2 sells) {
-        for (var b : buys) {
-            for (var s : sells) {
-                result.add(new StrategyPair(b, s));
-            }
-            sells.reset();
-        }
-    }
-
-    private static List<StockGroup> createStockGroups() {
-        return List.of(
-                new StockGroup("AU-FIN", List.of("CBA.AX", "NAB.AX")),
-                new StockGroup("AU-MAT", List.of("BHP.AX", "RIO.AX"))
-        );
-    }
-
-    private static List<StrategyPair> createStrategyPairs() {
-        var result = new ArrayList<StrategyPair>();
-
-        // position then reversal
-        var buySMAWithMovement = new StrategyGeneratorV2(
-                "BelowSMA+Movement",
-                new ParameterCrossProduct()
-                        .withParameter("smaPeriods", new int[]{20, 50, 100, 200})
-                        .withParameter("times", new int[]{2, 3, 4}),
-                ps -> new And(
-                        new CompareWithSMA(Comparison.LOWER, ps.getInt("smaPeriods")),
-                        new ConsecutiveMovement(Comparison.HIGHER, ps.getInt("times"))
-                ));
-        var sellSMAWithMovement = new StrategyGeneratorV2(
-                "AboveSMA+Movement",
-                new ParameterCrossProduct()
-                        .withParameter("smaPeriods", new int[]{20, 50, 100, 200})
-                        .withParameter("times", new int[]{2, 3, 4}),
-                ps -> new And(
-                        new CompareWithSMA(Comparison.HIGHER, ps.getInt("smaPeriods")),
-                        new ConsecutiveMovement(Comparison.LOWER, ps.getInt("times"))
-                ));
-
-        addStrategyPairs(result, buySMAWithMovement, sellSMAWithMovement);
-        return result;
+    /**
+     * @param setup     provides the stocks and strategy pairs to test.
+     * @param startDate between "2006-11-16" and "2007-01-31"
+     */
+    public void backTest(BackTestSetup setup, String startDate) {
+        List<StockGroup> stockGroups = setup.createStockGroups();
+        var strategyPairs = setup.createStrategyPairs();
+        var tradeResultMap = backTest(stockGroups, strategyPairs, startDate);
+        saveStrategyResults(setup.getClass().getSimpleName(), tradeResultMap);
     }
 
     /**
@@ -93,7 +58,7 @@ public class BackTester {
      * Result key is stock group name.
      */
     private static Map<String, List<StrategyResult>> backTest(
-            List<StockGroup> stockGroups, List<StrategyPair> strategyPairs) {
+            List<StockGroup> stockGroups, List<StrategyPair> strategyPairs, String startDate) {
         Map<String, List<StrategyResult>> result = new HashMap<>();
         var chartMap = new HashMap<String, Chart>();
         for (var group : stockGroups) {
@@ -104,7 +69,7 @@ public class BackTester {
                 for (var s : group.getSymbols()) {
                     var chart = chartMap.computeIfAbsent(s, Chart::new);
                     Trader trader = new Trader(chart, pair);
-                    int startIndex = chart.findDateIndex(START_DATE);
+                    int startIndex = chart.findDateIndex(startDate);
                     trader.trade(START_FUND, startIndex);
                     spResult.putTrader(s, trader);
                 }
@@ -114,7 +79,7 @@ public class BackTester {
         return result;
     }
 
-    private static void saveStrategyResults(Map<String, List<StrategyResult>> tradeResultMap) {
+    private static void saveStrategyResults(String fileName, Map<String, List<StrategyResult>> tradeResultMap) {
         var rows = new ArrayList<ResultCsvRow>();
         for (var entry : tradeResultMap.entrySet()) {
             var groupName = entry.getKey();
@@ -132,7 +97,7 @@ public class BackTester {
             }
         }
         var resultCsv = new ResultCsv(START_YEAR, END_YEAR, rows);
-        resultCsv.writeToFile();
+        resultCsv.writeToFile(fileName);
     }
 
     @NotNull

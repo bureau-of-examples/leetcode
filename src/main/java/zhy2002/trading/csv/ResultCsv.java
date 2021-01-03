@@ -19,15 +19,14 @@ import static zhy2002.trading.trading.TradeStatistics.WIN_LOSS_RATIO;
 public class ResultCsv {
 
     private final String[] STAT_HEADERS = new String[]{
-            COMPLETED_TRADES, MEAN_PROFIT, MIN_PROFIT, MAX_HOLD_DAYS, MIN_HOLD_DAYS,
-            BETTING_AVERAGE, WIN_LOSS_RATIO};
+            COMPLETED_TRADES, MEAN_PROFIT, MIN_PROFIT, BETTING_AVERAGE, WIN_LOSS_RATIO};
 
     private final int startYear;
     private final int endYear;
     private final List<ResultCsvRow> resultCsvRows;
 
-    public void writeToFile() {
-        try (var fileWriter = new FileWriter("strategy_results.csv"); var printWriter = new PrintWriter(fileWriter)) {
+    public void writeToFile(String fileName) {
+        try (var fileWriter = new FileWriter(fileName + ".csv"); var printWriter = new PrintWriter(fileWriter)) {
             // write header row
             printWriter.print("Group,Symbol,Buy Strategy,SellStrategy,Last Fund");
             for (var colName : STAT_HEADERS) {
