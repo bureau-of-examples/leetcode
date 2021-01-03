@@ -1,5 +1,7 @@
 package zhy2002.trading.trading;
 
+import lombok.Getter;
+import lombok.Setter;
 import zhy2002.trading.Chart;
 import zhy2002.trading.Trade;
 import zhy2002.trading.strategy.Strategy;
@@ -9,12 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Hold at most one position at any time.
+ */
 public class Trader {
 
-    private final Map<Chart, StrategyPair> strategyPairMap;
     private final List<Trade> trades = new ArrayList<>();
+
+    private final Map<Chart, StrategyPair> strategyPairMap;
+    @Getter
     private double fund;
+    @Getter
+    @Setter
     private Trade currentTrade;
 
     public Trader(Chart chart, StrategyPair strategyPair) {
@@ -47,6 +55,7 @@ public class Trader {
                 }
             } else { // check for sell
                 var chart = currentTrade.getChart();
+                this.getCurrentTrade().updatePrice(chart.getCandle(index).getClose());
                 var sellStrategy = strategyPairMap.get(chart).getSellStrategy();
                 if (sellStrategy.shouldTakeAction(this, chart, index)) {
                     double price = sellStrategy.decidePrice(chart, index);
@@ -69,14 +78,6 @@ public class Trader {
 
     public List<Trade> getCompletedTrades() {
         return getCurrentTrade() == null ? trades : trades.subList(0, trades.size() - 1);
-    }
-
-    public Trade getCurrentTrade() {
-        return currentTrade;
-    }
-
-    public void setCurrentTrade(Trade currentTrade) {
-        this.currentTrade = currentTrade;
     }
 
     @Override

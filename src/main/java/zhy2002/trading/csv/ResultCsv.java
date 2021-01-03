@@ -9,9 +9,8 @@ import java.util.List;
 
 import static zhy2002.trading.trading.TradeStatistics.BETTING_AVERAGE;
 import static zhy2002.trading.trading.TradeStatistics.COMPLETED_TRADES;
-import static zhy2002.trading.trading.TradeStatistics.MAX_HOLD_DAYS;
+import static zhy2002.trading.trading.TradeStatistics.DRAW_DOWN;
 import static zhy2002.trading.trading.TradeStatistics.MEAN_PROFIT;
-import static zhy2002.trading.trading.TradeStatistics.MIN_HOLD_DAYS;
 import static zhy2002.trading.trading.TradeStatistics.MIN_PROFIT;
 import static zhy2002.trading.trading.TradeStatistics.WIN_LOSS_RATIO;
 
@@ -19,7 +18,7 @@ import static zhy2002.trading.trading.TradeStatistics.WIN_LOSS_RATIO;
 public class ResultCsv {
 
     private final String[] STAT_HEADERS = new String[]{
-            COMPLETED_TRADES, MEAN_PROFIT, MIN_PROFIT, BETTING_AVERAGE, WIN_LOSS_RATIO};
+            COMPLETED_TRADES, MEAN_PROFIT, MIN_PROFIT, DRAW_DOWN, BETTING_AVERAGE, WIN_LOSS_RATIO};
 
     private final int startYear;
     private final int endYear;

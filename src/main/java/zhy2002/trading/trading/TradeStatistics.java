@@ -20,6 +20,7 @@ public final class TradeStatistics {
     public static final String BETTING_AVERAGE = "Betting Average";
     public static final String WIN_LOSS_RATIO = "Win Loss Ratio";
     public static final String COMP_PROFIT = "Comp Profit";
+    public static final String DRAW_DOWN = "Draw down";
 
     @Getter
     private final Collection<Trade> trades;
@@ -39,6 +40,7 @@ public final class TradeStatistics {
         data.put(COMP_PROFIT, Math.pow(1 + expProfit, getCompletedTrades().size()));
         data.put(MAX_HOLD_DAYS, completedTrades.stream().mapToInt(t -> t.getSellDayIndex() - t.getBuyDayIndex()).max().orElse(0));
         data.put(MIN_HOLD_DAYS, completedTrades.stream().mapToInt(t -> t.getSellDayIndex() - t.getBuyDayIndex()).min().orElse(0));
+        data.put(DRAW_DOWN, completedTrades.stream().mapToDouble(Trade::getDrawDown).max().orElse(Double.NaN));
     }
 
     public static double computeBettingAverage(Collection<Trade> trades) {
