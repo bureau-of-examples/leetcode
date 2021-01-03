@@ -22,8 +22,7 @@ public class BollingerBandSetup extends BackTestSetup {
     @Override
     public List<StockGroup> createStockGroups() {
         return List.of(
-                new StockGroup("AU-FIN", List.of("CBA.AX")),
-                new StockGroup("AU-MAT", List.of("BHP.AX"))
+                new StockGroup("AU-FIN", List.of("CBA.AX"))
         );
     }
 
