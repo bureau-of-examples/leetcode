@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 import zhy2002.trading.Trade;
 import zhy2002.trading.strategy.StrategyPair;
+import zhy2002.trading.test.SMATurnSetup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,18 @@ public class TradeGenerator {
 
     public TradeGenerator() {
         this(10_000d);
+    }
+
+    public static void main(String[] args) {
+        var setup = new SMATurnSetup();
+        var result = new TradeGenerator().generate(
+                new Chart("CBA.AX"),
+                setup.createStrategyPairs().get(0),
+                "2007-01-01"
+        );
+
+        System.out.println(result.stream().filter(t -> t.getBuyPrice() < t.getSellPrice()).count());
+        result.forEach(System.out::println);
     }
 
     public List<Trade> generate(Chart chart, StrategyPair strategyPair, String startDate/* e.g. "2016-01-01"*/) {
@@ -40,6 +53,7 @@ public class TradeGenerator {
         for (var trade : result) { // close the trades
             dummyTrader.setCurrentTrade(trade);
             for (int i = trade.getBuyDayIndex() + 1; i < chart.getPeriods(); i++) {
+                trade.updatePrice(chart.getCandle(i).getClose());
                 if (sellStrategy.shouldTakeAction(dummyTrader, chart, i)) {
                     double price = sellStrategy.decidePrice(chart, i);
                     var candle = chart.getCandle(i);

@@ -19,6 +19,11 @@ public class RegressionTrend implements TradeCondition {
     // https://www.statisticshowto.com/probability-and-statistics/regression-analysis/find-a-linear-regression-equation/
     public static double linearRegressionK(double[] values) {
         double n = values.length;
+        //normalize data
+        double first = values[0];
+        for (int i = 0; i < n; i++) {
+            values[i] /= first;
+        }
         double sumX = (n - 1.0) * n / 2;
         double sumX2 = (n - 1.0) * n * (2 * n - 1) / 6;
         double sumY = 0, sumXY = 0;

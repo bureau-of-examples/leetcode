@@ -8,6 +8,11 @@ public class TradeSimulatorTests {
     private final TradeSimulator tradeSimulator = new TradeSimulator();
 
     @Test
+    public void test222() {
+        System.out.println(Math.tan(Math.toRadians(-15)));
+    }
+
+    @Test
     public void simulate1Test() {
         tradeSimulator.simulate1();
     }

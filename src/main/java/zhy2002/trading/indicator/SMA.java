@@ -26,10 +26,8 @@ public class SMA extends Indicator {
         for (int i = 0; i < chart.getPeriods(); i++) {
             total += priceDecider.decide(chart, i);
             if (i >= periods - 1) {
-                if (i >= periods) {
-                    total -= priceDecider.decide(chart, i - periods);
-                }
                 result[i - (periods - 1)] = total / periods;
+                total -= priceDecider.decide(chart, i - (periods - 1));
             }
         }
     }

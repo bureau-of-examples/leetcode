@@ -9,8 +9,9 @@ import zhy2002.trading.csv.ResultCsvRow;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
 import zhy2002.trading.test.BackTestSetup;
-import zhy2002.trading.test.BollingerBandSetup;
-import zhy2002.trading.test.RandomSetup;
+import zhy2002.trading.test.BelowSMASetup;
+import zhy2002.trading.test.CrossSMASetup;
+import zhy2002.trading.test.SMATurnSetup;
 import zhy2002.trading.trading.TradeStatistics;
 import zhy2002.trading.trading.Trader;
 
@@ -36,9 +37,11 @@ public class BackTester {
     private static final int END_YEAR = 2020;
 
     public static void main(String[] args) {
-        //var setup = new SMAWithMovementSetup();
-        var setup = new BollingerBandSetup();
+        //var setup = new BelowSMASetup();
+        //var setup = new BollingerBandSetup();
         //var setup = new RandomSetup();
+        //var setup = new CrossSMASetup();
+        var setup = new SMATurnSetup();
         var tester = new BackTester();
         tester.backTest(setup, START_DATE);
     }
