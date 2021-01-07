@@ -9,7 +9,7 @@ public class BelowBollingerBand implements TradeCondition {
     private final int belowDays;
 
     public boolean isMet(Chart chart, int index) {
-        var bb = chart.getBollingerBand();
+        var bb = chart.getBollingerBand(15);
         for (int i = 0; i < belowDays; i++) {
             if (chart.getCandle(index - i).getClose() >= bb.getLower(index - i)) {
                 return false;

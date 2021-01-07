@@ -16,7 +16,7 @@ public class BelowSMASetup extends BackTestSetup {
     @Override
     public List<StockGroup> createStockGroups() {
         return List.of(
-                new StockGroup("AU-FIN", List.of("CBA.AX"))
+                new StockGroup("AU-FIN", List.of("NAB.AX"))
         );
     }
 
@@ -35,7 +35,7 @@ public class BelowSMASetup extends BackTestSetup {
         var sells = new StrategyGeneratorV2(
                 "AboveSMA",
                 new ParameterCrossProduct()
-                        .withParameter("smaPeriods", new int[]{200})
+                        .withParameter("smaPeriods", new int[]{100, 200})
                         .withParameter("stopLossPercent", new double[]{0.85, 0.9, 0.95}),
                 ps -> new And(
                         new CompareWithSMA(Comparison.HIGHER, ps.getInt("smaPeriods")),

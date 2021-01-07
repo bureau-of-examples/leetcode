@@ -17,7 +17,7 @@ public class RandomSetup extends BackTestSetup {
     @Override
     public List<StockGroup> createStockGroups() {
         return List.of(
-                new StockGroup("AU-FIN", List.of("CBA.AX"))
+                new StockGroup("AU-FIN", List.of("RIO.AX"))
         );
     }
 
@@ -28,14 +28,15 @@ public class RandomSetup extends BackTestSetup {
                 "RandomBuy",
                 new ParameterCrossProduct()
                         .withParameter("buyProbability", new double[]{0.05})
-                        .withParameter("dummy", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}),
+                        .withParameter("dummy", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20})
+                        .withParameter("dummy2", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}),
                 ps -> new RandomBuy(rand, ps.getDouble("buyProbability")));
         var sells = new StrategyGeneratorV2(
                 "RandomSell",
                 new ParameterCrossProduct()
                         .withParameter("minHoldDays", new int[]{7})
                         .withParameter("maxHoldDays", new int[]{30})
-                        .withParameter("dummy", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17}),
+                        .withParameter("dummy", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}),
                 ps -> new RandomSell(rand, ps.getInt("minHoldDays"), ps.getInt("maxHoldDays")));
         return allStrategyPairs(buys, sells);
     }

@@ -59,7 +59,11 @@ public class Chart {
     }
 
     public BollingerBand getBollingerBand() {
-        return bandMap.computeIfAbsent(20, p -> new BollingerBand(this, p));
+        return getBollingerBand(20);
+    }
+
+    public BollingerBand getBollingerBand(int bbPeriods) {
+        return bandMap.computeIfAbsent(bbPeriods, p -> new BollingerBand(this, p));
     }
 
     public int findDateIndex(String startDate) {
