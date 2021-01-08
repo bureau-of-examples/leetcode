@@ -1,15 +1,11 @@
 package zhy2002.trading;
 
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import org.jetbrains.annotations.NotNull;
 import zhy2002.trading.csv.ResultCsv;
 import zhy2002.trading.csv.ResultCsvRow;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
 import zhy2002.trading.test.BackTestSetup;
-import zhy2002.trading.trading.TradeStatistics;
 import zhy2002.trading.trading.Trader;
 
 import java.util.ArrayList;
@@ -78,12 +74,7 @@ public class BackTester {
             for (var strategyResult : strategyResultList) {
                 for (var symbol : strategyResult.getStockGroup().getSymbols()) {
                     var trader = strategyResult.getTrader(symbol);
-                    Multimap<String, Trade> yearTrades = partitionByYear(trader.getTrades());
-                    var row = new ResultCsvRow(groupName, symbol, strategyResult.getStrategyPair(), trader.lastFund());
-                    for (int year = START_YEAR; year <= END_YEAR; year++) {
-                        row.putStats(year, new TradeStatistics(yearTrades.get(String.valueOf(year))));
-                    }
-                    rows.add(row);
+                    rows.add(new ResultCsvRow(groupName, symbol, strategyResult.getStrategyPair(), trader));
                 }
             }
         }
@@ -91,12 +82,5 @@ public class BackTester {
         resultCsv.writeToFile(fileName);
     }
 
-    @NotNull
-    private static Multimap<String, Trade> partitionByYear(List<Trade> trades) {
-        Multimap<String, Trade> yearTrades = ArrayListMultimap.create();
-        for (var t : trades) {
-            yearTrades.put(t.getChart().getCandle(t.getBuyDayIndex()).getDate().substring(0, 4), t);
-        }
-        return yearTrades;
-    }
+
 }

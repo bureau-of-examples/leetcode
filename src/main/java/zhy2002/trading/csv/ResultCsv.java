@@ -27,7 +27,8 @@ public class ResultCsv {
     public void writeToFile(String fileName) {
         try (var fileWriter = new FileWriter(fileName + ".csv"); var printWriter = new PrintWriter(fileWriter)) {
             // write header row
-            printWriter.print("Group,Symbol,Buy Strategy,SellStrategy,Last Fund");
+            printWriter.print("Group,Symbol,Buy Strategy,SellStrategy,Last Fund,Completed Trades,Betting Average," +
+                    "Average Win,Average Loss,Win Loss Ratio,Average Profit,Draw Down");
             for (var colName : STAT_HEADERS) {
                 for (int year = startYear; year <= endYear; year++) {
                     printWriter.printf(", %d %s", year, colName);
@@ -37,8 +38,11 @@ public class ResultCsv {
 
             // write data rows
             for (var row : resultCsvRows) {
-                printWriter.printf("%s,%s,\"%s\",\"%s\",%.4f",
-                        row.getGroup(), row.getSymbol(), row.getBuyStrategy(), row.getSellStrategy(), row.getLastFund());
+                var overallStats = row.getOverallStats();
+                printWriter.printf("%s,%s,\"%s\",\"%s\",%.4f,%d,%.4f," +
+                                "%.4f,%.4f,%.4f,%.4f,%.4f",
+                        row.getGroup(), row.getSymbol(), row.getBuyStrategy(), row.getSellStrategy(), row.getLastFund(), overallStats.getCompletedCount(), overallStats.getBettingAverage(),
+                        overallStats.getAverageWin(), overallStats.getAverageLoss(), overallStats.getWinLossRatio(), overallStats.getMeanProfit(), overallStats.getDrawDown());
                 for (var colName : STAT_HEADERS) {
                     for (int year = startYear; year <= endYear; year++) {
                         var obj = row.getData(year, colName);

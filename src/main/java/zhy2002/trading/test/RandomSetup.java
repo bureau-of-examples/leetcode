@@ -21,7 +21,7 @@ public class RandomSetup extends BackTestSetup {
                 "RandomBuy",
                 new ParameterCrossProduct()
                         .withParameter("buyProbability", new double[]{0.05})
-                        .withParameter("dummy1", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+                        .withParameter("dummy1", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}) // 1k repeat per config
                         .withParameter("dummy2", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
                         .withParameter("dummy3", new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}),
                 ps -> new RandomBuy(rand, ps.getDouble("buyProbability")));
