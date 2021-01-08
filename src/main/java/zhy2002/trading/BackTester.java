@@ -9,12 +9,6 @@ import zhy2002.trading.csv.ResultCsvRow;
 import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
 import zhy2002.trading.test.BackTestSetup;
-import zhy2002.trading.test.BelowSMASetup;
-import zhy2002.trading.test.BollingerBandSetup;
-import zhy2002.trading.test.CrossSMASetup;
-import zhy2002.trading.test.RandomSetup;
-import zhy2002.trading.test.SMABounceSetup;
-import zhy2002.trading.test.SMATurnSetup;
 import zhy2002.trading.trading.TradeStatistics;
 import zhy2002.trading.trading.Trader;
 
@@ -39,25 +33,14 @@ public class BackTester {
     private static final int START_YEAR = 2007;
     private static final int END_YEAR = 2020;
 
-    public static void main(String[] args) {
-        //var setup = new BelowSMASetup();
-        //var setup = new BollingerBandSetup();
-        //var setup = new RandomSetup();
-        //var setup = new CrossSMASetup();
-        //var setup = new SMATurnSetup();
-        var setup = new SMABounceSetup();
-        var tester = new BackTester();
-        tester.backTest(setup, START_DATE);
-    }
-
     /**
      * @param setup     provides the stocks and strategy pairs to test.
      * @param startDate between "2006-11-16" and "2007-01-31"
      */
-    public void backTest(BackTestSetup setup, String startDate) {
+    public void backTest(BackTestSetup setup) {
         List<StockGroup> stockGroups = setup.createStockGroups();
         var strategyPairs = setup.createStrategyPairs();
-        var tradeResultMap = backTest(stockGroups, strategyPairs, startDate);
+        var tradeResultMap = backTest(stockGroups, strategyPairs, START_DATE);
         saveStrategyResults(setup.getClass().getSimpleName(), tradeResultMap);
     }
 
