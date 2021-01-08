@@ -10,8 +10,10 @@ import zhy2002.trading.strategy.StrategyPair;
 import zhy2002.trading.strategy.StrategyResult;
 import zhy2002.trading.test.BackTestSetup;
 import zhy2002.trading.test.BelowSMASetup;
+import zhy2002.trading.test.BollingerBandSetup;
 import zhy2002.trading.test.CrossSMASetup;
 import zhy2002.trading.test.RandomSetup;
+import zhy2002.trading.test.SMABounceSetup;
 import zhy2002.trading.test.SMATurnSetup;
 import zhy2002.trading.trading.TradeStatistics;
 import zhy2002.trading.trading.Trader;
@@ -40,9 +42,10 @@ public class BackTester {
     public static void main(String[] args) {
         //var setup = new BelowSMASetup();
         //var setup = new BollingerBandSetup();
-        var setup = new RandomSetup();
+        //var setup = new RandomSetup();
         //var setup = new CrossSMASetup();
         //var setup = new SMATurnSetup();
+        var setup = new SMABounceSetup();
         var tester = new BackTester();
         tester.backTest(setup, START_DATE);
     }

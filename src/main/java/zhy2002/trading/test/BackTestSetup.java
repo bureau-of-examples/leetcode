@@ -12,7 +12,12 @@ import java.util.List;
  */
 public abstract class BackTestSetup {
 
-    public abstract List<StockGroup> createStockGroups();
+    // default
+    public List<StockGroup> createStockGroups() {
+        return List.of(
+                new StockGroup("AU", List.of("NAB.AX", "CBA.AX", "BHP.AX", "RIO.AX"))
+        );
+    }
 
     public abstract List<StrategyPair> createStrategyPairs();
 
