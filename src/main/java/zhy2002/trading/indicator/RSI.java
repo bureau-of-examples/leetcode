@@ -4,17 +4,17 @@ import zhy2002.trading.Chart;
 
 public class RSI extends Indicator {
 
-    private final int rsiPeriods;
-    private final double result[];
+    private final int periods;
+    private final double[] values;
 
-    public RSI(Chart chart, int rsiPeriods) {
+    public RSI(Chart chart, int periods) {
         super(chart);
 
-        this.rsiPeriods = rsiPeriods;
-        result = new double[chart.getPeriods() - rsiPeriods];
+        this.periods = periods;
+        values = new double[chart.getPeriods() - periods];
         double totalGain = 0;
         double totalLoss = 0;
-        for (int i = 1; i <= rsiPeriods; i++) {
+        for (int i = 1; i <= periods; i++) {
             double diff = getDiff(i);
             if (diff > 0) {
                 totalGain += diff;
@@ -22,17 +22,17 @@ public class RSI extends Indicator {
                 totalLoss -= diff;
             }
         }
-        result[0] = 100 - 100.0 / (1.0 + totalGain / totalLoss);
-        for (int i = rsiPeriods + 1; i < chart.getPeriods(); i++) {
+        values[0] = 100 - 100.0 / (1.0 + totalGain / totalLoss);
+        for (int i = periods + 1; i < chart.getPeriods(); i++) {
             double diff = getDiff(i);
             if (diff > 0) {
-                totalGain = totalGain * (rsiPeriods - 1) / rsiPeriods + diff;
-                totalLoss = totalLoss * (rsiPeriods - 1) / rsiPeriods;
+                totalGain = totalGain * (periods - 1) / periods + diff;
+                totalLoss = totalLoss * (periods - 1) / periods;
             } else {
-                totalGain = totalGain * (rsiPeriods - 1) / rsiPeriods;
-                totalLoss = totalLoss * (rsiPeriods - 1) / rsiPeriods - diff;
+                totalGain = totalGain * (periods - 1) / periods;
+                totalLoss = totalLoss * (periods - 1) / periods - diff;
             }
-            result[i - rsiPeriods] = 100 - 100.0 / (1.0 + totalGain / totalLoss);
+            values[i - periods] = 100 - 100.0 / (1.0 + totalGain / totalLoss);
         }
     }
 
@@ -43,9 +43,9 @@ public class RSI extends Indicator {
     }
 
     public double get(int i) {
-        if (i < rsiPeriods) {
+        if (i < periods) {
             throw new IllegalArgumentException("Invalid index " + i);
         }
-        return result[i - rsiPeriods];
+        return values[i - periods];
     }
 }
