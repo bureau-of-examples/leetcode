@@ -74,4 +74,13 @@ public class Chart {
         }
         return -1;
     }
+
+    public double getTr(int i) {
+        var current = getCandle(i);
+        var previous = getCandle(i - 1);
+        return Math.max(
+                Math.max(current.getHigh() - current.getLow(), Math.abs(current.getHigh() - previous.getClose())),
+                Math.abs(current.getLow() - previous.getClose()));
+
+    }
 }
