@@ -7,6 +7,7 @@ import zhy2002.trading.data.HighPriceProvider;
 import zhy2002.trading.data.LowPriceProvider;
 import zhy2002.trading.data.OpenPriceProvider;
 import zhy2002.trading.indicator.ATR;
+import zhy2002.trading.indicator.AboveBelowRate;
 import zhy2002.trading.indicator.BollingerBand;
 import zhy2002.trading.indicator.DonchianChannel;
 import zhy2002.trading.indicator.EATR;
@@ -33,6 +34,7 @@ public class Chart {
     private final Map<Integer, RSI> rsiMap = new HashMap<>();
     private final Map<Integer, SMA> smaMap = new HashMap<>();
     private final Map<Integer, Stochastic> stMap = new HashMap<>();
+    private final Map<String, AboveBelowRate> smaAbrMap = new HashMap<>();
 
 
     @Getter
@@ -134,5 +136,9 @@ public class Chart {
 
     public EATR getEATR(int periods) {
         return eatrMap.computeIfAbsent(periods, p -> new EATR(this, p));
+    }
+
+    public AboveBelowRate getSMAAboveBelowRate(int periods, int window) {
+        return smaAbrMap.computeIfAbsent(String.format("%d,%d", periods, window), p -> new AboveBelowRate(getClosePriceProvider(), getSMA(periods), window));
     }
 }

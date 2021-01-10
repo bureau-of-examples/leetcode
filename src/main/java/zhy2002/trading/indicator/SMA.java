@@ -2,11 +2,12 @@ package zhy2002.trading.indicator;
 
 
 import zhy2002.trading.Chart;
+import zhy2002.trading.data.ValueProvider;
 import zhy2002.trading.pricing.ClosePrice;
 import zhy2002.trading.pricing.PriceDecider;
 
 
-public class SMA extends Indicator {
+public class SMA extends Indicator implements ValueProvider {
 
     private final int periods;
     private final PriceDecider priceDecider;
@@ -32,11 +33,22 @@ public class SMA extends Indicator {
         }
     }
 
+    @Override
     public double get(int i) {
         if (i < periods - 1) {
             throw new IllegalArgumentException("Not data for day index " + i);
         }
         return values[i - (periods - 1)];
+    }
+
+    @Override
+    public int getStartIndex() {
+        return periods - 1;
+    }
+
+    @Override
+    public int length() {
+        return getChart().getPeriods();
     }
 
 }

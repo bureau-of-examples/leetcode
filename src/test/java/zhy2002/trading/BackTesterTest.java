@@ -3,8 +3,10 @@ package zhy2002.trading;
 
 import org.junit.Test;
 import zhy2002.trading.test.BollingerBandSetup;
+import zhy2002.trading.test.CrossSMASetup;
 import zhy2002.trading.test.RandomSetup;
 import zhy2002.trading.test.SMABounceSetup;
+import zhy2002.trading.test.CloseAboveSMARateSetup;
 
 public class BackTesterTest {
 
@@ -25,4 +27,13 @@ public class BackTesterTest {
         backTester.backTest(new BollingerBandSetup());
     }
 
+    @Test
+    public void closeAboveSMARateTest() {
+        backTester.backTest(new CloseAboveSMARateSetup());
+    }
+
+    @Test
+    public void crossSMATest() {
+        backTester.backTest(new CrossSMASetup());
+    }
 }

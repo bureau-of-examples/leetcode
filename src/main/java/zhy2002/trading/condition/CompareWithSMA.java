@@ -3,6 +3,9 @@ package zhy2002.trading.condition;
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
+/**
+ * Compares the current close prise with SMA.
+ */
 @AllArgsConstructor
 public class CompareWithSMA implements TradeCondition {
 
