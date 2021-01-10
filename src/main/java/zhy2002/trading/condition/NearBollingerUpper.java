@@ -6,11 +6,12 @@ import zhy2002.trading.Chart;
 @AllArgsConstructor
 public class NearBollingerUpper implements TradeCondition {
 
+    private final int periods;
     private final double atrRatio;
     private final int window;
 
     public NearBollingerUpper(double atrRatio) {
-        this(atrRatio, 1);
+        this(20, atrRatio, 1);
     }
 
     public NearBollingerUpper() {
@@ -20,7 +21,7 @@ public class NearBollingerUpper implements TradeCondition {
     @Override
     public boolean isMet(Chart chart, int index) {
         var atr = chart.getATR();
-        var band = chart.getBollingerBand();
+        var band = chart.getBollingerBand(periods);
         for (int i = 0; i < window; i++) {
             if (chart.getCandle(index - i).getClose() < band.getUpper(index - i) + atr.get(index - i) * atrRatio) {
                 return false;
