@@ -2,6 +2,7 @@ package zhy2002.trading;
 
 
 import org.junit.Test;
+import zhy2002.trading.test.BollingerBandSetup;
 import zhy2002.trading.test.RandomSetup;
 import zhy2002.trading.test.SMABounceSetup;
 
@@ -17,6 +18,11 @@ public class BackTesterTest {
     @Test
     public void smaBounceTest() {
         backTester.backTest(new SMABounceSetup());
+    }
+
+    @Test
+    public void bollingerBandTest() {
+        backTester.backTest(new BollingerBandSetup());
     }
 
 }

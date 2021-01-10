@@ -58,4 +58,8 @@ public class BollingerBand extends Indicator {
     public double get(int i) {
         return (getUpper(i) + getLower(i)) / 2;
     }
+
+    public double getStDev(int i) {
+        return (getUpper(i) - getLower(i)) / (M * 2);
+    }
 }
