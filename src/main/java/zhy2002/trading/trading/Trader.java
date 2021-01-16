@@ -41,6 +41,11 @@ public class Trader {
         return buyStrategy.shouldTakeAction(this, chart, index);
     }
 
+    public boolean shouldSell(Chart chart, int index) {
+        var sellStrategy = strategyPairMap.get(chart).getSellStrategy();
+        return sellStrategy.shouldTakeAction(this, chart, index);
+    }
+
     public void trade(double startFund, int startDayIndex) {
         fund = startFund;
         currentTrade = null;

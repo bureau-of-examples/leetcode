@@ -5,6 +5,7 @@ import zhy2002.trading.data.ValueProvider;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
 
@@ -58,4 +59,17 @@ public class HighLow {
             }
         }
     }
+
+    public Integer searchLastHighIndex(int index) {
+        int i = Collections.binarySearch(highIndices, index);
+        if (i < 0) {
+            i = -i - 1;
+        }
+        i -= 1;
+        if (i < 0 || i >= highIndices.size()) {
+            return null;
+        }
+        return highIndices.get(i);
+    }
+
 }

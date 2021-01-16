@@ -1,18 +1,10 @@
 package zhy2002.trading.test;
 
 import zhy2002.trading.StockGroup;
-import zhy2002.trading.condition.AboveBollingerBand;
 import zhy2002.trading.condition.And;
-import zhy2002.trading.condition.BelowBollingerBand;
-import zhy2002.trading.condition.CandleCross;
-import zhy2002.trading.condition.CandleCross2;
-import zhy2002.trading.condition.Comparison;
-import zhy2002.trading.condition.ConsecutiveMovement;
-import zhy2002.trading.condition.HoldAfterDays;
 import zhy2002.trading.condition.Or;
-import zhy2002.trading.condition.SMATrend;
-import zhy2002.trading.condition.StopLoss;
-import zhy2002.trading.condition.TakeProfit;
+import zhy2002.trading.condition.SMATurn;
+import zhy2002.trading.condition.SMATurnSell;
 import zhy2002.trading.condition.TrailingStopLoss;
 import zhy2002.trading.strategy.ParameterCrossProduct;
 import zhy2002.trading.strategy.StrategyGeneratorV2;
@@ -24,32 +16,34 @@ public class SMATurnSetup extends BackTestSetup {
     @Override
     public List<StockGroup> createStockGroups() {
         return List.of(
-                new StockGroup("AU-FIN", List.of("NAB.AX", "CBA.AX", "BHP.AX", "RIO.AX"))
+                new StockGroup("AU", List.of("BHP.AX", "RIO.AX"))
         );
     }
 
     @Override
     public List<StrategyPair> createStrategyPairs() {
         var buys = new StrategyGeneratorV2(
-                "SMATurn2",
-                new ParameterCrossProduct(),
+                "SMATurn",
+                new ParameterCrossProduct()
+                        .withParameter("smaPeriods", new int[]{5, 7, 9})
+                        .withParameter("downWindow", new int[]{10, 12, 15})
+                        .withParameter("upWindow", new int[]{3, 4, 6})
+                        .withParameter("downRate", new double[]{0, -0.003, -0.005, -0.01, -0.012}),
                 ps -> new And(
-                        //new BelowBollingerBand(1)
-                        //new SMATrend(20, Comparison.HIGHER, 10),
-                        new CandleCross()
-                        //  new SMALessThan(5, 20, 5, 0.005)
-
+                        new SMATurn(
+                                ps.getInt("smaPeriods"),
+                                ps.getInt("downWindow"),
+                                ps.getInt("upWindow"),
+                                ps.getDouble("downRate")
+                        )
                 ));
         var sells = new StrategyGeneratorV2(
                 "TrailingStopLoss",
                 new ParameterCrossProduct()
-                        .withParameter("percent", new double[]{0.97})
-                        .withParameter("profit", new double[]{0.075}),
+                        .withParameter("percent", new double[]{0.97, 0.96, 0.95}),
                 ps -> new Or(
-                        //new CandleCross2(),
-                        //new TrailingStopLoss(ps.getDouble("percent"), Integer.MAX_VALUE)
-                        new StopLoss(0.97),
-                        new TakeProfit(ps.getDouble("profit"))
+                        new SMATurnSell(),
+                        new TrailingStopLoss(ps.getDouble("percent"), Integer.MAX_VALUE)
                 ));
         return allStrategyPairs(buys, sells);
     }

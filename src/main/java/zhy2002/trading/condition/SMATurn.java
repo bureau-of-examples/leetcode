@@ -1,43 +1,61 @@
 package zhy2002.trading.condition;
 
 import zhy2002.trading.Chart;
-
+import zhy2002.trading.trading.Trader;
 
 public class SMATurn implements TradeCondition {
 
-    public boolean isMet(Chart chart, int index) {
-        var candle = chart.getCandle(index);
-        // must be up
-        if (candle.getOpen() >= candle.getClose()) {
+    private final int smaPeriods;
+    private final int downWindow;
+    private final int upWindow;
+    private final double downRate;
+
+    public SMATurn(int smaPeriods, int downWindow, int upWindow, double downRate) {
+        this.smaPeriods = smaPeriods;
+        this.downWindow = downWindow;
+        this.upWindow = upWindow;
+        this.downRate = downRate;
+    }
+
+    public boolean isMet(Trader trader, Chart chart, int index) {
+        if (!checkCondition(chart, index)) {
             return false;
         }
 
-        var sma5 = chart.getSMA(5);
-        // high must cross sma(5)
-        if (sma5.get(index) > candle.getHigh() || sma5.get(index) < candle.getLow()) {
-            return false;
-        }
+        return true; //lastTimeIsOk(trader, index);
+    }
 
-        // previous 3 days close below sma(5)
-        for (int i = 1; i <= 3; i++) {
-            if (chart.getCandle(index - i).getClose() >= sma5.get(index - i)) {
-                return false;
+//    // if last time lost money, cool down 10 days
+//    private boolean lastTimeIsOk(Trader trader, int nowIndex) {
+//        if (trader.getTrades().isEmpty()) {
+//            return true;
+//        }
+//        var lastTrade = trader.getTrades().get(trader.getTrades().size() - 1);
+//        return lastTrade.getSellDayIndex() <= nowIndex - 10 || lastTrade.getSellPrice() > lastTrade.getBuyPrice();
+//    }
+
+    private boolean checkCondition(Chart chart, int index) {
+        var sma = chart.getSMA(smaPeriods);
+        double downPercent = 0;
+        int downCount = 0;
+        for (int i = index - upWindow - downWindow + 1; i <= index - upWindow; i++) {
+            var p = (chart.getCandle(i).getClose() - sma.get(i)) / sma.get(i);
+            downPercent += p;
+            if (p < 0) {
+                downCount++;
             }
         }
-
-        // in the past 3 days prices dropped 5%
-        var sma14 = chart.getSMA(14);
-        var refPoint = sma14.get(index - 3);
-        if ((sma14.get(index) - refPoint) / refPoint <= -0.04) {
+        downPercent /= downWindow;
+        if (downPercent >= downRate || downCount < 0) {
             return false;
         }
 
-        // close at or higher than previous sma 14
-        if (candle.getClose() >= sma14.get(index - 1)) {
-            return false;
+        double upPercent = 0;
+        for (int i = index - upWindow + 1; i <= index; i++) {
+            upPercent += (chart.getCandle(i).getClose() - sma.get(i)) / sma.get(i);
         }
-
-        return true;
+        upPercent /= upWindow;
+        return upPercent > 0;
     }
 
 }

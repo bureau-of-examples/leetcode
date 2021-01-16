@@ -35,6 +35,7 @@ public class Chart {
     private final Map<Integer, SMA> smaMap = new HashMap<>();
     private final Map<Integer, Stochastic> stMap = new HashMap<>();
     private final Map<String, AboveBelowRate> smaAbrMap = new HashMap<>();
+    private final Map<Integer, HighLow> hlMap = new HashMap<>();
 
 
     @Getter
@@ -141,4 +142,9 @@ public class Chart {
     public AboveBelowRate getSMAAboveBelowRate(int periods, int window) {
         return smaAbrMap.computeIfAbsent(String.format("%d,%d", periods, window), p -> new AboveBelowRate(getClosePriceProvider(), getSMA(periods), window));
     }
+
+    public HighLow getHighLow(int window) {
+        return hlMap.computeIfAbsent(window, p -> new HighLow(this.getClosePriceProvider(), p));
+    }
+
 }
