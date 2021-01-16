@@ -7,6 +7,7 @@ import zhy2002.trading.test.CrossSMASetup;
 import zhy2002.trading.test.RandomSetup;
 import zhy2002.trading.test.SMABounceSetup;
 import zhy2002.trading.test.CloseAboveSMARateSetup;
+import zhy2002.trading.test.SMATurn2Setup;
 import zhy2002.trading.test.SMATurnSetup;
 
 public class BackTesterTest {
@@ -41,5 +42,10 @@ public class BackTesterTest {
     @Test
     public void smaTurnTest() {
         backTester.backTest(new SMATurnSetup());
+    }
+
+    @Test
+    public void smaTurn2Test() {
+        backTester.backTest(new SMATurn2Setup());
     }
 }
