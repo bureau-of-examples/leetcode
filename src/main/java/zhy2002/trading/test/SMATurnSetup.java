@@ -25,22 +25,24 @@ public class SMATurnSetup extends BackTestSetup {
         var buys = new StrategyGeneratorV2(
                 "SMATurn",
                 new ParameterCrossProduct()
-                        .withParameter("smaPeriods", new int[]{5, 7, 9})
-                        .withParameter("downWindow", new int[]{10, 12, 15})
-                        .withParameter("upWindow", new int[]{3, 4, 6})
-                        .withParameter("downRate", new double[]{0, -0.003, -0.005, -0.01, -0.012}),
+                        .withParameter("smaPeriods", new int[]{5, 7, 9, 14, 20})
+                        .withParameter("downWindow", new int[]{7, 9, 10, 12, 15})
+                        .withParameter("upWindow", new int[]{3, 4, 5, 6, 7})
+                        .withParameter("downRate", new double[]{0, -0.003, -0.005, -0.007, -0.009, -0.01, -0.011})
+                        .withParameter("upRate", new double[]{0, 0.003, 0.005, 0.007, 0.001, 0.01, 0.011}),
                 ps -> new And(
                         new SMATurn(
                                 ps.getInt("smaPeriods"),
                                 ps.getInt("downWindow"),
                                 ps.getInt("upWindow"),
-                                ps.getDouble("downRate")
+                                ps.getDouble("downRate"),
+                                ps.getDouble("upRate")
                         )
                 ));
         var sells = new StrategyGeneratorV2(
                 "TrailingStopLoss",
                 new ParameterCrossProduct()
-                        .withParameter("percent", new double[]{0.97, 0.96, 0.95}),
+                        .withParameter("percent", new double[]{0.97, 0.96}),
                 ps -> new Or(
                         new SMATurnSell(),
                         new TrailingStopLoss(ps.getDouble("percent"), Integer.MAX_VALUE)

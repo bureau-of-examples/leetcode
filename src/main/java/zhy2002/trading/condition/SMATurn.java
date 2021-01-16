@@ -1,21 +1,17 @@
 package zhy2002.trading.condition;
 
+import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 import zhy2002.trading.trading.Trader;
 
+@AllArgsConstructor
 public class SMATurn implements TradeCondition {
 
     private final int smaPeriods;
     private final int downWindow;
     private final int upWindow;
     private final double downRate;
-
-    public SMATurn(int smaPeriods, int downWindow, int upWindow, double downRate) {
-        this.smaPeriods = smaPeriods;
-        this.downWindow = downWindow;
-        this.upWindow = upWindow;
-        this.downRate = downRate;
-    }
+    private final double upRate;
 
     public boolean isMet(Trader trader, Chart chart, int index) {
         if (!checkCondition(chart, index)) {
@@ -55,7 +51,7 @@ public class SMATurn implements TradeCondition {
             upPercent += (chart.getCandle(i).getClose() - sma.get(i)) / sma.get(i);
         }
         upPercent /= upWindow;
-        return upPercent > 0;
+        return upPercent >= upRate;
     }
 
 }
