@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class CloseRange implements TradeCondition {
+public class CloseRange extends ChartTradeCondition {
 
     private final double minFactor;
     private final double maxFactor;

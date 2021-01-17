@@ -3,7 +3,7 @@ package zhy2002.trading.condition;
 import zhy2002.trading.Chart;
 import zhy2002.trading.adaptor.SMAArrayExtractor;
 
-public class CandleCross implements TradeCondition {
+public class CandleCross extends ChartTradeCondition {
 
     public boolean isMet(Chart chart, int index) {
         var sma50 = chart.getSMA(50);

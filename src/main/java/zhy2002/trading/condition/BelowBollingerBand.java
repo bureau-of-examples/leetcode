@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class BelowBollingerBand implements TradeCondition {
+public class BelowBollingerBand extends ChartTradeCondition {
 
     private final int belowDays;
 

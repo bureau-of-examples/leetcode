@@ -6,7 +6,7 @@ import zhy2002.trading.Candle;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class ConsecutiveMovement implements TradeCondition {
+public class ConsecutiveMovement extends ChartTradeCondition {
 
     private final Comparison comparison;
     private final int times;

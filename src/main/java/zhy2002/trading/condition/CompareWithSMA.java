@@ -7,7 +7,7 @@ import zhy2002.trading.Chart;
  * Compares the current close prise with SMA.
  */
 @AllArgsConstructor
-public class CompareWithSMA implements TradeCondition {
+public class CompareWithSMA extends ChartTradeCondition {
 
     private final Comparison comparison;
     private final int smaPeriods;

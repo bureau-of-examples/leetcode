@@ -3,8 +3,9 @@ package zhy2002.trading.condition;
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
+
 @AllArgsConstructor
-public class AboveBollingerBand implements TradeCondition {
+public class AboveBollingerBand extends ChartTradeCondition {
 
     private final int aboveDays;
 

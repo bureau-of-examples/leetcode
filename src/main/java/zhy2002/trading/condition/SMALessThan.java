@@ -5,7 +5,7 @@ import zhy2002.trading.Chart;
 
 
 @AllArgsConstructor
-public class SMALessThan implements TradeCondition {
+public class SMALessThan extends ChartTradeCondition {
 
     private final int smaPeriod1;
     private final int smaPeriod2;

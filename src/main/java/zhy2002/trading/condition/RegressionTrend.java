@@ -5,7 +5,7 @@ import zhy2002.trading.Chart;
 import zhy2002.trading.adaptor.ArrayExtractor;
 
 @AllArgsConstructor
-public class RegressionTrend implements TradeCondition {
+public class RegressionTrend extends ChartTradeCondition {
 
     private final ArrayExtractor extractor;
     private final Comparison comparison;

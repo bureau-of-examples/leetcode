@@ -3,7 +3,6 @@ package zhy2002.trading.condition;
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 import zhy2002.trading.Trade;
-import zhy2002.trading.trading.Trader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +18,10 @@ public class RandomSell implements TradeCondition {
     private final Map<Trade, Integer> cache = new HashMap<>();
 
     @Override
-    public boolean isMet(Trader trader, Chart chart, int index) {
-        int sellDay = cache.computeIfAbsent(trader.getCurrentTrade(), t -> minHoldDays + rand.nextInt(maxHoldDays - minHoldDays + 1));
-        if (index == trader.getCurrentTrade().getBuyDayIndex() + sellDay) {
-            cache.remove(trader.getCurrentTrade());
+    public boolean isMet(Trade trade, Chart chart, int index) {
+        int sellDay = cache.computeIfAbsent(trade, t -> minHoldDays + rand.nextInt(maxHoldDays - minHoldDays + 1));
+        if (index == trade.getBuyDayIndex() + sellDay) {
+            cache.remove(trade);
             return true;
         }
         return false;

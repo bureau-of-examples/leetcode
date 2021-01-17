@@ -7,7 +7,7 @@ import zhy2002.trading.Chart;
  * Number of days below SMA / total number of days <= threshold.
  */
 @AllArgsConstructor
-public class DaysBlowSMA implements TradeCondition {
+public class DaysBlowSMA extends ChartTradeCondition {
 
     private final int periods;
     private final int window;

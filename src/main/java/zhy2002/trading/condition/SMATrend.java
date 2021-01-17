@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class SMATrend implements TradeCondition {
+public class SMATrend extends ChartTradeCondition {
 
     private final int smaPeriods;
     private final Comparison comparison;

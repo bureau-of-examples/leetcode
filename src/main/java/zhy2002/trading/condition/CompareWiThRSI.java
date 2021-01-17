@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class CompareWiThRSI implements TradeCondition {
+public class CompareWiThRSI extends ChartTradeCondition {
 
     private final Comparison comparison;
     private final double limit;

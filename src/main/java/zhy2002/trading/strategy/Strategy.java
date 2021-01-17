@@ -19,7 +19,7 @@ public final class Strategy {
     }
 
     public boolean shouldTakeAction(Trader trader, Chart chart, int index) {
-        return tradeCondition.isMet(trader, chart, index);
+        return tradeCondition.isMet(trader.getCurrentTrade(), chart, index);
     }
 
     // decide the highest buy price or lowest sell price for the day

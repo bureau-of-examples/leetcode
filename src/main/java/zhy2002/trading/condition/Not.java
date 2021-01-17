@@ -1,7 +1,7 @@
 package zhy2002.trading.condition;
 
 import zhy2002.trading.Chart;
-import zhy2002.trading.trading.Trader;
+import zhy2002.trading.Trade;
 
 public class Not implements TradeCondition {
 
@@ -11,7 +11,7 @@ public class Not implements TradeCondition {
         this.inner = inner;
     }
 
-    public boolean isMet(Trader trader, Chart chart, int index) {
-        return !inner.isMet(trader, chart, index);
+    public boolean isMet(Trade trade, Chart chart, int index) {
+        return !inner.isMet(trade, chart, index);
     }
 }

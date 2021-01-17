@@ -2,10 +2,9 @@ package zhy2002.trading.condition;
 
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
-import zhy2002.trading.trading.Trader;
 
 @AllArgsConstructor
-public class SMATurn implements TradeCondition {
+public class SMATurn extends ChartTradeCondition {
 
     private final int smaPeriods;
     private final int downWindow;
@@ -13,7 +12,8 @@ public class SMATurn implements TradeCondition {
     private final double downRate;
     private final double upRate;
 
-    public boolean isMet(Trader trader, Chart chart, int index) {
+    @Override
+    public boolean isMet(Chart chart, int index) {
         if (!checkCondition(chart, index)) {
             return false;
         }

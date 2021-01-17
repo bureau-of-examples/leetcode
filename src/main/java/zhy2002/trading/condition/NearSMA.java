@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class NearSMA implements TradeCondition {
+public class NearSMA extends ChartTradeCondition {
 
     private final int smaPeriods;
     private final double minFactor;

@@ -1,14 +1,14 @@
 package zhy2002.trading.condition;
 
 import zhy2002.trading.Chart;
-import zhy2002.trading.trading.Trader;
+import zhy2002.trading.Trade;
 
+/**
+ * TradeCondition only depends on the chart and a given trade.
+ * Trade parameter is set iff we are evaluating a sell condition.
+ */
 public interface TradeCondition {
-    default boolean isMet(Trader trader, Chart chart, int index) {
-        return isMet(chart, index);
-    }
 
-    default boolean isMet(Chart chart, int index) {
-        return false;
-    }
+    boolean isMet(Trade trade, Chart chart, int index);
+
 }

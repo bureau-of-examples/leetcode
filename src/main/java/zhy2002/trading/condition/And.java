@@ -1,7 +1,7 @@
 package zhy2002.trading.condition;
 
 import zhy2002.trading.Chart;
-import zhy2002.trading.trading.Trader;
+import zhy2002.trading.Trade;
 
 public class And implements TradeCondition {
 
@@ -12,9 +12,9 @@ public class And implements TradeCondition {
     }
 
     @Override
-    public boolean isMet(Trader trader, Chart chart, int index) {
+    public boolean isMet(Trade trade, Chart chart, int index) {
         for (var c : conditions) {
-            if (!c.isMet(trader, chart, index)) {
+            if (!c.isMet(trade, chart, index)) {
                 return false;
             }
         }

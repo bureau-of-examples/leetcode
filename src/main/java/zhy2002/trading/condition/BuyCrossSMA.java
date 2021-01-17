@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class BuyCrossSMA implements TradeCondition {
+public class BuyCrossSMA extends ChartTradeCondition {
 
     private final int smaPeriods;
     private final int proceedingLowers;

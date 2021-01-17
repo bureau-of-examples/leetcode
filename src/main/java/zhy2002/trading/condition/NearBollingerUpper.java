@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
 @AllArgsConstructor
-public class NearBollingerUpper implements TradeCondition {
+public class NearBollingerUpper extends ChartTradeCondition {
 
     private final int periods;
     private final double atrRatio;

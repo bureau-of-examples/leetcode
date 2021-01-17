@@ -7,7 +7,7 @@ import zhy2002.trading.Chart;
  * EMA(periods) drops at most ratioLimit in the last window days.
  */
 @AllArgsConstructor
-public class SMAChangeLowerBound implements TradeCondition {
+public class SMAChangeLowerBound extends ChartTradeCondition {
 
     private final int periods;
     private final int window;
@@ -16,6 +16,5 @@ public class SMAChangeLowerBound implements TradeCondition {
     public boolean isMet(Chart chart, int index) {
         var sma = chart.getSMA(periods);
         return (sma.get(index) - sma.get(index - (window - 1))) / sma.get(index - (window - 1)) >= boundRatio;
-
     }
 }
