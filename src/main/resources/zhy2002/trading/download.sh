@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-TICKS=("RIO.AX")
+TICKS=("AMZN")
 
 # Sunday, 1 January 2006 - back testing starts 1 January 2007
 START_TIMESTAMP=1136073600
