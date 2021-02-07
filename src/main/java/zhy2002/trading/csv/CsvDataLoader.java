@@ -25,13 +25,17 @@ public class CsvDataLoader {
             // https://commons.apache.org/proper/commons-csv/user-guide.html
             Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(reader);
             for (CSVRecord record : records) {
-                String date = record.get("Date");
-                double open = Double.parseDouble(record.get("Open"));
-                double high = Double.parseDouble(record.get("High"));
-                double low = Double.parseDouble(record.get("Low"));
-                double close = Double.parseDouble(record.get("Close"));
-                double volume = Double.parseDouble(record.get("Volume"));
-                result.add(new Candle(date, open, high, low, close, volume));
+//                try {
+                    String date = record.get("Date");
+                    double open = Double.parseDouble(record.get("Open"));
+                    double high = Double.parseDouble(record.get("High"));
+                    double low = Double.parseDouble(record.get("Low"));
+                    double close = Double.parseDouble(record.get("Close"));
+                    double volume = Double.parseDouble(record.get("Volume"));
+                    result.add(new Candle(date, open, high, low, close, volume));
+//                } catch (Exception ex) {
+//                    throw new RuntimeException(ex);
+//                }
             }
         } catch (IOException ex) {
             throw new RuntimeException("Failed to parse csv file: ", ex);

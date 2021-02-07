@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-TICKS=("AMZN")
+TICKS=("WPL.AX" "STO.AX" "BHP.AX" "FMG.AX" "RIO.AX" "AGL.AX" "SYD.AX" "TCL.AX" "BXB.AX" "WES.AX" "ALL.AX" "WOW.AX" "CCL.AX" "CSL.AX" "RMD.AX" "CBA.AX" "NAB.AX" "TLS.AX" "REA.AX" "APA.AX" "GMG.AX")
 
 # Sunday, 1 January 2006 - back testing starts 1 January 2007
 START_TIMESTAMP=1136073600

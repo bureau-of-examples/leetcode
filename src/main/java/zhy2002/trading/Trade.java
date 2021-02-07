@@ -1,6 +1,7 @@
 package zhy2002.trading;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class Trade {
@@ -14,6 +15,9 @@ public class Trade {
     private double sellPrice = -1;
     private double minPrice;
     private double maxPrice;
+
+    @Setter
+    private double pastPerformance;
 
 
     public Trade(Chart chart, int buyDayIndex, double buyPrice, int volume) {
@@ -52,5 +56,14 @@ public class Trade {
 
     public double getDrawDown() {
         return (buyPrice - minPrice) / buyPrice;
+    }
+
+    public Trade scale(double fund) {
+        Trade result = new Trade(chart, buyDayIndex, buyPrice, (int) (fund / buyPrice));
+        result.complete(sellDayIndex, sellPrice);
+        result.minPrice = minPrice;
+        result.maxPrice = maxPrice;
+        result.pastPerformance = pastPerformance;
+        return result;
     }
 }

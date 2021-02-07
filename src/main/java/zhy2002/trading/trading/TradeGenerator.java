@@ -54,7 +54,7 @@ public class TradeGenerator {
             dummyTrader.setCurrentTrade(trade);
             for (int i = trade.getBuyDayIndex() + 1; i < chart.getPeriods(); i++) {
                 trade.updatePrice(chart.getCandle(i).getClose());
-                if (sellStrategy.shouldTakeAction(dummyTrader, chart, i)) {
+                if (sellStrategy.shouldTakeAction(trade, chart, i)) {
                     double price = sellStrategy.decidePrice(chart, i);
                     var candle = chart.getCandle(i);
                     if (candle.isPriceInRange(price)) {

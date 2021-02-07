@@ -44,7 +44,7 @@ public class Trader {
             if (currentTrade == null) { // check for buy
                 for (var chart : strategyPairMap.keySet()) {
                     var buyStrategy = strategyPairMap.get(chart).getBuyStrategy();
-                    if (buyStrategy.shouldTakeAction(this, chart, index)) {
+                    if (buyStrategy.shouldTakeAction(null, chart, index)) {
                         double price = buyStrategy.decidePrice(chart, index);
                         int share = (int) (fund / price);
                         fund -= share * price;
@@ -57,7 +57,7 @@ public class Trader {
                 var chart = currentTrade.getChart();
                 this.getCurrentTrade().updatePrice(chart.getCandle(index).getClose());
                 var sellStrategy = strategyPairMap.get(chart).getSellStrategy();
-                if (sellStrategy.shouldTakeAction(this, chart, index)) {
+                if (sellStrategy.shouldTakeAction(currentTrade, chart, index)) {
                     double price = sellStrategy.decidePrice(chart, index);
                     fund += price * currentTrade.getVolume();
                     currentTrade.complete(index, price);

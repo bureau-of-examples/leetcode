@@ -1,6 +1,5 @@
 package zhy2002.trading.test;
 
-import zhy2002.trading.StockGroup;
 import zhy2002.trading.condition.And;
 import zhy2002.trading.condition.DaysBlowSMA;
 import zhy2002.trading.condition.Or;
@@ -14,12 +13,6 @@ import zhy2002.trading.strategy.StrategyPair;
 import java.util.List;
 
 public class SMATurn2Setup extends BackTestSetup {
-
-    public List<StockGroup> createStockGroups() {
-        return List.of(
-                new StockGroup("AU", List.of("RIO.AX"))
-        );
-    }
 
     @Override
     public List<StrategyPair> createStrategyPairs() {

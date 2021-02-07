@@ -15,7 +15,10 @@ public abstract class BackTestSetup {
     // default
     public List<StockGroup> createStockGroups() {
         return List.of(
-                new StockGroup("AU", List.of("NAB.AX", "CBA.AX", "BHP.AX", "RIO.AX"))
+                new StockGroup("AU", List.of(
+                        "WPL.AX", "STO.AX", "BHP.AX", "FMG.AX", "TCL.AX", "BXB.AX", "WES.AX", "ALL.AX",
+                        "WOW.AX", "CCL.AX", "CSL.AX", "RMD.AX", "CBA.AX", "NAB.AX", "TLS.AX", "REA.AX",
+                        "APA.AX", "GMG.AX", "RIO.AX", "AGL.AX", "SYD.AX"))
         );
     }
 
