@@ -65,8 +65,8 @@ public final class TradeStatistics {
 
     @Override
     public String toString() {
-        return String.format("Trade: %d, Complete Trade; %d, Betting Average: %.2f, Win Loss Ratio: %.2f, Expected Profit: %.2f",
-                getTrades().size(), getCompletedTrades().size(), getBettingAverage(), getWinLossRatio(), getMeanProfit());
+        return String.format("Trade: %d, Complete Trade; %d, Betting Average: %.4f, Win Loss Ratio: %.4f, Expected Profit: %.4f, DrawDown: %4f",
+                getTrades().size(), getCompletedTrades().size(), getBettingAverage(), getWinLossRatio(), getMeanProfit(), getDrawDown());
     }
 
     public Object getData(String colName) {

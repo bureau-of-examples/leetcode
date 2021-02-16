@@ -44,13 +44,15 @@ public class Trade {
     @Override
     public String toString() {
         if (sellDayIndex >= 0) {
-            return String.format("Bought on %s and Sold on %s with profit %.2f hold days %d",
+            return String.format("Bought %s on %s and Sold on %s with profit %.2f hold days %d",
+                    chart.getSymbol(),
                     chart.getCandle(buyDayIndex).date,
                     chart.getCandle(sellDayIndex).date,
                     (sellPrice - buyPrice) / buyPrice,
                     sellDayIndex - buyDayIndex);
         } else {
-            return String.format("Buy on %s at %.2f with min: %.2f",
+            return String.format("Buy %s on %s at %.2f with min: %.2f",
+                    chart.getSymbol(),
                     chart.getCandle(buyDayIndex).date,
                     getBuyPrice(),
                     getMinPrice());

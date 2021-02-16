@@ -3,6 +3,11 @@ package zhy2002.trading.condition;
 import lombok.AllArgsConstructor;
 import zhy2002.trading.Chart;
 
+/**
+ * Assert in the past, there is an upWindow with average SMA gain >= upRate and before that
+ * there is a downWindow with average SMA gain < downRate.
+ * SMA gain = (current price - current SMA) / current SMA.
+ */
 @AllArgsConstructor
 public class SMATurn extends ChartTradeCondition {
 
@@ -14,23 +19,6 @@ public class SMATurn extends ChartTradeCondition {
 
     @Override
     public boolean isMet(Chart chart, int index) {
-        if (!checkCondition(chart, index)) {
-            return false;
-        }
-
-        return true; //lastTimeIsOk(trader, index);
-    }
-
-//    // if last time lost money, cool down 10 days
-//    private boolean lastTimeIsOk(Trader trader, int nowIndex) {
-//        if (trader.getTrades().isEmpty()) {
-//            return true;
-//        }
-//        var lastTrade = trader.getTrades().get(trader.getTrades().size() - 1);
-//        return lastTrade.getSellDayIndex() <= nowIndex - 10 || lastTrade.getSellPrice() > lastTrade.getBuyPrice();
-//    }
-
-    private boolean checkCondition(Chart chart, int index) {
         var sma = chart.getSMA(smaPeriods);
         double downPercent = 0;
         int downCount = 0;
@@ -53,5 +41,4 @@ public class SMATurn extends ChartTradeCondition {
         upPercent /= upWindow;
         return upPercent >= upRate;
     }
-
 }
