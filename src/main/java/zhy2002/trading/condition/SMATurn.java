@@ -42,7 +42,7 @@ public class SMATurn extends ChartTradeCondition {
             }
         }
         downPercent /= downWindow;
-        if (downPercent >= downRate || downCount < 0) {
+        if (downPercent >= downRate) {
             return false;
         }
 
