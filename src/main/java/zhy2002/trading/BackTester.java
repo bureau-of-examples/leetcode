@@ -24,9 +24,9 @@ import java.util.Map;
  */
 public class BackTester {
 
-    private static final String START_DATE = "2007-01-01";
+    private static final String START_DATE = "2016-01-01";
     private static final double START_FUND = 10_000;
-    private static final int START_YEAR = 2007;
+    private static final int START_YEAR = 2016;
     private static final int END_YEAR = 2020;
 
     /**

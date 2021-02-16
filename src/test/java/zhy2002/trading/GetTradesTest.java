@@ -22,12 +22,13 @@ public class GetTradesTest {
     private static final double START_FUND = 10_000;
 
     @Test
-    public void dumpTrades() {
-        var t1 = tradeSMATurn("REA.AX", 14, 13, 6, -0.005, 0.003, 30, 50, 0.85, 0.96);
-        var t2 = tradeSMATurn("RIO.AX", 14, 13, 3, -0.005, 0.005, 20, 30, 0.75, 0.97);
-        var t3 = tradeSMATurn("RMD.AX", 14, 12, 6, -0.006, 0.003, 50, 20, 0.75, 0.96);
-        var t4 = tradeSMATurn("ALL.AX", 20, 12, 4, -0.004, 0.004, 50, 20, 0.8, 0.96);
-        var traders = List.of(t1, t2, t3, t4);
+    public void printManuallySelectedTrades() {
+        var t1 = tradeSMATurn("RIO.AX", 14, 12, 3, -0.005, 0.003, 30, 30, 0.85, 0.96);
+        var t2 = tradeSMATurn("CSL.AX", 14, 12, 3, -0.005, 0.003, 30, 20, 0.70, 0.96);
+        var t3 = tradeSMATurn("ALL.AX", 14, 13, 3, -0.006, 0.003, 50, 20, 0.70, 0.96);
+        var t4 = tradeSMATurn("RMD.AX", 14, 13, 4, -0.004, 0.003, 20, 30, 0.70, 0.96);
+        var t5 = tradeSMATurn("REA.AX", 20, 12, 4, -0.005, 0.005, 30, 30, 0.70, 0.96);
+        var traders = List.of(t1, t2, t3, t4, t5);
         SimpleTradeSelector selector = new SimpleTradeSelector(traders, 10);
         System.out.println("Selected trades: ");
         var selected = selector.selectTrades();
@@ -67,6 +68,7 @@ public class GetTradesTest {
         for (var t : trader.getTrades()) {
             System.out.println(t);
         }
+        System.out.println("For " + chart.getSymbol() + ": " + new TradeStatistics(trader.getTrades()));
         return trader;
     }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-TICKS=("COH.AX" "RHC.AX")
+TICKS=("REA.AX" "RIO.AX" "RMD.AX" "ALL.AX" "CSL.AX")
 
 # Sunday, 1 January 2006 - back testing starts 1 January 2007
 START_TIMESTAMP=1136073600
